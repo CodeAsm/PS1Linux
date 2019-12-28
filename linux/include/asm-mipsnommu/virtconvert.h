@@ -11,12 +11,12 @@
  */
 extern inline unsigned long virt_to_phys(volatile void * address)
 {
-	return PHYSADDR(address);
+	return (unsigned long)address;
 }
 
 extern inline void * phys_to_virt(unsigned long address)
 {
-	return (void *)KSEG0ADDR(address);
+	return (void *)address;
 }
 
 /*
@@ -24,12 +24,12 @@ extern inline void * phys_to_virt(unsigned long address)
  */
 extern inline unsigned long virt_to_bus(volatile void * address)
 {
-	return PHYSADDR(address);
+	return (unsigned long)address;
 }
 
 extern inline void * bus_to_virt(unsigned long address)
 {
-	return (void *)KSEG0ADDR(address);
+	return (void *)address;
 }
 
 #endif

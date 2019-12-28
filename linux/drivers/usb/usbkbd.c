@@ -1,5 +1,5 @@
 /*
- * $Id: usbkbd.c,v 1.1.1.1 2001/02/22 14:58:43 serg Exp $
+ * $Id: usbkbd.c,v 1.3 2001/09/18 07:45:28 burma Exp $
  *
  *  Copyright (c) 1999-2000 Vojtech Pavlik
  *
@@ -75,7 +75,11 @@ static void usb_kbd_irq(struct urb *urb)
 	int i;
 
 	if (urb->status) return;
-
+	///////////////////////
+	//printk("kbd event: %1x%1x%1x%1x%1x%1x%1x%1x\n", kbd->new[0], kbd->new[1],
+	//     kbd->new[2], kbd->new[3], kbd->new[4], kbd->new[5],
+	//     kbd->new[6], kbd->new[7]);
+	///////////////////////
 	for (i = 0; i < 8; i++)
 		input_report_key(&kbd->dev, usb_kbd_keycode[i + 224], (kbd->new[0] >> i) & 1);
 

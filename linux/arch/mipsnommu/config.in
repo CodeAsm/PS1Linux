@@ -2,9 +2,6 @@
 # For a description of the syntax of this configuration file,
 # see Documentation/kbuild/config-language.txt.
 #
-#??? Virtual Console enable for PSX
-#define_bool CONFIG_VT y
-#define_bool VT_SINGLE_DRIVER y
 
 define_bool CONFIG_MIPS y
 
@@ -22,6 +19,7 @@ mainmenu_option next_comment
 comment 'Machine selection'
 if [ "$CONFIG_EXPERIMENTAL" = "y" ]; then
    bool 'Support for Sony PlayStation' CONFIG_PLAYSTATION
+	dep_bool '   PIO extension support' CONFIG_PSX_PIO_EXTENSION $CONFIG_PLAYSTATION
 fi
 
 #
@@ -75,7 +73,7 @@ choice 'CPU type' \
 	 R4300 CONFIG_CPU_R4300	\
 	 R4x00 CONFIG_CPU_R4X00	\
 	 R5000 CONFIG_CPU_R5000	\
-         R5432 CONFIG_CPU_R5432 \
+    R5432 CONFIG_CPU_R5432 \
 	 RM7000 CONFIG_CPU_RM7000 \
 	 R52xx CONFIG_CPU_NEVADA \
 	 R8000 CONFIG_CPU_R8000	\
@@ -99,12 +97,17 @@ else
 fi
 bool 'Kernel floating-point emulation' CONFIG_MIPS_FPU_EMULATOR
 
+bool 'System V IPC' CONFIG_SYSVIPC
+bool 'BSD Process Accounting' CONFIG_BSD_PROCESS_ACCT
+bool 'Sysctl support' CONFIG_SYSCTL
 if [ "$CONFIG_PROC_FS" = "y" ]; then
-   define_bool CONFIG_KCORE_ELF y
+   choice 'Kernel core (/proc/kcore) format' \
+	"ELF		CONFIG_KCORE_ELF	\
+	 A.OUT		CONFIG_KCORE_AOUT" ELF
 fi
-define_bool CONFIG_ELF_KERNEL y
 
 tristate 'Kernel support for flat binaries' CONFIG_BINFMT_FLAT
+dep_bool '   Load flat segments separately' CONFIG_BINFMT_FLAT_SEPARATELY $CONFIG_BINFMT_FLAT
 tristate 'Kernel support for a.out binaries' CONFIG_BINFMT_AOUT
 tristate 'Kernel support for ELF binaries' CONFIG_BINFMT_ELF
 tristate 'Kernel support for MISC binaries' CONFIG_BINFMT_MISC
@@ -114,10 +117,6 @@ bool 'Networking support' CONFIG_NET
 if [ "$CONFIG_PCI" = "y" ]; then
     source drivers/pci/Config.in
 fi
-
-bool 'System V IPC' CONFIG_SYSVIPC
-bool 'BSD Process Accounting' CONFIG_BSD_PROCESS_ACCT
-bool 'Sysctl support' CONFIG_SYSCTL
 
 source drivers/parport/Config.in
 
@@ -197,7 +196,7 @@ if [ "$CONFIG_NET" = "y" ]; then
    endmenu
 fi
 
-if [ "$CONFIG_ISA" = "y" -o "$CONFIG_PCI" = "y" ]; then
+if [ "$CONFIG_ISA" = "y" -o "$CONFIG_PCI" = "y" -o "$CONFIG_PLAYSTATION" = "y" ]; then
    mainmenu_option next_comment
    comment 'ISDN subsystem'
 
@@ -217,6 +216,7 @@ if [ "$CONFIG_ISA" = "y" -o "$CONFIG_PCI" = "y" ]; then
       source drivers/cdrom/Config.in
    fi
    endmenu
+
 fi
 
 #if [ "$CONFIG_DECSTATION" != "y" -a \
@@ -227,16 +227,13 @@ fi
 #source drivers/media/Config.in
 #fi
 
-#if [ "$CONFIG_PLAYSTATION" = "y"]; then
-#    source drivers/char/Config.in
-#fi
-
 if [ "$CONFIG_PLAYSTATION" = "y" ]; then
    mainmenu_option next_comment
    comment 'PlayStation Character devices'
 
-   bool 'PlayStation SIO console' CONFIG_PS_SIO_CONSOLE
-   bool 'PlayStation GPU console' CONFIG_PS_GPU_CONSOLE
+   if [ "$CONFIG_PSX_PIO_EXTENSION" = "y" ]; then
+   	bool 'Enhanced Real Time Clock Support' CONFIG_RTC
+   fi
    endmenu
 fi
 
@@ -247,16 +244,22 @@ if [ "$CONFIG_PLAYSTATION" = "y" ]; then
   comment 'Console drivers'
   
   bool 'PSX GPU virtual console' CONFIG_GPUPSX_CONSOLE
-  bool 'PSX PC Keyboard support ???' CONFIG_PC_KEYB
+  bool 'PSX PC Keyboard support' CONFIG_PC_KEYB
+
 bool 'Virtual terminal' CONFIG_VT 
 if [ "$CONFIG_VT" = "y" ]; then
+   bool '  Use HiRes' CONFIG_VT_CONSOLE_HIRES
    bool '  Support for console on virtual terminal' CONFIG_VT_CONSOLE
+fi
+bool 'PSX Serial ' CONFIG_SERIAL_PSX 
+if [ "$CONFIG_SERIAL_PSX" = "y" ]; then
+   bool '  Support for console on SIO' CONFIG_SERIAL_PSX_CONSOLE
 fi
 	  define_bool VT_SINGLE_DRIVER y
   
 #      bool 'Support for frame buffer devices' CONFIG_FB
 #      source drivers/video/Config.in
-   endmenu
+  endmenu
 fi
 
 mainmenu_option next_comment

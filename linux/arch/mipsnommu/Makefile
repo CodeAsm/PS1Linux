@@ -106,7 +106,7 @@ ifdef CONFIG_PLAYSTATION
 CORE_FILES    += arch/mipsnommu/ps/ps.o
 SUBDIRS       += arch/mipsnommu/ps arch/mipsnommu/ps/prom
 LIBS          += arch/mipsnommu/ps/prom/prom.a
-LOADADDR      += 0x80010000
+LOADADDR      += 0x10000
 ifdef CONFIG_PS_GPU_CONSOLE 
 SUBDIRS	      += arch/mipsnommu/ps/libpsx
 LIBS          += arch/mipsnommu/ps/libpsx/libpsx.a

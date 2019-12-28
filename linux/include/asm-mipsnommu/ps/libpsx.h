@@ -18,8 +18,10 @@ void print2( int, int, char );
 void gpu_dma_gpu_idle( void );
 // waits for GPU's DMA idle
 void gpu_dma_idle( void );
+void line (int xy, int hw, int col);
+extern char rct1;
 
-
+/*
 void xprintf (char *, ...);
 int OpenEvent( unsigned int, int, int, void * );
 int CloseEvent( int );
@@ -40,5 +42,5 @@ int SysError( int, int );
 
 int int_on( int );
 int int_off( int );
-
+*/
 #endif

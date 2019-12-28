@@ -187,6 +187,8 @@ static inline void cpu_probe(void)
       
 	default:
 		mips_cpu.cputype = CPU_R3000;
+		mips_cpu.isa_level = MIPS_CPU_ISA_I;
+		mips_cpu.options = MIPS_CPU_NOTLB;
 	}
 }
 
@@ -452,7 +454,6 @@ void __init setup_arch(char **cmdline_p)
 		start = PFN_UP(boot_mem_map.map[i].addr);
 		end = PFN_DOWN(boot_mem_map.map[i].addr
 		      + boot_mem_map.map[i].size);
-
 		if (start >= end)
 			continue;
 		if (end > max_pfn)
@@ -554,6 +555,7 @@ void __init setup_arch(char **cmdline_p)
 		res->start = boot_mem_map.map[i].addr;
 		res->end = res->start + boot_mem_map.map[i].size - 1;
 		res->flags = IORESOURCE_MEM | IORESOURCE_BUSY;
+		
 		request_resource(&iomem_resource, res);
 
 		/*

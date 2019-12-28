@@ -1,13 +1,19 @@
-            PSXLinux kernel alpha 2 release.
+            PSXLinux kernel beta 1 release.
             --------------------------------
             
-   This archive contains alpha 2 release of Linux kernel for Sony Playstation - PSXLinux.
+   This archive contains beta 1 release of Linux kernel for Sony Playstation - PSXLinux.
 PSXLinux based on uClinux 2.4.x kernel (www.uClinux.com) and contains specific support
 for Sony Playstation.
   Essential features were added:
- - virtual console over Playstation GPU support (alpha release);
- - Playstation memory card block driver (alpha release);
- - minor bugs fixed.
+1. virtual console over Playstation GPU improved;
+2. Playstation memory card block driver improved:
+ - some bugs fixed;
+ - large memory card (4x,...) support added;
+ - two memory cards into one device joining support added;
+3. console over Playstation SIO added (115200, 8N1);
+4. Runix hardware add-on supported:
+ - USB host controller SL811H driver with keyboard and mouse support;
+ - RTC support.
 
 INSTALLATION:
 -------------      
@@ -42,55 +48,9 @@ II. PSXLinux kernel source tree installation and compilation.
 			or
 		make xconfig	-- X windows based configuration tool
 				
-	Here minimum are options that are needed to be compiled into the kernel.
-   
-	 Code maturity level options:	
-		Prompt for development and/or incomplete code/drivers
-		- YES
-
-    Machine selection:		
-		Support for Sony Playstation
-		- YES
-
-    Loadable module support:		
-		Enable loadable module support
-		- NO
-
-    CPU selection:		
-		CPU type
-		- R3000
-
-    General setup:		
-		Kernel floating-point emulation
-		- YES					   		
-		Kernel support for flat binaries
-		- YES
-		Kernel support for a.out binaries
-		- NO
-		Kernel support for ELF binaries
-		- NO
-		Kernel support for MISC binaries
-		- NO
-
-    Block devices:		
-		PSX memory card support
-		- YES
-
-    File systems:
-      Second extended fs support
-      -YES
-      
-    Console drivers:		
-		PSX GPU virtual console
-		- YES   
-		Virtual terminal
-		- YES   
-		Support for console on virtual terminal
-		- YES
-      
-    Kernel hacking:
-      Are you using a crosscompiler
-      -YES
+	You may load one of prepared configurations from file Config (simple configuration
+	without Runix hardware add-on support) or Config_Addon (configuration with Runix 
+	hardware add-on support).
 
 	6. Compile kernel. You will get compiled kernel 'linux' in 
 	the directory where kernel sources was installed (current directory). 
@@ -98,9 +58,9 @@ II. PSXLinux kernel source tree installation and compilation.
 		make
 			
 	7. Run compiled kernel on your game console.
-	coming soon... Visit www.runix.ru for tools an instructions.  
+	Visit www.runix.ru for tools an instructions.  
 
    8. Now you may mount root file system from memory card. The memory card root image,
-   tools and instructions will coming soon, please visit www.runix.ru.
+   tools and instructions may be found on www.runix.ru.
 
    Best regards !

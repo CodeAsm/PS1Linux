@@ -70,6 +70,13 @@ ifeq ($(ARCH),arm)
   endif
 endif
 
+#ifeq ($(ARCH),mipsnommu)
+#    KEYMAP   =defkeymap.o
+#    KEYBD    =../../arch/mipsnommu/ps/psx_kbd.o
+#    CONSOLE  = console.o
+#    	
+#endif
+
 ifeq ($(ARCH),sh)
   KEYMAP   =
   KEYBD    =
@@ -102,6 +109,8 @@ obj-$(CONFIG_68328_SERIAL) += 68328serial.o
 obj-$(CONFIG_SERIAL_21285) += serial_21285.o
 obj-$(CONFIG_SERIAL_SA1100) += serial_sa1100.o
 obj-$(CONFIG_SERIAL_AMBA) += serial_amba.o
+obj-$(CONFIG_SERIAL_PSX) += serial_psx.o
+obj-$(CONFIG_SERIAL_PSX_CONSOLE) += ../../arch/mipsnommu/ps/siocon.o
 
 ifndef CONFIG_SUN_KEYBOARD
   obj-$(CONFIG_VT) += keyboard.o $(KEYMAP) $(KEYBD)
@@ -134,7 +143,9 @@ obj-$(CONFIG_SERIAL167) += serial167.o
 obj-$(CONFIG_MVME147_SCC) += generic_serial.o vme_scc.o
 obj-$(CONFIG_MVME162_SCC) += generic_serial.o vme_scc.o
 obj-$(CONFIG_BVME6000_SCC) += generic_serial.o vme_scc.o
-
+###//ifdef CONFIG_VT
+###//obj-$(CONFIG_PLAYSTATION) += ../../arch/mipsnommu/ps/psx_kbd.o
+##//endif
 subdir-$(CONFIG_RIO) += rio
 subdir-$(CONFIG_INPUT) += joystick
 

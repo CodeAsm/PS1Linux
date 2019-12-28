@@ -1,4 +1,4 @@
-/* $Id: watch.S,v 1.1 2001/02/22 19:13:55 serg Exp $
+/* $Id: watch.S,v 1.2 2001/09/24 12:04:32 serg Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
@@ -16,13 +16,13 @@
 		.set	noreorder
 /*
  * Parameter: a0 - logic address to watch
- *                 Currently only KSEG0 addresses are allowed!
+ *                 Currently only KUSEG addresses are allowed!
  *            a1 - set bit #1 to trap on load references
  *                     bit #0 to trap on store references
  * Results  : none
  */
 		LEAF(__watch_set)
-		li	t0,0x80000000
+		li	t0,0x00000000
 		subu	a0,t0
 		ori	a0,7
 		xori	a0,7

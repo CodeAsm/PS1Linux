@@ -50,6 +50,7 @@ tristate 'ROM disk memory block device (blkmem)' CONFIG_BLK_DEV_BLKMEM
 
 if [ "$CONFIG_PLAYSTATION" = "y" ]; then
    tristate 'PSX memory card support' CONFIG_PSX_MEM_CARD
+	dep_bool '   Join several cards into one device' CONFIG_PSX_LARGE_CARD $CONFIG_PSX_MEM_CARD
 fi
 
 endmenu

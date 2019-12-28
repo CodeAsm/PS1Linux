@@ -17,13 +17,19 @@
 
 
 #define SIO_NO_RESET
-
+#define SIO_TIMEOUT
+int sio_timeout;
 typedef struct
 {
 	int mode;
 	int ctrl;
 	int rate;
 } sio_regs_t;
+
+void sio_con_udelay(int c)
+{int j;
+ for(j=0;j<c;j++);
+}
 
 const sio_regs_t sio_console_mode=
 {
@@ -60,14 +66,88 @@ __volatile__ int sio_ready( int mask )
 #endif // SIO_TIMEOUT
 	while( (inw( SIO_STAT_REG ) & mask) != mask)
 #ifdef SIO_TIMEOUT
-		if(cnt++>900000) return -1;
+		if(cnt++>9000) return -1;
 #else
 		;
 #endif // SIO_TIMEOUT
   return 0;
 }
 
+static int  sio_getkey()
+{
+	int res, stat;
+	sio_regs_t sio_cur_mode;
+
+	sio_save( &sio_cur_mode );
+#if 0
+	sio_restore( &sio_console_mode );
+#endif
+
+	// raise RTS, disable interrupts
+//	outw( (inw( SIO_CTRL_REG )&(~(SIO_ALLIRQ|SIO_BUF8))) | SIO_RTS, SIO_CTRL_REG );    
+  
+  // waiting for ready data 
+	if( sio_ready(SIO_RFR)<0 ) 
+		return -1;     
+  res = inb( SIO_DATA_REG );
+
+//	sio_restore( &sio_cur_mode );
+  return res;
+
+}
+
+int sio_rtscts_get_8()
+{
+	sio_timeout=0;
+	
+	// raise RTS, disable interrupts
+	outw( inw( SIO_CTRL_REG ) | SIO_RTS, SIO_CTRL_REG );    
+  
+  // waiting for data
+	if( sio_ready(SIO_RFR)<0 ) 
+	{
+		sio_timeout=1;
+		return -1;     
+	}
+
+	// drop RTS
+	outw( inw( SIO_CTRL_REG ) & (~SIO_RTS), SIO_CTRL_REG );    
+
+  return inb( SIO_DATA_REG );
+}
+
+// fill buffer from sio RTSCTS hardware control
+// returns number of recieved bytes
+int sio_rtscts_get_buf( __u8 *buf, const int length )
+{
+	int i;
+
+	sio_timeout=0;
+	if( (length ==0) || (buf ==NULL) ) return 0;  
+
+	// raise RTS, disable interrupts
+	outw( inw( SIO_CTRL_REG ) | SIO_RTS, SIO_CTRL_REG );    
+  
+  for( i=1; i<=length; i++, buf++ )
+  {
+  	// waiting for data
+		if( sio_ready(SIO_RFR)<0 ) 
+		{
+			sio_timeout=1;
+			return i-1;     
+		}
+		
+		// drop RTS
+		if( i==length )
+			outw( inw( SIO_CTRL_REG ) & (~SIO_RTS), SIO_CTRL_REG );    
+
+	  *buf = inb( SIO_DATA_REG );
+	}
+	return i-1;
+}
+
 // -- end of sio functions 
+
 
 
 static void sio_console_write(struct console *co, const char *msgbuf,
@@ -106,35 +186,25 @@ fend:
 }
 
 static int sio_console_wait_key(struct console *co)
-{
-	int res, stat;
-	sio_regs_t sio_cur_mode;
+{int f;
 
-	sio_save( &sio_cur_mode );
-#if 0
-	sio_restore( &sio_console_mode );
-#endif
+ return sio_rtscts_get_8();
 
-	// raise RTS, disable interrupts
-//	outw( (inw( SIO_CTRL_REG )&(~(SIO_ALLIRQ|SIO_BUF8))) | SIO_RTS, SIO_CTRL_REG );    
-  
-  /* waiting for ready data */
-	if( sio_ready(SIO_RFR)<0 ) 
-		return -1;     
-  res = inb( SIO_DATA_REG );
-
-//	sio_restore( &sio_cur_mode );
-  return res;
 }
 
+static void sio_console_read(struct console *co, const char *msgbuf,
+			       unsigned size)
+{
+ int res;
+ sio_rtscts_get_buf(msgbuf, size );
+
+}
 
 static int __init sio_console_setup(struct console *co, char *options)
 {
   int  x,y;
 
-    //outw( inw(SIO_CTRL_REG)|SIO_RXIRQ, SIO_CTRL_REG );
-
-   return 0;   /* !!! check: we must return 0 on success ? !!! */
+   return 0;   // !!! check: we must return 0 on success ? !!! 
 }
 
 static kdev_t sio_console_device(struct console *c)
@@ -146,6 +216,7 @@ static struct console siocons =
 {
     name:	"ttyS",
     write:	sio_console_write,
+    read:	sio_console_read,
     device:	sio_console_device,
     wait_key:	sio_console_wait_key,
     setup:	sio_console_setup,
@@ -159,5 +230,18 @@ static struct console siocons =
 
 void __init ps_sio_console_init(void)
 {
+
+    outw(0x50, SIO_CTRL_REG );
+    sio_con_udelay(1500);
+    outw(SIO_B11520, SIO_RATE_REG );
+    sio_con_udelay(1500);
+    outw(SIO_BRS16|SIO_CHR8|SIO_SB1, SIO_MODE_REG );
+    sio_con_udelay(1500);
+    outw(0x5, SIO_CTRL_REG );
+    sio_con_udelay(1500);
+    outw(inw(SIO_CTRL_REG)|SIO_RXIRQ|SIO_RX|SIO_TX, SIO_CTRL_REG );
+    sio_con_udelay(1500);
+        
+    printk("PSX SIO console enable \n");
     register_console(&siocons);
 }

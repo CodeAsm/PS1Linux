@@ -1,4 +1,4 @@
-/* $Id: page.h,v 1.2 2001/02/26 16:56:16 serg Exp $
+/* $Id: page.h,v 1.3 2001/09/24 12:04:32 serg Exp $
  *
  * Definitions for page handling
  *
@@ -72,7 +72,7 @@ extern __inline__ int get_order(unsigned long size)
  * This handles the memory map.
  * We handle pages at KSEG0 for kernels with 32 bit address space.
  */
-#define PAGE_OFFSET	0x80000000UL
+#define PAGE_OFFSET	0x00000000UL
 #define __pa(x)		((unsigned long) (x) - PAGE_OFFSET)
 #define __va(x)		((void *)((unsigned long) (x) + PAGE_OFFSET))
 #define virt_to_page(kaddr)	(mem_map + (__pa(kaddr) >> PAGE_SHIFT))

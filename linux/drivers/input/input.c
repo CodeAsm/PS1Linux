@@ -1,5 +1,5 @@
 /*
- * $Id: input.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
+ * $Id: input.c,v 1.2 2001/09/07 15:36:40 burma Exp $
  *
  *  Copyright (c) 1999-2000 Vojtech Pavlik
  *
@@ -166,8 +166,8 @@ void input_event(struct input_dev *dev, unsigned int type, unsigned int code, in
  */
 
 	while (handle) {
-		if (handle->open)
-			handle->handler->event(handle, type, code, value);
+	  if (handle->open)
+	    handle->handler->event(handle, type, code, value);
 		handle = handle->dnext;
 	}
 }

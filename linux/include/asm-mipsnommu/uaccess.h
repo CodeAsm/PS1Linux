@@ -45,8 +45,9 @@
  *  - AND "addr+size" doesn't have any high-bits set
  *  - OR we are in kernel mode.
  */
-#define __access_ok(addr,size,mask) \
-        (((__signed__ long)((mask)&(addr | size | (addr+size)))) >= 0)
+/* !!!#define __access_ok(addr,size,mask) \
+       (((__signed__ long)((mask)&(addr | size | (addr+size)))) >= 0)*/
+#define __access_ok(addr,size,mask) 1	// !!!
 #define __access_mask ((long)(get_fs().seg))
 
 #define access_ok(type,addr,size) \
@@ -99,7 +100,7 @@ struct __large_struct { unsigned long buf[100]; };
 
 #define __get_user_nocheck(x,ptr,size) ({ \
 long __gu_err; \
-__typeof(*(ptr)) __gu_val; \
+__typeof__(*(ptr)) __gu_val; \
 long __gu_addr; \
 __asm__("":"=r" (__gu_val)); \
 __gu_addr = (long) (ptr); \

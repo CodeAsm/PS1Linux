@@ -25,7 +25,7 @@
  * <mountpoint>/devices contains USB topology, device, config, class,
  * interface, & endpoint data.
  *
- * I considered using /proc/bus/usb/devices/device# for each device
+ * I considered using /proc/bus/usb/devices/device# for each device 
  * as it is attached or detached, but I didn't like this for some
  * reason -- maybe it's just too deep of a directory structure.
  * I also don't like looking in multiple places to gather and view
@@ -49,7 +49,7 @@
  *   Converted file reading routine to dump to buffer once
  *   per device, not per bus
  *
- * $Id: devices.c,v 1.1.1.1 2001/02/22 14:58:43 serg Exp $
+ * $Id: devices.c,v 1.2 2001/09/07 08:02:18 burma Exp $
  */
 
 #include <linux/fs.h>

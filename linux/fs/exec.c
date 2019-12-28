@@ -887,7 +887,6 @@ int do_execve(char * filename, char ** argv, char ** envp, struct pt_regs * regs
 	struct linux_binprm bprm;
 	struct file *file;
 	int retval;
-	int i;
 
 	file = open_exec(filename);
 

@@ -157,7 +157,8 @@
 
 #define OSST_MAJOR	206	/* OnStream-SCx0 SCSI tape */
 
-#define BU_MAJOR     207   /* PSX memory card */
+#define BU_MAJOR     	207   /* PSX memory card */
+#define BU_LARGE_MAJOR  208   /* PSX memory cards joined into one device */
 
 /*
  * Tests for SCSI devices.

@@ -40,18 +40,18 @@
 	.text
 	/*
 	 * Reserved space for exception handlers.
-	 * Necessary for machines which link their kernels at KSEG0.
+	 * Necessary for machines which link their kernels at KUSEG.
 	 * FIXME: Use the initcode feature to get rid of unused handler
 	 * variants.
 	 */
 	.fill	0x280
 /*	
  * This is space for the interrupt handlers.
- * After trap_init() they are located at virtual address KSEG0.
+ * After trap_init() they are located at virtual address KUSEG.
  *
  * These handlers much be written in a relocatable manner
  * because based upon the cpu type an arbitrary one of the
- * following pieces of code will be copied to the KSEG0
+ * following pieces of code will be copied to the KUSEG
  * vector location.
  */
 
@@ -63,7 +63,7 @@
 	 * This is a very bad place to be.  Our cache error
 	 * detection has triggered.  If we have write-back data
 	 * in the cache, we may not be able to recover.  As a
-	 * first-order desperate measure, turn off KSEG0 cacheing.
+	 * first-order desperate measure, turn off KUSEG cacheing.
 	 */
 	mfc0	k0,CP0_CONFIG
 	li	k1,~CONF_CM_CMASK

@@ -94,9 +94,14 @@ InitGPU:    subu	sp,sp,8
             li 		t3,0x07049025    	# vertical start/end
             sw 		t3,GPU1(s0)
 
-            li 		t3,0xe1000685    	# draw mode, texture page = (8bit,320,0)
+            li 		t3,0xe1000686    	# draw mode, texture page = (8bit,320,0)
             jal 	WaitGPU
             sw 		t3,GPU0(s0)
+
+#???PSX TEST            
+#	    li 		t3,0xe2000685    	# draw mode, texture page = (8bit,320,0)
+#            jal 	WaitGPU
+#            sw 		t3,GPU0(s0)
 
             jal 	WaitGPU
             li 		t3,0xe3000000      	# clip start

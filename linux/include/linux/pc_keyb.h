@@ -11,8 +11,8 @@
  */
 
 #undef KBD_REPORT_ERR			/* Report keyboard errors */
-#define KBD_REPORT_UNKN			/* Report unknown scan codes */
-#define KBD_REPORT_TIMEOUTS		/* Report keyboard timeouts */
+#undef KBD_REPORT_UNKN			/* Report unknown scan codes */
+#undef KBD_REPORT_TIMEOUTS		/* Report keyboard timeouts */
 #undef KBD_IS_FOCUS_9000		/* We have the brain-damaged FOCUS-9000 keyboard */
 #undef INITIALIZE_MOUSE			/* Define if your PS/2 mouse needs initialization. */
 

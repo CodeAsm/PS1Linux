@@ -1,5 +1,5 @@
 /*
- * $Id: mousedev.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
+ * $Id: mousedev.c,v 1.2 2001/09/07 15:36:40 burma Exp $
  *
  *  Copyright (c) 1999-2000 Vojtech Pavlik
  *
@@ -32,7 +32,7 @@
 #define MOUSEDEV_MINORS		32
 #define MOUSEDEV_MIX		31
 
-#include <linux/malloc.h>
+#include <linux/slab.h>
 #include <linux/poll.h>
 #include <linux/module.h>
 #include <linux/init.h>
@@ -278,7 +278,8 @@ static ssize_t mousedev_write(struct file * file, const char * buffer, size_t co
 
 	for (i = 0; i < count; i++) {
 
-		c = buffer[i];
+		if (get_user(c, &buffer[i]))
+			return -EFAULT;
 
 		if (c == mousedev_genius_seq[list->genseq]) {
 			if (++list->genseq == MOUSEDEV_GENIUS_LEN) {

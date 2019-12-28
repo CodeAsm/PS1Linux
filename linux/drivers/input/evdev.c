@@ -1,5 +1,5 @@
 /*
- * $Id: evdev.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
+ * $Id: evdev.c,v 1.2 2001/09/07 15:36:40 burma Exp $
  *
  *  Copyright (c) 1999-2000 Vojtech Pavlik
  *
@@ -33,7 +33,7 @@
 #define EVDEV_BUFFER_SIZE	64
 
 #include <linux/poll.h>
-#include <linux/malloc.h>
+#include <linux/slab.h>
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/input.h>

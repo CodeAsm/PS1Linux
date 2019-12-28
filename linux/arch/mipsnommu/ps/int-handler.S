@@ -39,7 +39,8 @@
 		lw	t0, INT_ACKN_REG
 		lw	t2, INT_MASK_REG
 		la	t1,cpu_mask_tbl
-      and t0, t2     # isolate allowed ones
+		and t0, t2     # isolate allowed ones
+
 
 		/*
 		 * Find irq with highest priority
@@ -61,6 +62,10 @@
 		lw	a0, %lo(cpu_irq_nr-cpu_mask_tbl-PTRSIZE)(t1)
       nop
 
+		/* Acknowledge interrupt here */
+//		not t2
+//		sw t2, INT_ACKN_REG
+	
 		/*
 		 * Handle it
 		 */

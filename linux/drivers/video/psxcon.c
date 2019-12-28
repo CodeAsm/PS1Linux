@@ -25,67 +25,28 @@
 #include <linux/init.h>
 
 #include <asm/ps/libpsx.h>
+#include <asm/io.h>
 
-//#include <asm/irq.h>
-//#include <asm/system.h>
-//#include <asm/uaccess.h>
-//#define INCLUDE_LINUX_LOGO_DATA
-//#include <asm/linux_logo.h>
-
-//#include <video/fbcon.h>
-//#include <video/fbcon-mac.h>	/* for 6x11 font on mac */
-//#include <video/font.h>
-
-//#ifdef FBCONDEBUG
-//#  define DPRINTK(fmt, args...) printk(KERN_DEBUG "%s: " fmt, __FUNCTION__ , ## args)
-//#else
-//#  define DPRINTK(fmt, args...)
-//#endif
-
-
-//  MY DEFS & VARS
 #define PSXVGA_SCR_H	21
 #define PSXVGA_SCR_W	37
+
+#ifdef CONFIG_VT_CONSOLE_HIRES
+#define PSXVGA_SCR_H	21
+#define PSXVGA_SCR_W	78 
+#endif
+
 #define PSXVGA_VSCR_H	(PSXVGA_SCR_H)
 #define PSXVGA_VSCR_W	(PSXVGA_SCR_W)
 #define PSXVGA_FNT_H	12
 #define PSXVGA_FNT_W	 8
 
+
 static unsigned int psxvga_scrbuf[PSXVGA_VSCR_H][PSXVGA_VSCR_W];  //PSX TEXT SCREEN BUFFER
-static char psxvga_cury;				// POINTER TO CURRENT STRING
-static char psxvga_curx;				// POINTER TO CURRENT POSITION IN STR
+static int psxvga_cury;				// POINTER TO CURRENT STRING
+static int psxvga_curx;				// POINTER TO CURRENT POSITION IN STR
 static int psxvga_bottom;
-// END OF THEM
 
 
-/*
- Functions needed by some files (keyboard.c pc_keyb and etc) for keyboard support.
-*/
-
-struct kbd_ops {
-	/* Keyboard driver resource allocation  */
-	void (*kbd_request_region)(void);
-	int (*kbd_request_irq)(void (*handler)(int, void *, struct pt_regs *));
-
-	/* PSaux driver resource managment  */
-	int (*aux_request_irq)(void (*handler)(int, void *, struct pt_regs *));
-	void (*aux_free_irq)(void);
-
-	/* Methods to access the keyboard processor's I/O registers  */
-	unsigned char (*kbd_read_input)(void);
-	void (*kbd_write_output)(unsigned char val);
-	void (*kbd_write_command)(unsigned char val);
-	unsigned char (*kbd_read_status)(void);
-};
-
- int kbd_setkeycode(unsigned int scancode,unsigned int keycode){return 0;};
- int kbd_getkeycode(unsigned int scancode){return 0;};
- int kbd_translate(unsigned char keycode, unsigned char *keycodep,
-		     char raw_mode){return 0;};
- int kbd_unexpected_up(unsigned char keycode){return 0;};
- void kbd_leds(unsigned char leds){};
- void kbd_init_hw(void){ };
- struct kbd_ops no_kbd_ops;
 /*
  *  Interface used by the world
  */
@@ -119,19 +80,22 @@ static const char *psxvga_startup (void)
 {
    const char *display_desc = "PSXGPU console";
    int  x, y;
-
+   unsigned long mode;
    for (y = 0; y < PSXVGA_VSCR_H; y++)
       for (x = 0; x < PSXVGA_VSCR_W; x++)
          psxvga_scrbuf[y][x] = 0;
          
    psxvga_cury = 0;	
    psxvga_curx = 0;
-
-   InitGPU (0x8000009);
+   
+    mode=0x8000009;
+#ifdef CONFIG_VT_CONSOLE_HIRES 
+    mode=0x800000b;
+#endif    
+     InitGPU (mode);
    cls ();
    LoadFont ();
-   
-	psxvga_bottom = 0;
+    psxvga_bottom = 0;
 
    return  display_desc;
 }
@@ -160,8 +124,9 @@ static inline void psxvga_writew2 (unsigned int val, int y, int x)
 {
    if (y < PSXVGA_VSCR_H && x < PSXVGA_VSCR_W)
    {
-	   print2 (x*PSXVGA_FNT_W, y*PSXVGA_FNT_H, val);  // !!! need additional test 
-	   gpu_dma_gpu_idle();                            // for virtual screen resolution !!!
+	    line(((y*PSXVGA_FNT_H)<<16)+((x*PSXVGA_FNT_W)),((PSXVGA_FNT_H)<<16)+(PSXVGA_FNT_W),0x000100);
+	   print2 (x*PSXVGA_FNT_W, y*PSXVGA_FNT_H, val);   
+	   gpu_dma_gpu_idle();                            
       
       y += psxvga_bottom;
       if (y >= PSXVGA_VSCR_H) y -= PSXVGA_VSCR_H;
@@ -267,7 +232,7 @@ static inline void psxvga_memmovew(u16 to, u16 from, int count)
 static void psxvga_clear(struct vc_data *conp, int sy, int sx, int height,
 			int width)
 {
-/*
+
 int y;
  if((sy>PSXVGA_VSCR_H)){}
  else
@@ -275,7 +240,7 @@ int y;
  for(y=0;y<height;y++)
   psxvga_memsetw(sx,(sy+y)*PSXVGA_VSCR_W,' ', width);
   }
-  */
+ 
 }
 
 
@@ -298,7 +263,23 @@ static void psxvga_putcs(struct vc_data *conp, const unsigned short * s, int cou
 
 
 static void psxvga_cursor(struct vc_data *conp, int mode)
-{
+{int x,y,t;
+
+y=psxvga_cury;
+x=psxvga_curx;
+line(((y*PSXVGA_FNT_H)<<16)+(((x)*PSXVGA_FNT_W)),((PSXVGA_FNT_H)<<16)+(PSXVGA_FNT_W),0x000100);
+    t=y;
+      y += psxvga_bottom;
+      if (y >= PSXVGA_VSCR_H) y -= PSXVGA_VSCR_H;
+    
+print2 ((x)*PSXVGA_FNT_W, (t)*PSXVGA_FNT_H, psxvga_scrbuf[y][x]);
+gpu_dma_gpu_idle();
+
+x=conp->vc_x;
+y=conp->vc_y;
+line(((y*PSXVGA_FNT_H)<<16)+((x*PSXVGA_FNT_W)),((PSXVGA_FNT_H)<<16)+(PSXVGA_FNT_W),0x1122FF);
+psxvga_cury=y;
+psxvga_curx=x;
 
 }
 
@@ -323,12 +304,12 @@ static int psxvga_scroll(struct vc_data *conp, int t, int b, int dir, int count)
          break;
          
       case SM_DOWN:
-//       memcpy(&psxvga_scrbuf[count*PSXVGA_VSCR_W],&psxvga_scrbuf[0],PSXVGA_VSCR_W*PSXVGA_VSCR_H-count*PSXVGA_VSCR_W);
-//       memset(&psxvga_scrbuf[PSXVGA_VSCR_W*PSXVGA_VSCR_H-count*PSXVGA_VSCR_W],0,count*PSXVGA_VSCR_W);
+	 
          break;
    }
    
 	psxvga_printscreen ();    
+//	scrup();
    return 0;
 }
 
@@ -336,7 +317,7 @@ static int psxvga_scroll(struct vc_data *conp, int t, int b, int dir, int count)
 static void psxvga_bmove(struct vc_data *conp, int sy, int sx, int dy, int dx,
 			int height, int width)
 {
-/*
+
    int y;
  if((sy>PSXVGA_VSCR_H)&&(dy>PSXVGA_VSCR_H)){}
  else
@@ -344,7 +325,7 @@ static void psxvga_bmove(struct vc_data *conp, int sy, int sx, int dy, int dx,
  for(y=0;y<height;y++)
   psxvga_memmovew(sx+(sy+y)*PSXVGA_VSCR_W,dx+(dy+y)*PSXVGA_VSCR_W , width);
   }
-*/
+
 }
 
 

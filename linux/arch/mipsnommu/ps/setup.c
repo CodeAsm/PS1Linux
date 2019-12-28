@@ -15,14 +15,14 @@
 
 #include <asm/ps/interrupts.h>
 #include <asm/ps/io.h>
+#include <asm/ps/hwregs.h>
 
 extern asmlinkage void playstation_handle_int(void);
 extern asmlinkage void ps_intr_unimplemented(int irq, void *dev_id, struct pt_regs *regs);
 
 void psx_init (void);
 
-volatile int * int_ackn_reg = (int *) INT_ACKN_REG;
-volatile int * int_mask_reg = (int *) INT_MASK_REG;
+extern struct rtc_ops ps_rtc_ops;
 
 /*
  * Information regarding the IRQ Controller
@@ -39,6 +39,8 @@ static void __init ps_irq_setup(void)
    switch (mips_machtype) {
       case MACH_PSX:
 	      psx_init ();
+         /* Unmask all irq */
+         outw (0, INT_MASK_PORT);
          /* Setup specific PSX interrupt handling bit */
          stat = read_32bit_cp0_register(CP0_STATUS);
          stat |= 0x400;
@@ -57,6 +59,10 @@ void __init playstation_setup(void)
     _machine_restart = ps_machine_restart;
     _machine_halt = ps_machine_halt;
     _machine_power_off = ps_machine_power_off;
+    
+#ifdef CONFIG_PSX_PIO_EXTENSION
+    rtc_ops = &ps_rtc_ops;
+#endif
 }
 
 void __init psx_init(void)

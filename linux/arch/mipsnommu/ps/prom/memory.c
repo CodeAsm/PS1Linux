@@ -14,7 +14,14 @@
 
 static void __init setup_memory_region(void)
 {
-	add_memory_region(0, 2 << 20, BOOT_MEM_RAM);
+	unsigned long mem_start, mem_size;
+	volatile int * mem_size_reg = (int *)0x1f801060;
+
+	*mem_size_reg = 0x888;	// !!! we have 2 Mb memory
+	
+	mem_start = 0;
+	mem_size = 2 << 20;
+	add_memory_region(mem_start, mem_size, BOOT_MEM_RAM);
 }
 
 void __init prom_meminit(unsigned int magic)
@@ -32,9 +39,9 @@ void prom_free_prom_memory (void)
 	 * the first page reserved for the exception handlers.
 	 */
 
-	end = PHYSADDR(&_ftext) | KSEG0;
+	end = PHYSADDR(&_ftext);
 
-	addr = PAGE_SIZE | KSEG0;
+	addr = PAGE_SIZE;
    
 	while (addr < end) {
 		ClearPageReserved(virt_to_page(addr));
@@ -44,7 +51,7 @@ void prom_free_prom_memory (void)
 	}
 
 	printk("Freeing unused PROM memory: %ldk freed\n",
-	       (end - (PAGE_SIZE | KSEG0)) >> 10);
+	       (end - (PAGE_SIZE)) >> 10);
 }
 
 int is_in_rom(unsigned long addr) {

@@ -15,18 +15,12 @@ O_TARGET := ps.o
 
 all: ps.o
 
-obj-y	 := int-handler.o setup.o irq.o time.o reset.o
+obj-y	 := int-handler.o setup.o irq.o time.o reset.o kbd-no.o
 
-ifdef CONFIG_PS_SIO_CONSOLE
-obj-y   += siocon.o sio.o
-endif
-
-ifdef CONFIG_PS_GPU_CONSOLE
-obj-y   += gpucon.o
+ifdef CONFIG_PSX_PIO_EXTENSION
+obj-y	+= rtc-ps.o
 endif
 
 int-handler.o:	int-handler.S
-
-sio.o:	sio.S
 
 include $(TOPDIR)/Rules.make

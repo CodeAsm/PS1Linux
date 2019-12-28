@@ -43,10 +43,12 @@ struct rtc_ops {
 
 extern struct rtc_ops *rtc_ops;
 
+#ifndef CONFIG_PLAYSTATION
 #ifdef CONFIG_DECSTATION
 #define RTC_IRQ 0
 #else
 #define RTC_IRQ	8
+#endif
 #endif
 
 #define RTC_DEC_YEAR	0x3f	/* Where we store the real year on DECs.  */

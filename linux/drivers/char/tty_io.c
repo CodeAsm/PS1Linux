@@ -155,6 +155,9 @@ extern void sci_console_init(void);
 extern void m68328_console_init(void);
 extern void mcfrs_console_init(void);
 
+extern void ps_sio_console_init(void);
+extern void psxs_init_tty(void);
+
 #ifndef MIN
 #define MIN(a,b)	((a) < (b) ? (a) : (b))
 #endif
@@ -2292,7 +2295,7 @@ void __init tty_init(void)
 	if (tty_register_driver(&dev_console_driver))
 		panic("Couldn't register /dev/tty0 driver\n");
 
-//	kbd_init();
+	kbd_init();
 #endif
 
 #ifdef CONFIG_ESPSERIAL  /* init ESP before rs, so rs doesn't see the port */
@@ -2347,5 +2350,12 @@ void __init tty_init(void)
 
 #ifdef CONFIG_VT
 	vcs_init();
+#endif
+
+#ifdef CONFIG_SERIAL_PSX
+//???PSXpsxs_init_tty(); 
+#endif
+#ifdef CONFIG_SERIAL_PSX_CONSOLE
+ps_sio_console_init(); 
 #endif
 }

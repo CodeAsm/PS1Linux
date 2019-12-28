@@ -24,7 +24,11 @@ comment 'USB Controllers'
       dep_tristate '  UHCI Alternate Driver (JE) support' CONFIG_USB_UHCI_ALT $CONFIG_USB
    fi
    dep_tristate '  OHCI (Compaq, iMacs, OPTi, SiS, ALi, ...) support' CONFIG_USB_OHCI $CONFIG_USB
-
+   dep_tristate '  SL811H (ScanLogic corporation) support' CONFIG_USB_SL811H $CONFIG_USB
+   if [ ! "$CONFIG_USB_SL811H" = "n" ]; then
+   	bool         '  SL811H verbose debug messages'          CONFIG_USB_SL811H_DEBUG
+   fi	
+		
    comment 'USB Device Class drivers'
    dep_tristate '  USB Audio support' CONFIG_USB_AUDIO $CONFIG_USB $CONFIG_SOUND
    dep_tristate '  USB Bluetooth support (EXPERIMENTAL)' CONFIG_USB_BLUETOOTH $CONFIG_USB $CONFIG_EXPERIMENTAL

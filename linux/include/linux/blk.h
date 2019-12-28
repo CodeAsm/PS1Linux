@@ -334,6 +334,13 @@ static void floppy_off(unsigned int nr);
 #define DEVICE_REQUEST do_bu_request
 #define DEVICE_NR(device) (MINOR(device))
 
+#elif (MAJOR_NR == BU_LARGE_MAJOR)
+
+/* PSX memory card */
+#define DEVICE_NAME "PSX joined card"
+#define DEVICE_REQUEST do_bu_request
+#define DEVICE_NR(device) (MINOR(device))
+
 #endif /* MAJOR_NR == whatever */
 
 /* provide DEVICE_xxx defaults, if not explicitly defined

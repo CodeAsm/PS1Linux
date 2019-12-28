@@ -1,4 +1,4 @@
-/* $Id: strnlen_user.S,v 1.1 2001/02/22 19:13:55 serg Exp $
+/* $Id: strnlen_user.S,v 1.2 2001/09/04 16:49:15 serg Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
@@ -28,9 +28,9 @@
  *       bytes.  There's nothing secret there ...
  */
 LEAF(__strnlen_user_asm)
-	lw	v0, THREAD_CURDS($28)	# pointer ok?
+/*	lw	v0, THREAD_CURDS($28)	# pointer ok?
 	and	v0, a0
-	bltz	v0, fault
+	bltz	v0, fault*/
 
 EXPORT(__strnlen_user_nocheck_asm)
 	.type	__strnlen_user_nocheck_asm,@function

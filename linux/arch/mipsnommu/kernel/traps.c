@@ -697,7 +697,7 @@ static inline void setup_dedicated_int(void)
 	extern void except_vec4(void);
 
 	if(mips_cpu.options & MIPS_CPU_DIVEC) {
-		memcpy((void *)(KSEG0 + 0x200), except_vec4, 8);
+		memcpy((void *)(KUSEG+0x200), except_vec4, 8);
 		set_cp0_cause(CAUSEF_IV, CAUSEF_IV);
 		dedicated_iv_available = 1;
 	}
@@ -741,7 +741,7 @@ unsigned long exception_handlers[32];
 /*
  * As a side effect of the way this is implemented we're limited
  * to interrupt handlers in the address range from
- * KSEG0 <= x < KSEG0 + 256mb on the Nevada.  Oh well ...
+ * KUSEG <= x < KUSEG + 256mb on the Nevada.  Oh well ...
  */
 void *set_except_vector(int n, void *addr)
 {
@@ -749,9 +749,9 @@ void *set_except_vector(int n, void *addr)
 	unsigned old_handler = exception_handlers[n];
 	exception_handlers[n] = handler;
 	if (n == 0 && dedicated_iv_available) {
-		*(volatile u32 *)(KSEG0+0x200) = 0x08000000 |
+		*(volatile u32 *)(KUSEG+0x200) = 0x08000000 |
 		                                 (0x03ffffff & (handler >> 2));
-		flush_icache_range(KSEG0+0x200, KSEG0 + 0x204);
+		flush_icache_range(KUSEG+0x200, KUSEG + 0x204);
 	}
 	return (void *)old_handler;
 }
@@ -781,9 +781,9 @@ void __init trap_init(void)
 	set_cp0_status(ST0_BEV, 0);
 
 	/* Copy the generic exception handler code to it's final destination. */
-	memcpy((void *)(KSEG0 + 0x80), &except_vec3_generic, 0x80);
-	memcpy((void *)(KSEG0 + 0x100), &except_vec2_generic, 0x80);
-	memcpy((void *)(KSEG0 + 0x180), &except_vec3_generic, 0x80);
+	memcpy((void *)(KUSEG + 0x80), &except_vec3_generic, 0x80);
+	memcpy((void *)(KUSEG + 0x100), &except_vec2_generic, 0x80);
+	memcpy((void *)(KUSEG + 0x180), &except_vec3_generic, 0x80);
 
 	/*
 	 * Setup default vectors
@@ -795,7 +795,7 @@ void __init trap_init(void)
 	 * Copy the EJTAG debug exception vector handler code to it's final 
 	 * destination.
 	 */
-	memcpy((void *)(KSEG0 + 0x300), &except_vec_ejtag_debug, 0x80);
+	memcpy((void *)(KUSEG + 0x300), &except_vec_ejtag_debug, 0x80);
 
 	/*
 	 * Only some CPUs have the watch exceptions or a dedicated
@@ -847,8 +847,8 @@ void __init trap_init(void)
 	case CPU_R3081E:
 	        save_fp_context = _save_fp_context;
 		restore_fp_context = _restore_fp_context;
-		memcpy((void *)KSEG0, &except_vec3_generic, 0x80);
-		memcpy((void *)(KSEG0 + 0x80), &except_vec3_generic, 0x80);
+		memcpy((void *)KUSEG, &except_vec3_generic, 0x80);
+		memcpy((void *)(KUSEG + 0x80), &except_vec3_generic, 0x80);
 		break;
 	case CPU_R8000:
 		printk("Detected unsupported CPU type %s.\n",
@@ -860,7 +860,7 @@ void __init trap_init(void)
 	default:
 		panic("Unknown CPU type");
 	}
-	flush_icache_range(KSEG0, KSEG0 + 0x200);
+	flush_icache_range(KUSEG, KUSEG + 0x200);
 
 	atomic_inc(&init_mm.mm_count);	/* XXX  UP?  */
 	current->active_mm = &init_mm;

@@ -22,16 +22,16 @@
  * Interrupt types list by priority
  */
 #define VBL          7
-#define GPU 	      1
-#define CDROM	      2
+#define GPU 	      6
+#define CDROM	      10
 #define DMA		      3
 #define TIMER0		   4
 #define TIMER1		   5
-#define TIMER2		   6
-#define CONTROLLER	0
+#define TIMER2		   0
+#define CONTROLLER	1
 #define SIO		      8
 #define SPU		      9
-#define PIO		      10
+#define PIO		      2
 
 /*
  * Interrupt masks list

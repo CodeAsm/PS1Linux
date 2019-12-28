@@ -1,4 +1,4 @@
-/* $Id: processor.h,v 1.1 2001/02/22 19:18:28 serg Exp $
+/* $Id: processor.h,v 1.3 2001/09/24 12:04:32 serg Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive

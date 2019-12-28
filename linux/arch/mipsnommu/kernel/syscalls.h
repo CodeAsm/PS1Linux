@@ -35,8 +35,8 @@ SYS(sys_alarm, 1)
 SYS(sys_fstat, 2)
 SYS(sys_pause, 0)
 SYS(sys_utime, 2)		/* 30 */
-SYS(sys_ni_syscall, 0)				/* old stty syscall holder */
-SYS(sys_ni_syscall, 0)				/* old gtty syscall holder */
+SYS(sys_ni_syscall, 1)				/* old stty syscall holder */	// !!!
+SYS(sys_ni_syscall, 1)				/* old gtty syscall holder */		// !!!
 SYS(sys_access, 2)
 SYS(sys_nice, 1)
 SYS(sys_ni_syscall, 0)	/* 35 */	/* old ftime syscall holder */
@@ -94,7 +94,8 @@ SYS(sys_uselib, 1)
 SYS(sys_swapon, 2)
 SYS(sys_reboot, 3)
 SYS(old_readdir, 3)
-SYS(old_mmap, 6)			/* 90 */
+/* !!! SYS(old_mmap, 6)*/			/* 90 */
+SYS(old_mmap, 1)			/* 90 */	// !!!
 SYS(sys_munmap, 2)
 SYS(sys_truncate, 2)
 SYS(sys_ftruncate, 2)

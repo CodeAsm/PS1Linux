@@ -79,10 +79,32 @@ out:
 	return error;
 }
 
-asmlinkage unsigned long old_mmap(unsigned long addr, size_t len, int prot,
-                                  int flags, int fd, off_t offset)
+struct mmap_arg_struct {
+	unsigned long addr;
+	unsigned long len;
+	unsigned long prot;
+	unsigned long flags;
+	unsigned long fd;
+	unsigned long offset;
+};
+
+asmlinkage int old_mmap(struct mmap_arg_struct *arg)
 {
-	return do_mmap2(addr, len, prot, flags, fd, offset >> PAGE_SHIFT);
+	struct mmap_arg_struct a;
+	int error = -EFAULT;
+
+	if (copy_from_user(&a, arg, sizeof(a)))
+		goto out;
+
+	error = -EINVAL;
+	if (a.offset & ~PAGE_MASK)
+		goto out;
+
+	a.flags &= ~(MAP_EXECUTABLE | MAP_DENYWRITE);
+
+	error = do_mmap2(a.addr, a.len, a.prot, a.flags, a.fd, a.offset >> PAGE_SHIFT);
+out:
+	return error;
 }
 
 asmlinkage long

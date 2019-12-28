@@ -274,7 +274,11 @@ static struct dev_name_struct {
 	{ "nftla", 0x5d00 },
 #endif
 #ifdef CONFIG_PSX_MEM_CARD
+#ifdef CONFIG_PSX_LARGE_CARD
+	{ "bul", (BU_LARGE_MAJOR << MINORBITS) },
+#else
 	{ "bu", (BU_MAJOR << MINORBITS) },
+#endif
 #endif
 	{ NULL, 0 }
 };

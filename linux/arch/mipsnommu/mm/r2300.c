@@ -109,7 +109,7 @@ unsigned long __init r3k_cache_size(unsigned long ca_flags)
 	unsigned long flags, status, dummy, size;
 	volatile unsigned long *p;
 
-	p = (volatile unsigned long *) KSEG0;
+	p = (volatile unsigned long *) KUSEG;
 
 	flags = read_32bit_cp0_register(CP0_STATUS);
 
@@ -249,7 +249,7 @@ static void r3k_flush_dcache_range(unsigned long start, unsigned long end)
 static inline unsigned long get_phys_page (unsigned long addr,
 					   struct mm_struct *mm)
 {
-	return KSEG0ADDR(addr & PAGE_MASK);
+	return PHYSADDR(addr & PAGE_MASK);
 }
  
 static void r3k_flush_cache_mm(struct mm_struct *mm)

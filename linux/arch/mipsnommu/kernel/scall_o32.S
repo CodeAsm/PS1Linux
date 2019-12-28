@@ -132,9 +132,9 @@ stackargs:
 	subu	t3, 4
 	sll	t1, t3, 2		# stack valid?
 
-	addu	t1, t0			# end address
+/* !!!	addu	t1, t0			# end address
 	or	t0, t1
-	bltz	t0, bad_stack		# -> sp is bad
+	bltz	t0, bad_stack		# -> sp is bad*/
 
 	lw	t0, PT_R29(sp)		# get old user stack pointer
 	la	t1, 3f			# copy 1 to 2 arguments

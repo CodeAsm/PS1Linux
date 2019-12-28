@@ -3,44 +3,60 @@
 
 #include "asm/types.h"
 
-#define BU_SIZE         (0x20000)
 #define BU_BLK_SIZE     (128)
 #define BU_BLK_SHIFT    (7)
+#define BU_FIRST_BLOCKS (8)
 #define BU_MINORS       (2)
+#define BU_BSIZE        (1024)
+#define BU_HARDSECSIZE  (512)
+#define BU_RAHEAD       (2)
+
+// bu block transfer parameters
+typedef struct _bu_request_t
+{
+	int   floor;				   // channel number 0..f
+	__u16 block;				   // block number
+	int	card;					   // 0 for bu0 and 1 for bu1
+	__u8  buffer[BU_BLK_SIZE];	// data buffer
+   int   mode;					   // 'R' - read, 'W' - write
+} bu_request_t;
+
+// driver transfer internal data
+typedef struct
+{
+   bu_request_t * bu_request; // request parameters
+	__u8  cs;						// checksum
+	int   cnt;					   // counter
+	int 	state;				   // irq FSM state
+	int	stop;					   // stop packet transfer
+   int   hw_state;			   // hardware state
+   __u8	byte;					   // last byte received from controller
+} bu_t; 
+
+// card parameters (first block data)
+typedef struct
+{
+   __u32 id;            // card id (must be BU_ID)
+   __u32 size;          // card size in 128 blocks
+   __u32 serial;        // card serial number
+   __u32 number;        // card number for joined cards
+} bu_first_block_t;
+
+#define BU_ID	0x1234
 
 // device data
-typedef struct _bu_device {
-   int in_use;
-   int state;
+typedef struct {
+	bu_first_block_t first_block;
+   int usage;
    int timeout;
-} bu_device;
+} bu_device_t;
 
 #define BU_NONE      0
 #define BU_WAIT      1
 #define BU_READY     2
 #define BU_TIMEOUT   3
 
-typedef struct _bu_request_t
-{
-	int	  floor;				// channel number 0..f
-	__u16 block;				// block number
-	int		card;					// 0 for bu0 and 1 for bu1
-	__u8  buffer[BU_BLK_SIZE];	// data buffer
-  int   mode;					// 'R' - read, 'W' - write
-} bu_request_t;
-
-typedef struct
-{
-// driver private data
-  bu_request_t *bu_request;
-	__u8  cs;						// checksum
-	int		cnt;					// counter
-	int 	state;				// irq FSM state
-	int		stop;					// stop packet transfer
-  int   hw_state;			// hardware state
-  __u8	byte;					// last byte received from controller
-} bu_t; 
-
+// bu ports
 #define BU_DATA		 0x1040
 #define BU_STATUS	 0x1044
 #define BU_CONTROL 0x104A

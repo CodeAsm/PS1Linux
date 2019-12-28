@@ -21,24 +21,22 @@
 #include <asm/system.h>
 
 #include <asm/ps/interrupts.h>
+#include <asm/ps/hwregs.h>
 
 unsigned long spurious_count = 0;
 
-volatile extern int * int_ackn_reg;
-volatile extern int * int_mask_reg;
-
 static inline void mask_irq(unsigned int irq_nr)
 {
-   int mask = *int_mask_reg;
+   int mask = inw (INT_MASK_PORT);
 
-   *int_mask_reg = mask & (~(cpu_mask_tbl[irq_nr] & 0x7ff));
+   outw (mask & (~(cpu_mask_tbl[irq_nr] & 0x7ff)), INT_MASK_PORT);
 }
 
 static inline void unmask_irq(unsigned int irq_nr)
 {
-   int mask = *int_mask_reg;
+   int mask = inw (INT_MASK_PORT);
 
-   *int_mask_reg = mask | (cpu_mask_tbl[irq_nr] & 0x7ff);
+   outw (mask | (cpu_mask_tbl[irq_nr] & 0x7ff), INT_MASK_PORT);
 }
 
 void disable_irq(unsigned int irq_nr)
@@ -111,9 +109,9 @@ asmlinkage void do_IRQ(int irq, struct pt_regs *regs)
    cpu = smp_processor_id();
    irq_enter(cpu, irq);
    kstat.irqs[cpu][irq]++;
-   
+ 
    /* !!! acknowledge interrupt (here ?) !!! */
-   *int_ackn_reg = ~cpu_mask_tbl[irq];
+   outw (~cpu_mask_tbl[irq], INT_ACKN_PORT);
 
    mask_irq(irq);
    action = *(irq + irq_action);
@@ -133,10 +131,12 @@ asmlinkage void do_IRQ(int irq, struct pt_regs *regs)
 	   __cli();
    }
    else {
-      printk ("do_IRQ: ackn = 0x%X\n", *int_ackn_reg);
-      printk ("do_IRQ: mask = 0x%X\n", *int_mask_reg);
+      printk ("do_IRQ: ackn = 0x%X\n", inw (INT_ACKN_PORT));
+      printk ("do_IRQ: mask = 0x%X\n", inw (INT_MASK_PORT));
       panic ("do_IRQ: unregistered IRQ (0x%X) occured\n", irq);
    }
+   
+  
 	unmask_irq(irq);
    irq_exit(cpu, irq);
 

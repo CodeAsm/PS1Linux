@@ -4,7 +4,7 @@
 #include <asm/ps/gpu.h>
 
 #define	CLUT_ID(page, x, y)	(( page & 0xf ) << 2 )  | (( page & 0x10 ) << 10 ) | ( x >> 4 ) | ( y << 6 )
-#define	TAG( adr, size ) 	.word	adr - 0x80000000 + ( size << 24 )
+#define	TAG( adr, size ) 	.word	adr + ( size << 24 )
 #define	END_TAG( size )		.word	0xffffff + ( size << 24 )
 
 #define  GPU_PRIM_COMMAND	0
@@ -26,7 +26,7 @@ cls:	subu	sp,sp,4
 prim_cls:	END_TAG( 3 )
   		.byte	0x0, 0x0, 0x0, 0x02			# rgb
 			.short	0, 0										# x, y  
-			.short	320, 512								# w, h
+			.short	512, 512								# w, h
 	  		
 back:
       TAG( back2, 3 )
@@ -41,9 +41,9 @@ back2:   END_TAG( 8 )   	# Primitive of gouroud 4 point polygon
       .word  0x00000000   # bgr           top right
 			.short 0,255
       .word  0x00000000    # bgr           bottom left
-			.short 319,0
+			.short 659,0
       .word  0x00000000    # bgr           bottom right
-			.short 319,255
+			.short 659,255
 
 
 			.global	LoadFont
@@ -53,6 +53,7 @@ LoadFont:   subu	sp,sp,4
 			
 			la 		a0,font+64      # transfer image data to VRAM
       li 		a1,320          # x = 320, y = 0
+addu			a1,a1,6*64		#???PSX test shift font
     	li 		a2,64+(48<<16)	# w = 64, h = 48
       li 		a3,64*48/2			# anzahl
       jal 	 mem2vram
@@ -73,6 +74,7 @@ LoadFont:   subu	sp,sp,4
 	jr		ra
 	
 			.global	set_tPage
+			.global	putsprite
 
 #---------- print text -----------------------------------------
 # a0: void *pimitive
@@ -132,6 +134,59 @@ print_end:
 			addu		sp,sp,12
 			jr		ra
 
+			.global	line
+
+#---------- line -----------------------
+# a0: x1
+# a1: y1
+# a2: x2
+# a3: y2
+line: 
+	subu		sp,sp,4
+	sw		ra,(sp)
+	
+	la		t0,rct1
+	nop
+	
+	sh		a0,4(t0)
+	li		t1,16
+	srl		t2,a0,t1
+	sh		t2,6(t0)			
+	sh		a1,8(t0)
+	srl		t2,a1,t1
+	sh		t2,10(t0)
+
+	la		t0,rct0
+	nop
+	lui		t1,0x6000    
+	addu		a2,a2,t1
+	sw		a2,4(t0)
+	
+	la		a0,rct0
+#------
+#	lw		a0,4(a0)
+#	
+#	li		a1,100
+#	li		a2,100
+#	jal	 	print_hex
+#	nop
+
+#------
+	jal	 	SendList
+#	nop
+ 	li 	 	a0,1000
+			
+sprp:	 
+	subu 		a0,a0,1
+	bnez 		a0,sprp
+	
+	lw		ra,(sp)
+	addu		sp,sp,4
+        jr		ra
+
+			.global	putsprite
+
+
 #---------- print -----------------------
 // creates primitive at prim-address
 # a0: prim-address, 20 bytes per character
@@ -185,6 +240,7 @@ print2:     subu	sp,sp,4
       sh		a1,10(t0)       # y
       and	 t1,a2,0x1f
       sll	 t1,t1,3				 # * 8
+addu	t1,t1,0					#???PSX shift font
       sb		t1,12(t0)			 # u
       srl	 t1,a2,5
       addu	t2,t1,t1				# * 2
@@ -208,14 +264,19 @@ ww:	 subu 	a0,a0,1
 			.global	print_prim
 			
 print_prim:	TAG( pp1, 1 )
-			.word	0xE1000005              	# tPage for font
+			.word	0xE100000B              	# tPage for font
 pp1:	END_TAG( 4 )
     	.byte	0x80, 0x80, 0x80, 0x64		# rgb, font color
 			.short	0, 0						 # x, y
 			.byte	 0, 0						// u, v - char decomposition
 			.short	CLUT_ID( 21, 0, 128 )
 			.short	8, 12  					# w, h
-    		
+	.global	rct0
+rct0:	TAG(rct1,1)
+	.word	0x60FF1F33
+rct1:	END_TAG( 2 )
+	.short	100,100 	    		
+	.short	100,100 	    		
 
 			.balign	4
 font:
@@ -223,3 +284,5 @@ font:
 			.balign	2048
 the_end:
 			
+
+

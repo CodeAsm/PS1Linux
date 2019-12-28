@@ -738,7 +738,7 @@ void __init pckbd_init_hw(void)
 
 	/* Flush any pending input. */
 	kbd_clear_input();
-
+printk("ERROR");
 	if (kbd_startup_reset) {
 		char *msg = initialize_kbd();
 		if (msg)

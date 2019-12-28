@@ -10,7 +10,6 @@
  *       Copyright (C) 1998  Kenneth Albanowski <kjahds@kjahds.com>
  *   JAN/99 -- coded full program relocation (gerg@lineo.com)
  */
-
 #include <linux/module.h>
 
 #include <linux/sched.h>
@@ -163,35 +162,104 @@ static unsigned long create_flat_tables(
 
 
 static void
-do_reloc(struct flat_reloc * r)
+do_reloc(flat_reloc * r)
 {
-   unsigned long * ptr = (unsigned long*)
-      (current->mm->start_code + r->offset);
-
-
-#if 0 // def DEBUG
-   printk("Relocation type=%x offset=%x addr=%x [%x->",
-      r->type, r->offset, ptr, *ptr);
-#endif
+   unsigned long offset;
+   unsigned long * ptr;
+   static unsigned long * prev_ptr;
+   static flat_reloc prev;
+   static int hi_flag = 0;
+   static unsigned long res;
+   long rel_offset;
    
-   switch (r->type) {
-   case FLAT_RELOC_TYPE_TEXT:
-      *ptr += current->mm->start_code;
-      break;
-   case FLAT_RELOC_TYPE_DATA:
-      *ptr += current->mm->start_data;
-      break;
-   case FLAT_RELOC_TYPE_BSS:
-      *ptr += current->mm->end_data;
-      break;
-   default:
-      printk("BINFMT_FLAT: Unknown relocation type=%x\n", r->type);
-      break;
+   rel_offset = (*r & FLAT_RELOC_OFFSET_MASK);
+   if ((*r & FLAT_RELOC_SIGN_MASK) == FLAT_RELOC_SIGN_NEG) rel_offset = -rel_offset;
+
+   switch (*r & FLAT_RELOC_REL_MASK) {
+      case FLAT_RELOC_REL_TEXT:
+         offset = current->mm->start_code;
+         break;
+      case FLAT_RELOC_REL_DATA:
+         offset = current->mm->start_data;
+         break;
+      case FLAT_RELOC_REL_BSS:
+         offset= current->mm->end_data;
+         break;
+      default:
+         printk("BINFMT_FLAT: Unknown relocation relay section=%d\n", (int)(*r & FLAT_RELOC_REL_MASK));
+         return;
    }
 
+   switch (*r & FLAT_RELOC_IN_MASK) {
+      case FLAT_RELOC_IN_TEXT:
+         ptr = (unsigned long*)(current->mm->start_code + rel_offset);
+         break;
+      case FLAT_RELOC_IN_DATA:
+         ptr = (unsigned long*)(current->mm->start_data + rel_offset);
+         break;
+      case FLAT_RELOC_IN_BSS:
+         ptr = (unsigned long*)(current->mm->end_data + rel_offset);
+         break;
+      default:
+         printk("BINFMT_FLAT: Unknown relocation in section=%d\n", (int)(*r & FLAT_RELOC_IN_MASK));
+         return;
+   }
+   
+#if 0 // def DEBUG
+   printk("Relocation = 0x%lx: type=%d rel_offset=0x%lx relay=%d in=%d offset=0x%lx addr=0x%lx [0x%lx->",
+      (long)(*r), 
+      (int)((*r & FLAT_RELOC_TYPE_MASK) >> FLAT_RELOC_TYPE_SHIFT), 
+      (long)rel_offset, 
+      (int)((*r & FLAT_RELOC_REL_MASK) >> FLAT_RELOC_REL_SHIFT), 
+      (int)((*r & FLAT_RELOC_IN_MASK) >> FLAT_RELOC_IN_SHIFT),
+      (unsigned long)offset,
+      (unsigned long)ptr, 
+      (unsigned long)(*ptr));
+#endif
+
+   switch (*r & FLAT_RELOC_TYPE_MASK) {
+      case FLAT_RELOC_TYPE_32:
+         *ptr += offset;
+         break;
+      case  FLAT_RELOC_TYPE_HI16:
+         prev = *r;
+         prev_ptr = ptr;
+         res = (*ptr & 0xffff) << 16;
+         hi_flag = 1;
+#if 0 // def DEBUG
+         printk("\n");
+#endif
+        return;
+      case  FLAT_RELOC_TYPE_LO16:
+         if (!hi_flag || 
+            (*r & FLAT_RELOC_REL_MASK) != (prev & FLAT_RELOC_REL_MASK) ||  
+            (*r & FLAT_RELOC_IN_MASK) != (prev & FLAT_RELOC_IN_MASK)) {
+            printk ("\nBINFMT_FLAT: Bad reloc sequence (flag=%d prev: rel=%d, in=%d\n",
+               (int)hi_flag, (int)(prev & FLAT_RELOC_REL_MASK), (int)(prev & FLAT_RELOC_IN_MASK));
+            return;
+         }
+         res += (short)(*ptr & 0xffff);
+         res += offset;
+         *prev_ptr = (*prev_ptr & 0xffff0000) | (((res-(short)res) >> 16) & 0xffff);
+         *ptr = (*ptr & 0xffff0000) | (res & 0xffff);
+#if 0 // def DEBUG
+         printk("0x%lx]\n", (long)(*ptr));
+#endif
+         ptr = prev_ptr;
+         hi_flag = 0;
+         break;
+      case  FLAT_RELOC_TYPE_26:
+         res = (*ptr & 0x3ffffff) << 2;
+         res += offset;
+         *ptr = (*ptr & 0xfc000000) | ((res >> 2) & 0x3ffffff);
+         break;
+      default:
+         printk("\nBINFMT_FLAT: Unknown relocation type=%d\n", (int)(*r & FLAT_RELOC_TYPE_MASK));
+         return;
+   }
 
 #if 0 // def DEBUG
-   printk("%x]\n", *ptr);
+   printk("0x%lx]\n", (long)(*ptr));
 #endif
 }
 
@@ -205,13 +273,14 @@ do_reloc(struct flat_reloc * r)
 static int load_flat_binary(struct linux_binprm * bprm, struct pt_regs * regs)
 {
    struct flat_hdr * hdr;
-   unsigned long error, result;
+   unsigned long result;
    unsigned long rlim;
    int retval;
+   int r;
 
-   unsigned long pos;
    unsigned long p = bprm->p;
    unsigned long data_len, bss_len, stack_len, code_len;
+   unsigned long codep, datap, bssp;
    unsigned long memp = 0, memkasked = 0; /* for find brk area */
    struct inode *inode;
    loff_t fpos;
@@ -257,25 +326,66 @@ static int load_flat_binary(struct linux_binprm * bprm, struct pt_regs * regs)
 #endif
 
    down(&current->mm->mmap_sem);
-   error = do_mmap(bprm->file, 0, code_len + data_len + bss_len + stack_len,
+#ifdef CONFIG_BINFMT_FLAT_SEPARATELY
+   DBG_FLT ("BINFMT_FLAT: map code (len=0x%lx) to ", code_len);
+   codep = do_mmap(bprm->file, 0, code_len,
+         PROT_READ | PROT_EXEC | ((hdr->flags&FLAT_FLAG_RAM) ? PROT_WRITE : 0),
+         0, 0);
+   DBG_FLT ("0x%lx\n", codep);
+   DBG_FLT ("BINFMT_FLAT: map data (len=0x%lx, offset=0x%lx) to ", data_len, hdr->data_start);
+   datap = do_mmap(bprm->file, 0, data_len,
+         PROT_READ | PROT_EXEC | PROT_WRITE,
+         0, hdr->data_start);
+   DBG_FLT ("0x%lx\n", datap);
+   DBG_FLT ("BINFMT_FLAT: map data (len=0x%lx, offset=0x%lx) to ", bss_len+stack_len, hdr->data_end);
+   bssp = do_mmap(bprm->file, 0, bss_len + stack_len,
+         PROT_READ | PROT_EXEC | PROT_WRITE,
+         0, hdr->data_end);
+   DBG_FLT ("0x%lx\n", bssp);
+#else
+   codep = do_mmap(bprm->file, 0, code_len + data_len + bss_len + stack_len,
          PROT_READ|PROT_EXEC | ((hdr->flags&FLAT_FLAG_RAM) ? PROT_WRITE : 0),
          0, 0);
+   datap = codep+code_len;
+   bssp = datap+data_len;
+#endif
    up(&current->mm->mmap_sem);
         
-   if (error >= -4096) {
-      printk("Unable to map flat executable, errno %d\n", (int)-error);
-      return error; /* Beyond point of no return? Oh well... */
+   if (codep >= -4096) {
+      printk("Unable to map flat executable code section, errno %d\n", (int)-codep);
+      return codep; /* Beyond point of no return? Oh well... */
+   }
+        
+#ifdef CONFIG_BINFMT_FLAT_SEPARATELY
+   if (datap >= -4096) {
+      do_munmap(current->mm, codep, 0);
+      printk("Unable to map flat executable data section, errno %d\n", (int)-datap);
+      return datap; /* Beyond point of no return? Oh well... */
    }
 
+   if (bssp >= -4096) {
+      do_munmap(current->mm, codep, 0);
+      do_munmap(current->mm, datap, 0);
+      printk("Unable to map flat executable bss section, errno %d\n", (int)-bssp);
+      return bssp; /* Beyond point of no return? Oh well... */
+   }
+#endif
 
-   memp = error;
+#ifdef CONFIG_BINFMT_FLAT_SEPARATELY
+   memp = bssp;
+   memkasked = bss_len + stack_len;
+#else
+   memp = codep;
    memkasked = code_len + data_len + bss_len + stack_len;
+#endif
 
    DBG_FLT("BINFMT_FLAT: mmap returned: %lx\n", error);
 
    current->mm->executable = NULL;
    
-   if (is_in_rom(error)) {
+   if (is_in_rom(codep)) {
+   	
+#ifndef CONFIG_BINFMT_FLAT_SEPARATELY
       /*
        * do_mmap returned a ROM mapping, so allocate RAM for
        * data + bss + stack
@@ -285,56 +395,51 @@ static int load_flat_binary(struct linux_binprm * bprm, struct pt_regs * regs)
       DBG_FLT("BINFMT_FLAT: ROM mapping of file\n");
 
       down(&current->mm->mmap_sem);
-      pos = do_mmap(0, 0, data_len + bss_len + stack_len,
+      datap = do_mmap(0, 0, data_len + bss_len + stack_len,
             PROT_READ|PROT_WRITE|PROT_EXEC, 0, 0);
       up(&current->mm->mmap_sem);
-      if (pos >= (unsigned long)-4096) {
-         printk("Unable to allocate RAM for process, errno %d\n", (int)-pos);
-         return pos;
+      if (datap >= (unsigned long)-4096) {
+         printk("Unable to allocate RAM for process, errno %d\n", (int)-datap);
+         return datap;
       }
+      
+      bssp = datap+data_len;
 
-      memp = error; /* don't use ROM mmapping for sbrk!, use tail of data */
+      memp = datap; /* don't use ROM mmapping for sbrk!, use tail of data */
       memkasked = data_len + bss_len + stack_len;
       
       DBG_FLT("BINFMT_FLAT: Allocated data+bss+stack (%ld bytes): %lx\n",
-            data_len + bss_len + stack_len, pos);
+            data_len + bss_len + stack_len, datap);
 
       /* And then fill it in */
 
       fpos = hdr->data_start;
-//printk("flat_read 0x%x %d %d\n", pos, data_len, fpos);
-      result = bprm->file->f_op->read(bprm->file, (char *) pos, data_len, &fpos);
+      result = bprm->file->f_op->read(bprm->file, (char *) datap, data_len, &fpos);
       if (result >= (unsigned long)-4096) {
-         do_munmap(current->mm, pos, 0);
+         do_munmap(current->mm, datap, 0);
          printk("Unable to read data+bss, errno %d\n", (int)-result);
          send_sig(SIGKILL, current, 0);
          return result;
       }
+#endif
 
       if (IS_SYNC(inode)) {
          DBG_FLT("Retaining inode\n");
          current->mm->executable = bprm->file->f_dentry->d_inode;
          atomic_inc(&inode->i_count);
       }
-   } else {
-      /*
-       * Since we got a RAM mapping, mmap has already allocated a block
-       * for us, and read in the data. .
-       */
-      DBG_FLT("BINFMT_FLAT: RAM mapping of file\n");
-      pos = error + code_len;
    }
 
    /* zero the BSS */
-   memset((void*)(pos + data_len), 0, bss_len + stack_len);
+   memset((void*)bssp, 0, bss_len + stack_len);
 
-   DBG_FLT("ROM mapping is %lx, Entry point is %lx, data_start is %lx\n",
-         error, hdr->entry, hdr->data_start);
+   DBG_FLT("Entry point is %lx, text_start is %lx, data_start is %lx\n",
+         codep+hdr->entry, codep, datap);
 
-   current->mm->start_code = error + hdr->entry;
-   current->mm->end_code = error + hdr->data_start;
-   current->mm->start_data = pos;
-   current->mm->end_data = pos + data_len;
+   current->mm->start_code = codep + hdr->text_start;
+   current->mm->end_code = codep + code_len;
+   current->mm->start_data = datap;
+   current->mm->end_data = datap + data_len;
 #ifdef NO_MM
    /*
     *   set up the brk stuff (uses any slack left in data/bss allocation
@@ -354,19 +459,19 @@ static int load_flat_binary(struct linux_binprm * bprm, struct pt_regs * regs)
       (int) current->mm->start_data, (int) current->mm->end_data,
       (int) current->mm->end_data, (int) current->mm->brk);
 
-   if (is_in_rom(error)) {
-      int r;
+#ifndef CONFIG_BINFMT_FLAT_SEPARATELY
+   if (is_in_rom(codep)) {
       for(r = 0; r < hdr->reloc_count; r++) {
-         struct flat_reloc * reloc = (struct flat_reloc*)
-            (error + hdr->reloc_start + (sizeof(struct flat_reloc)*r));
+         flat_reloc * reloc = (flat_reloc*)
+            (codep + hdr->reloc_start + (sizeof(flat_reloc)*r));
          do_reloc(reloc);
       }
    } else {
-      int r;
+#endif
       for(r = 0; r < hdr->reloc_count; r++) {
-         struct flat_reloc reloc;
+         flat_reloc reloc;
 
-         fpos = hdr->reloc_start + (sizeof(struct flat_reloc)*r);
+         fpos = hdr->reloc_start + (sizeof(flat_reloc)*r);
          result = bprm->file->f_op->read(bprm->file, (char *) &reloc,
                sizeof(reloc), &fpos);
          if (result >= (unsigned long)-4096) {
@@ -374,7 +479,13 @@ static int load_flat_binary(struct linux_binprm * bprm, struct pt_regs * regs)
          } else
             do_reloc(&reloc);
       }
+#ifndef CONFIG_BINFMT_FLAT_SEPARATELY
    }
+#endif
+
+#if 0 // def DEBUG
+   printk ("load_flat: relocs=%d\n", (int)(hdr->reloc_count));
+#endif
 
    compute_creds(bprm);
     current->flags &= ~PF_FORKNOEXEC;
@@ -383,7 +494,7 @@ static int load_flat_binary(struct linux_binprm * bprm, struct pt_regs * regs)
 
    set_binfmt(&flat_format);
 
-   p = pos + data_len + bss_len + stack_len - 4;
+   p = bssp + bss_len + stack_len - 4;
    DBG_FLT("p=%lx\n", p);
 
    p = putstringarray(p, 1, &bprm->filename);
@@ -397,12 +508,11 @@ static int load_flat_binary(struct linux_binprm * bprm, struct pt_regs * regs)
 
    current->mm->start_stack = (unsigned long) create_flat_tables(p, bprm);
 
-   DBG_FLT("start_thread(regs=0x%lx, start_code=0x%lx, start_stack=0x%lx)\n",
-         regs, current->mm->start_code, current->mm->start_stack);
+   DBG_FLT("start_thread(regs=0x%lx, entry=0x%lx, start_stack=0x%lx)\n",
+         (long)regs, (long)(current->mm->start_code+hdr->entry_point),
+         (long)(current->mm->start_stack));
 
-    printk ("load_flat: program loaded\n");
-
-   start_thread(regs, current->mm->start_code, current->mm->start_stack);
+   start_thread(regs, current->mm->start_code+hdr->entry_point, current->mm->start_stack);
 
    if (current->ptrace & PT_PTRACED)
       send_sig(SIGTRAP, current, 0);

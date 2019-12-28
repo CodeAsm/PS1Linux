@@ -1402,6 +1402,30 @@ L:	linux-via@gtf.org
 W:	http://sourceforge.net/projects/gkernel/
 S:	Maintained
 
+UCLINUX LINUX WITHOUT MMU SUPPORT
+P:	D. Jeff Dionne
+M:	jeff@lineo.ca 
+M:	jeff@uclinux.org
+L:	uclinux-dev@uclinux.org
+W:	http://www.uclinux.org
+S:	Maintained 
+
+UCLINUX FOR COLDFIRE
+P:	Greg Ungerer
+M:	gerg@lineo.com
+P:	David McCullough
+M:	davidm@lineo.com
+W:	http://www.uclinux.org/ports
+S:	Maintained
+
+UCLINUX FOR DRAGONBALL
+P:      Michael Leslie
+M:      mleslie@lineo.ca
+P:      Randy Buchanan
+M:      randyb@lineo.com
+W:      http://www.uclinux.org/ports
+S:      Maintained
+
 USB DIAMOND RIO500 DRIVER
 P:	Cesar Miquel
 M:	miquel@df.uba.ar

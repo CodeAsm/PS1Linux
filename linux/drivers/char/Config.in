@@ -4,6 +4,61 @@
 mainmenu_option next_comment
 comment 'Character devices'
 
+#############################################################################
+#
+# uClinux options
+#
+
+if [ "$CONFIG_M68328" = "y" ]; then
+  bool '68328 serial support' CONFIG_68328_SERIAL
+  if [ "$CONFIG_68328_SERIAL" = "y" ]; then
+    bool 'Support RTS/CTS on 68328 serial support' CONFIG_68328_SERIAL_RTS_CTS
+  fi
+  if [ "$CONFIG_PILOT" = "y" ]; then
+    bool '68328 digitizer support' CONFIG_68328_DIGI
+  fi
+fi
+
+if [ "$CONFIG_M68EZ328" = "y" ]; then
+  bool '68328 serial support' CONFIG_68328_SERIAL
+  if [ "$CONFIG_68328_SERIAL" = "y" ]; then
+    bool 'Support RTS/CTS on 68328 serial support' CONFIG_68328_SERIAL_RTS_CTS
+  fi
+  if [ "$CONFIG_M68EZ328ADS" = "y" ]; then
+    bool '68681 serial support' CONFIG_68681_SERIAL
+  fi
+fi
+
+if [ "$CONFIG_M68332" = "y" ]; then
+  bool '68332 serial support' CONFIG_68332_SERIAL
+fi
+
+if [ "$CONFIG_M68EN302" = "y" ]; then
+  bool '68302 serial support' CONFIG_68302_SERIAL
+fi
+
+if [ "$CONFIG_COLDFIRE" = "y" ]; then
+  bool 'ColdFire serial support' CONFIG_COLDFIRE_SERIAL
+  bool '16550 serial support' CONFIG_SERIAL
+  bool 'ColdFire MBUS Support' CONFIG_MCF_MBUS
+  bool 'Support for TEXT based LCD driver' CONFIG_LCDTXT
+  bool 'Support for ColdFire DMA driven LCD driver' CONFIG_LCDDMA
+  bool 'Support for ColdFire DMA driven DAC0800 driver' CONFIG_DAC0800
+  bool 'Support for ColdFire DMA driven I2S DAC driver' CONFIG_DACI2S
+  bool 'Support for ColdFire T6963 driver' CONFIG_T6963
+  if [ "$CONFIG_T6963" = "y" ]; then
+    bool '   Use PIO mode' CONFIG_T6963_PIO
+    if [ "$CONFIG_T6963_PIO" != "y" ]; then
+      define_bool CONFIG_T6963_DMA y
+    fi
+  fi
+  bool 'Hifn 7901 encryption accellerator support' CONFIG_HIFN7901
+fi
+
+bool 'LED Manager support' CONFIG_LEDMAN
+
+#############################################################################
+
 bool 'Virtual terminal' CONFIG_VT
 if [ "$CONFIG_VT" = "y" ]; then
    bool '  Support for console on virtual terminal' CONFIG_VT_CONSOLE

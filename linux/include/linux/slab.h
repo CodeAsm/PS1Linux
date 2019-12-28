@@ -57,6 +57,9 @@ extern void kmem_cache_free(kmem_cache_t *, void *);
 
 extern void *kmalloc(size_t, int);
 extern void kfree(const void *);
+#ifdef NO_MM
+extern unsigned int ksize(const void *);
+#endif
 
 extern void kmem_cache_reap(int);
 extern int slabinfo_read_proc(char *page, char **start, off_t off,

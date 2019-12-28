@@ -47,6 +47,7 @@ extern int ez_init(void);
 extern int bpcd_init(void);
 extern int ps2esdi_init(void);
 extern int jsfd_init(void);
+extern int blkmem_init(void);
 
 #if defined(CONFIG_ARCH_S390)
 extern int mdisk_init(void);

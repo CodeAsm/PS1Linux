@@ -13,6 +13,8 @@
  */
 /* [Feb-Apr 2000, AV] Rewrite to the new namespace architecture.
  */
+/* Dec 2000, David McCullough <davidm@lineo.com> NO_MM support
+ */
 
 #include <linux/init.h>
 #include <linux/mm.h>
@@ -110,11 +112,13 @@ static inline int do_getname(const char *filename, char *page)
 	int retval;
 	unsigned long len = PATH_MAX + 1;
 
+#ifndef NO_MM
 	if ((unsigned long) filename >= TASK_SIZE) {
 		if (!segment_eq(get_fs(), KERNEL_DS))
 			return -EFAULT;
 	} else if (TASK_SIZE - (unsigned long) filename < PAGE_SIZE)
 		len = TASK_SIZE - (unsigned long) filename;
+#endif /* !NO_MM */
 
 	retval = strncpy_from_user((char *)page, filename, len);
 	if (retval > 0) {

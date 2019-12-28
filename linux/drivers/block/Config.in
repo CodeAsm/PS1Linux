@@ -46,4 +46,6 @@ if [ "$CONFIG_BLK_DEV_RAM" = "y" -o "$CONFIG_BLK_DEV_RAM" = "m" ]; then
 fi
 dep_bool '  Initial RAM disk (initrd) support' CONFIG_BLK_DEV_INITRD $CONFIG_BLK_DEV_RAM
 
+tristate 'ROM disk memory block device (blkmem)' CONFIG_BLK_DEV_BLKMEM
+
 endmenu

@@ -23,6 +23,10 @@ extern struct list_head inactive_dirty_list;
 #include <asm/pgtable.h>
 #include <asm/atomic.h>
 
+#ifdef MAGIC_ROM_PTR
+extern int is_in_rom(unsigned long);
+#endif
+
 /*
  * Linux kernel virtual memory manager primitives.
  * The idea being to have a "virtual" mm in the same way
@@ -31,6 +35,8 @@ extern struct list_head inactive_dirty_list;
  * (from shared memory to executable loading to arbitrary
  * mmap() functions).
  */
+
+#ifndef NO_MM
 
 /*
  * This struct defines a memory VMM memory area. There is one of these
@@ -67,6 +73,19 @@ struct vm_area_struct {
 	unsigned long vm_raend;
 	void * vm_private_data;		/* was vm_pte (shared mem) */
 };
+
+#else /* NO_MM */
+/* This dummy vm_area_struct does not define a VM area, it is only
+   used to convey data between do_mmap and a f_op's mmap function. */
+ 
+struct vm_area_struct {
+	unsigned long vm_start;
+	unsigned long vm_end;
+	unsigned short vm_flags;
+	unsigned long vm_offset;
+};
+
+#endif /* NO_MM */
 
 /*
  * vm_flags..
@@ -105,6 +124,8 @@ struct vm_area_struct {
 #define VM_SequentialReadHint(v)	((v)->vm_flags & VM_SEQ_READ)
 #define VM_RandomReadHint(v)		((v)->vm_flags & VM_RAND_READ)
 
+#ifndef NO_MM
+
 /*
  * mapping from the currently active vm_flags protection bits (the
  * low four bits) to a page protection mask..
@@ -122,6 +143,8 @@ struct vm_operations_struct {
 	void (*close)(struct vm_area_struct * area);
 	struct page * (*nopage)(struct vm_area_struct * area, unsigned long address, int write_access);
 };
+
+#endif /* NO_MM */
 
 /*
  * Try to keep the most commonly accessed fields in single cache lines
@@ -410,7 +433,9 @@ extern void free_area_init_node(int nid, pg_data_t *pgdat, struct page *pmap,
 extern void mem_init(void);
 extern void show_mem(void);
 extern void si_meminfo(struct sysinfo * val);
+#ifndef CONFIG_UCLINUX
 extern void swapin_readahead(swp_entry_t);
+#endif
 
 /* mmap.c */
 extern void lock_vma_mappings(struct vm_area_struct *);
@@ -484,6 +509,8 @@ extern struct page *filemap_nopage(struct vm_area_struct *, unsigned long, int);
 
 #define GFP_HIGHMEM	__GFP_HIGHMEM
 
+#ifndef NO_MM
+
 /* vma is the first one with  address < vma->vm_end,
  * and even  address < vma->vm_start. Have to extend vma. */
 static inline int expand_stack(struct vm_area_struct * vma, unsigned long address)
@@ -520,6 +547,7 @@ static inline struct vm_area_struct * find_vma_intersection(struct mm_struct * m
 }
 
 extern struct vm_area_struct *find_extend_vma(struct mm_struct *mm, unsigned long addr);
+#endif /* NO_MM */
 
 #define buffer_under_min()	(atomic_read(&buffermem_pages) * 100 < \
 				buffer_mem.min_percent * num_physpages)

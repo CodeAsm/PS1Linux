@@ -8,17 +8,19 @@
 extern "C" {
 #endif
 
-extern char * ___strtok;
-extern char * strpbrk(const char *,const char *);
-extern char * strtok(char *,const char *);
-extern char * strsep(char **,const char *);
-extern __kernel_size_t strspn(const char *,const char *);
-
 
 /*
  * Include machine specific inline routines
  */
 #include <asm/string.h>
+
+#ifndef __HAVE_ARCH_STRTOK
+extern char * ___strtok;
+extern char * strpbrk(const char *,const char *);
+extern char * strtok(char *,const char *);
+extern char * strsep(char **,const char *);
+extern __kernel_size_t strspn(const char *,const char *);
+#endif
 
 #ifndef __HAVE_ARCH_STRCPY
 extern char * strcpy(char *,const char *);

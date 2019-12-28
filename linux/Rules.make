@@ -263,7 +263,7 @@ $(active-objs): $(TOPDIR)/include/linux/modversions.h
 
 else
 
-$(TOPDIR)/include/linux/modversions.h:
+$(TOPDIR)/include/linux/modversions.h: $(TOPDIR)/include/linux/modsetver.h
 	@echo "#include <linux/modsetver.h>" > $@
 
 endif # CONFIG_MODVERSIONS

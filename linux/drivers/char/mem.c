@@ -6,6 +6,8 @@
  *  Added devfs support. 
  *    Jan-11-1998, C. Scott Ananian <cananian@alumni.princeton.edu>
  *  Shared /dev/zero mmaping support, Feb 2000, Kanoj Sarcar <kanoj@sgi.com>
+ *  NO_MM changes Dec 2000, David McCullough <davidm@lineo.com> based on
+ *    work by Kenneth Albanowski <kjahds@kjahds.com>.
  */
 
 #include <linux/config.h>
@@ -53,7 +55,7 @@ static ssize_t do_write_mem(struct file * file, void *p, unsigned long realp,
 	ssize_t written;
 
 	written = 0;
-#if defined(__sparc__) || defined(__mc68000__)
+#if defined(__sparc__) || defined(__mc68000__) && !defined(NO_MM)
 	/* we don't have page 0 mapped on sparc and m68k.. */
 	if (realp < PAGE_SIZE) {
 		unsigned long sz = PAGE_SIZE-realp;
@@ -90,7 +92,7 @@ static ssize_t read_mem(struct file * file, char * buf,
 	if (count > end_mem - p)
 		count = end_mem - p;
 	read = 0;
-#if defined(__sparc__) || defined(__mc68000__)
+#if defined(__sparc__) || defined(__mc68000__) && !defined(NO_MM)
 	/* we don't have page 0 mapped on sparc and m68k.. */
 	if (p < PAGE_SIZE) {
 		unsigned long sz = PAGE_SIZE-p;
@@ -144,7 +146,7 @@ static inline pgprot_t pgprot_noncached(pgprot_t _prot)
 		prot |= _PAGE_PCD | _PAGE_PWT;
 #elif defined(__powerpc__)
 	prot |= _PAGE_NO_CACHE | _PAGE_GUARDED;
-#elif defined(__mc68000__)
+#elif defined(__mc68000__) && !defined(NO_MM)
 #ifdef SUN3_PAGE_NOCACHE
 	if (MMU_IS_SUN3)
 		prot |= SUN3_PAGE_NOCACHE;
@@ -194,6 +196,7 @@ static inline int noncached_address(unsigned long addr)
 
 static int mmap_mem(struct file * file, struct vm_area_struct * vma)
 {
+#ifndef NO_MM
 	unsigned long offset = vma->vm_pgoff << PAGE_SHIFT;
 
 	/*
@@ -217,6 +220,10 @@ static int mmap_mem(struct file * file, struct vm_area_struct * vma)
 			     vma->vm_page_prot))
 		return -EAGAIN;
 	return 0;
+#else /* !NO_MM */
+	/* DAVIDM vma->vm_start = file->f_pos+PAGE_OFFSET+vma->vm_offset; */
+	return -EINVAL;
+#endif /* !NO_MM */
 }
 
 /*
@@ -235,7 +242,7 @@ static ssize_t read_kmem(struct file *file, char *buf,
 		if (count > (unsigned long) high_memory - p)
 			read = (unsigned long) high_memory - p;
 
-#if defined(__sparc__) || defined(__mc68000__)
+#if defined(__sparc__) || defined(__mc68000__) && !defined(NO_MM)
 		/* we don't have page 0 mapped on sparc and m68k.. */
 		if (p < PAGE_SIZE && read > 0) {
 			size_t tmp = PAGE_SIZE - p;
@@ -347,6 +354,7 @@ static ssize_t write_null(struct file * file, const char * buf,
 	return count;
 }
 
+#ifndef NO_MM
 /*
  * For fun, we are using the MMU for this.
  */
@@ -403,6 +411,8 @@ out_up:
 	return size;
 }
 
+#endif /* NO_MM */
+
 static ssize_t read_zero(struct file * file, char * buf, 
 			 size_t count, loff_t *ppos)
 {
@@ -416,6 +426,7 @@ static ssize_t read_zero(struct file * file, char * buf,
 
 	left = count;
 
+#ifndef NO_MM
 	/* do we want to be clever? Arbitrary cut-off */
 	if (count >= PAGE_SIZE*4) {
 		unsigned long partial;
@@ -439,15 +450,28 @@ static ssize_t read_zero(struct file * file, char * buf,
 	written += left - unwritten;
 out:
 	return written ? written : -EFAULT;
+#else
+    for (left = count; left > 0; left--) {
+        put_user(0,buf);
+        buf++;
+		if (current->need_resched)
+			schedule();
+    }
+	return(count);
+#endif
 }
 
 static int mmap_zero(struct file * file, struct vm_area_struct * vma)
 {
+#ifndef NO_MM
 	if (vma->vm_flags & VM_SHARED)
 		return shmem_zero_setup(vma);
 	if (zeromap_page_range(vma->vm_start, vma->vm_end - vma->vm_start, vma->vm_page_prot))
 		return -EAGAIN;
 	return 0;
+#else
+	return -ENOSYS;
+#endif
 }
 
 static ssize_t write_full(struct file * file, const char * buf,
@@ -595,7 +619,9 @@ void __init memory_devfs_register (void)
 	{1, "mem",     S_IRUSR | S_IWUSR | S_IRGRP, &mem_fops},
 	{2, "kmem",    S_IRUSR | S_IWUSR | S_IRGRP, &kmem_fops},
 	{3, "null",    S_IRUGO | S_IWUGO,           &null_fops},
+#if !defined(__mc68000__)
 	{4, "port",    S_IRUSR | S_IWUSR | S_IRGRP, &port_fops},
+#endif
 	{5, "zero",    S_IRUGO | S_IWUGO,           &zero_fops},
 	{7, "full",    S_IRUGO | S_IWUGO,           &full_fops},
 	{8, "random",  S_IRUGO | S_IWUSR,           &random_fops},

@@ -55,6 +55,7 @@ static int proc_exe_link(struct inode *inode, struct dentry **dentry, struct vfs
 	struct mm_struct * mm;
 	struct vm_area_struct * vma;
 	int result = -ENOENT;
+#ifndef NO_MM /* DAVIDM - Some other time */
 	struct task_struct *task = inode->u.proc_i.task;
 
 	task_lock(task);
@@ -79,6 +80,7 @@ static int proc_exe_link(struct inode *inode, struct dentry **dentry, struct vfs
 	up(&mm->mmap_sem);
 	mmput(mm);
 out:
+#endif /* !NO_MM */
 	return result;
 }
 

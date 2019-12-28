@@ -22,6 +22,12 @@
  * formats. 
  */
 
+/*
+ * uClinux revisions for NO_MM
+ *   Copyright (C) 1998  Kenneth Albanowski <kjahds@kjahds.com>,
+ *   Support for 2.4 (C) 2000 Lineo by David McCullough <davidm@lineo.com>
+ */
+
 #include <linux/config.h>
 #include <linux/slab.h>
 #include <linux/file.h>
@@ -174,6 +180,7 @@ static int count(char ** argv, int max)
 	return i;
 }
 
+#ifndef NO_MM
 /*
  * 'copy_strings()' copies argument/envelope strings from user
  * memory to free pages in kernel mem. These are in a format ready
@@ -330,6 +337,42 @@ int setup_arg_pages(struct linux_binprm *bprm)
 	
 	return 0;
 }
+
+#else
+
+/*
+ *	We need to allocate/copy some argv style arrays,  so we build it up
+ *	here with one alloc.  The caller has to free the result themselves.
+ */
+
+char **
+copy_strings(int argc, char **argv)
+{
+	int		i, n;
+	char	**_argv, *sp;
+
+	n = (argc + 1) * sizeof(char *);
+	for (i = 0; i < argc; i++)
+		n += strlen(argv[i]) + 1;
+	
+	_argv = kmalloc(n, GFP_KERNEL);
+	if (!_argv)
+		return(_argv);
+	
+	sp = ((char *) _argv) + ((argc + 1) * sizeof(char *));
+
+	for (i = 0; i < argc; i++) {
+		_argv[i] = sp;
+		n = strlen(argv[i]) + 1;
+		memcpy(sp, argv[i], n);
+		sp += n;
+	}
+		
+	_argv[i] = NULL;
+	return(_argv);
+}
+
+#endif
 
 struct file *open_exec(const char *name)
 {
@@ -720,6 +763,8 @@ void compute_creds(struct linux_binprm *bprm)
 }
 
 
+#ifndef NO_MM
+
 void remove_arg_zero(struct linux_binprm *bprm)
 {
 	if (bprm->argc) {
@@ -743,6 +788,8 @@ inside:
 		bprm->argc--;
 	}
 }
+
+#endif /* !NO_MM */
 
 /*
  * cycle the list of binary formats handler, until one recognizes the image
@@ -849,7 +896,9 @@ int do_execve(char * filename, char ** argv, char ** envp, struct pt_regs * regs
 		return retval;
 
 	bprm.p = PAGE_SIZE*MAX_ARG_PAGES-sizeof(void *);
+#ifndef NO_MM
 	memset(bprm.page, 0, MAX_ARG_PAGES*sizeof(bprm.page[0])); 
+#endif /* !NO_MM */
 
 	bprm.file = file;
 	bprm.filename = filename;
@@ -872,6 +921,7 @@ int do_execve(char * filename, char ** argv, char ** envp, struct pt_regs * regs
 	if (retval < 0) 
 		goto out; 
 
+#ifndef NO_MM
 	retval = copy_strings_kernel(1, &bprm.filename, &bprm);
 	if (retval < 0) 
 		goto out; 
@@ -884,11 +934,26 @@ int do_execve(char * filename, char ** argv, char ** envp, struct pt_regs * regs
 	retval = copy_strings(bprm.argc, argv, &bprm);
 	if (retval < 0) 
 		goto out; 
+#else /* !NO_MM */
+	/*
+	 * we have to make copies of these strings,  otherwise we re-use
+	 * them after they are freed (when we clean up the old exec)
+	 */
+	bprm.envp = copy_strings(bprm.envc, envp);
+	bprm.argv = copy_strings(bprm.argc, argv);
+#endif /* !NO_MM */
 
 	retval = search_binary_handler(&bprm,regs);
-	if (retval >= 0)
+	if (retval >= 0) {
+#ifdef NO_MM
+		/* Wake up parent that vforked me */
+		up(current->p_opptr->vfork_sem);
+		kfree(bprm.envp);
+		kfree(bprm.argv);
+#endif /* NO_MM */
 		/* execve success */
 		return retval;
+	}
 
 out:
 	/* Something went wrong, return the inode and free the argument pages*/
@@ -896,11 +961,16 @@ out:
 	if (bprm.file)
 		fput(bprm.file);
 
+#ifndef NO_MM
 	for (i = 0 ; i < MAX_ARG_PAGES ; i++) {
 		struct page * page = bprm.page[i];
 		if (page)
 			__free_page(page);
 	}
+#else /* !NO_MM */
+	kfree(bprm.envp);
+	kfree(bprm.argv);
+#endif /* !NO_MM */
 
 	return retval;
 }

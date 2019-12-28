@@ -330,6 +330,9 @@ struct devprobe parport_probes[] __initdata = {
 };
 
 struct devprobe m68k_probes[] __initdata = {
+#if defined(CONFIG_COLDFIRE) && defined(CONFIG_SMC9194)
+	{smc_init, 0},			/* here so that we probe for multiple devices */
+#endif
 #ifdef CONFIG_ATARILANCE	/* Lance-based Atari ethernet boards */
 	{atarilance_probe, 0},
 #endif

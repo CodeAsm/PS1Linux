@@ -26,6 +26,9 @@ extern unsigned long event;
 #include <linux/signal.h>
 #include <linux/securebits.h>
 #include <linux/fs_struct.h>
+#ifdef NO_MM
+#include <linux/wait.h>
+#endif
 
 /*
  * cloning flags:
@@ -200,6 +203,8 @@ struct files_struct {
 /* Number of map areas at which the AVL tree is activated. This is arbitrary. */
 #define AVL_MIN_MAP_COUNT	32
 
+#ifndef NO_MM
+
 struct mm_struct {
 	struct vm_area_struct * mmap;		/* list of VMAs */
 	struct vm_area_struct * mmap_avl;	/* tree of VMAs */
@@ -239,6 +244,67 @@ struct mm_struct {
 	page_table_lock: SPIN_LOCK_UNLOCKED, 		\
 	mmlist:		LIST_HEAD_INIT(name.mmlist),	\
 }
+
+#else /* NO_MM */
+
+struct mm_rblock_struct {
+	int size;
+	int refcount;
+	void * kblock;
+};
+
+struct mm_tblock_struct {
+	struct mm_rblock_struct * rblock;
+	struct mm_tblock_struct * next;
+};
+
+struct mm_struct {
+	/* How many users with user space? */
+	atomic_t mm_users;
+	/* How many references to "struct mm_struct" (users count as 1) */
+	atomic_t mm_count;
+
+	struct list_head mmlist;		/* List of all active mm's */
+
+	struct semaphore mmap_sem;
+	spinlock_t page_table_lock;
+	unsigned long start_code, end_code, start_data, end_data;
+	unsigned long start_brk, brk, end_brk, start_stack;
+	unsigned long arg_start, arg_end, env_start, env_end;
+	unsigned long rss, total_vm, locked_vm;
+	unsigned long def_flags;
+	unsigned long cpu_vm_mask;
+	struct inode * executable;
+	struct mm_tblock_struct tblock;
+};
+
+#define INIT_MM(name) {											\
+		mm_users:		ATOMIC_INIT(2),							\
+		mm_count:		ATOMIC_INIT(1),							\
+		mmlist:			LIST_HEAD_INIT(name.mmlist),			\
+		mmap_sem:		__MUTEX_INITIALIZER(name.mmap_sem),		\
+		page_table_lock:SPIN_LOCK_UNLOCKED,						\
+		start_code:		0,										\
+		end_code:		0,										\
+		start_data:		0,										\
+		end_data:		0,										\
+		start_brk:		0,										\
+		brk:			0,										\
+		end_brk:		0,										\
+		start_stack:	0,										\
+		arg_start:		0,										\
+		arg_end:		0,										\
+		env_start:		0,										\
+		env_end:		0,										\
+		rss:			0,										\
+		total_vm:		0,										\
+		locked_vm:		0,										\
+		def_flags:		0,										\
+		cpu_vm_mask:	0,										\
+		executable:		NULL,									\
+		tblock:			{NULL, NULL} }
+
+#endif /* NO_MM */
 
 struct signal_struct {
 	atomic_t		count;

@@ -17,6 +17,7 @@
 
 #include <asm/uaccess.h>
 #include <asm/io.h>
+#include <asm/semaphore.h>
 
 /*
  * this is where the system-wide overflow UID and GID are defined, for

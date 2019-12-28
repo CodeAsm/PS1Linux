@@ -29,12 +29,14 @@ union swap_header {
 
 #ifdef __KERNEL__
 
+#ifndef NO_MM
 /*
  * Max bad pages in the new format..
  */
 #define __swapoffset(x) ((unsigned long)&((union swap_header *)0)->x)
 #define MAX_SWAP_BADPAGES \
 	((__swapoffset(magic.magic) - __swapoffset(info.badpages)) / sizeof(int))
+#endif /* NO_MM */
 
 #include <asm/atomic.h>
 
@@ -158,7 +160,9 @@ extern struct swap_list_t swap_list;
 asmlinkage long sys_swapoff(const char *);
 asmlinkage long sys_swapon(const char *, int);
 
+#ifndef NO_MM
 #define SWAP_CACHE_INFO
+#endif
 
 #ifdef SWAP_CACHE_INFO
 extern unsigned long swap_cache_add_total;
@@ -284,12 +288,16 @@ extern spinlock_t pagemap_lru_lock;
 #define page_ramdisk(page) \
 	(page->buffers && (MAJOR(page->buffers->b_dev) == RAMDISK_MAJOR))
 
+#ifndef NO_MM
+
 extern spinlock_t swaplock;
 
 #define swap_list_lock()	spin_lock(&swaplock)
 #define swap_list_unlock()	spin_unlock(&swaplock)
 #define swap_device_lock(p)	spin_lock(&p->sdev_lock)
 #define swap_device_unlock(p)	spin_unlock(&p->sdev_lock)
+
+#endif /* NO_MM */
 
 extern void shmem_unuse(swp_entry_t entry, struct page *page);
 

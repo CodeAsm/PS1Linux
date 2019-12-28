@@ -32,6 +32,7 @@
 #include <linux/highuid.h>
 
 #include <asm/uaccess.h>
+#include <asm/semaphore.h>
 
 #ifdef CONFIG_ROOT_NFS
 #include <linux/nfs_fs.h>

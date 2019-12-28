@@ -115,6 +115,11 @@
  *  Stephen Rothwell <sfr@linuxcare.com>, June, 2000.
  */
 
+/*
+ * uClinux revisions for NO_MM
+ * Copyright (C) 1998  Kenneth Albanowski <kjahds@kjahds.com>,
+ */
+
 #include <linux/malloc.h>
 #include <linux/file.h>
 #include <linux/smp_lock.h>
@@ -1429,6 +1434,7 @@ int fcntl_setlk(unsigned int fd, unsigned int cmd, struct flock *l)
 	error = -EINVAL;
 	inode = filp->f_dentry->d_inode;
 
+#ifndef NO_MM
 	/* Don't allow mandatory locks on files that may be memory mapped
 	 * and shared.
 	 */
@@ -1441,6 +1447,7 @@ int fcntl_setlk(unsigned int fd, unsigned int cmd, struct flock *l)
 			goto out_putf;
 		}
 	}
+#endif /* !NO_MM */
 
 	error = -EINVAL;
 	if (!flock_to_posix_lock(filp, file_lock, &flock))

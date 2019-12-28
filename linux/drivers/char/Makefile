@@ -169,6 +169,8 @@ obj-$(CONFIG_PPDEV) += ppdev.o
 obj-$(CONFIG_DZ) += dz.o
 obj-$(CONFIG_NWBUTTON) += nwbutton.o
 obj-$(CONFIG_NWFLASH) += nwflash.o
+obj-$(CONFIG_COLDFIRE) += mcfserial.o
+obj-$(CONFIG_LEDMAN) += ledman.o
 
 # Only one watchdog can succeed. We probe the hardware watchdog
 # drivers first, then the softdog driver.  This means if your hardware

@@ -1,11 +1,11 @@
 VERSION = 2
 PATCHLEVEL = 4
 SUBLEVEL = 0
-EXTRAVERSION =
+EXTRAVERSION = .0pre0
 
 KERNELRELEASE=$(VERSION).$(PATCHLEVEL).$(SUBLEVEL)$(EXTRAVERSION)
 
-ARCH := $(shell uname -m | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ -e s/arm.*/arm/ -e s/sa110/arm/)
+ARCH := m68knommu
 
 CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 	  else if [ -x /bin/bash ]; then echo /bin/bash; \
@@ -15,10 +15,10 @@ TOPDIR	:= $(shell if [ "$$PWD" != "" ]; then echo $$PWD; else pwd; fi)
 HPATH   	= $(TOPDIR)/include
 FINDHPATH	= $(HPATH)/asm $(HPATH)/linux $(HPATH)/scsi $(HPATH)/net
 
-HOSTCC  	= gcc
+HOSTCC  	= unset GCC_EXEC_PREFIX; gcc
 HOSTCFLAGS	= -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer
 
-CROSS_COMPILE 	=
+CROSS_COMPILE 	= m68k-elf-
 
 #
 # Include the make variables (CC, etc...)
@@ -44,6 +44,8 @@ export	VERSION PATCHLEVEL SUBLEVEL EXTRAVERSION KERNELRELEASE ARCH \
 	CONFIG_SHELL TOPDIR HPATH HOSTCC HOSTCFLAGS CROSS_COMPILE AS LD CC \
 	CPP AR NM STRIP OBJCOPY OBJDUMP MAKE MAKEFILES GENKSYMS MODFLAGS PERL
 
+.PHONY: dummy
+
 all:	do-it-all
 
 #
@@ -55,7 +57,12 @@ ifeq (.config,$(wildcard .config))
 include .config
 ifeq (.depend,$(wildcard .depend))
 include .depend
-do-it-all:	Version vmlinux
+ifndef CONFIG_UCLINUX
+	LINUX=vmlinux
+else
+	LINUX=linux
+endif
+do-it-all:	Version $(LINUX)
 else
 CONFIGURATION = depend
 do-it-all:	depend
@@ -87,7 +94,11 @@ export MODLIB
 
 CPPFLAGS := -D__KERNEL__ -I$(HPATH)
 
+ifndef CONFIG_FULLDEBUG
 CFLAGS := $(CPPFLAGS) -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer -fno-strict-aliasing
+else
+CFLAGS := $(CPPFLAGS) -Wall -Wstrict-prototypes -O1 -g -fno-strict-aliasing
+endif
 AFLAGS := -D__ASSEMBLY__ $(CPPFLAGS)
 
 #
@@ -117,7 +128,7 @@ export SVGA_MODE = -DSVGA_MODE=NORMAL_VGA
 
 #export RAMDISK = -DRAMDISK=512
 
-CORE_FILES	=kernel/kernel.o mm/mm.o fs/fs.o ipc/ipc.o
+CORE_FILES	=kernel/kernel.o fs/fs.o ipc/ipc.o
 NETWORKS	=net/network.o
 DRIVERS		=drivers/block/block.o \
 		 drivers/char/char.o \
@@ -125,7 +136,15 @@ DRIVERS		=drivers/block/block.o \
 		 drivers/net/net.o \
 		 drivers/media/media.o
 LIBS		=$(TOPDIR)/lib/lib.a
-SUBDIRS		=kernel drivers mm fs net ipc lib
+SUBDIRS		=kernel drivers fs net ipc lib
+
+ifndef CONFIG_UCLINUX
+	CORE_FILES += mm/mm.o
+	SUBDIRS    += mm
+else
+	CORE_FILES += mmnommu/mmnommu.o
+	SUBDIRS    += mmnommu
+endif
 
 DRIVERS-n :=
 DRIVERS-y :=
@@ -184,7 +203,7 @@ DRIVERS += $(DRIVERS-y)
 # files removed with 'make clean'
 CLEAN_FILES = \
 	kernel/ksyms.lst include/linux/compile.h \
-	vmlinux System.map \
+	$(LINUX) System.map \
 	.tmp* \
 	drivers/char/consolemap_deftbl.c drivers/video/promcon_tbl.c \
 	drivers/char/conmakehash \
@@ -225,7 +244,6 @@ MRPROPER_DIRS = \
 	include/config \
 	$(TOPDIR)/include/linux/modules
 
-
 include arch/$(ARCH)/Makefile
 
 export	CPPFLAGS CFLAGS AFLAGS
@@ -240,10 +258,10 @@ export	NETWORKS DRIVERS LIBS HEAD LDFLAGS LINKFLAGS MAKEBOOT ASFLAGS
 Version: dummy
 	@rm -f include/linux/compile.h
 
-boot: vmlinux
+boot: $(LINUX)
 	@$(MAKE) CFLAGS="$(CFLAGS) $(CFLAGS_KERNEL)" -C arch/$(ARCH)/boot
 
-vmlinux: $(CONFIGURATION) init/main.o init/version.o linuxsubdirs
+$(LINUX): $(CONFIGURATION) init/main.o init/version.o linuxsubdirs
 	$(LD) $(LINKFLAGS) $(HEAD) init/main.o init/version.o \
 		--start-group \
 		$(CORE_FILES) \
@@ -251,8 +269,8 @@ vmlinux: $(CONFIGURATION) init/main.o init/version.o linuxsubdirs
 		$(NETWORKS) \
 		$(LIBS) \
 		--end-group \
-		-o vmlinux
-	$(NM) vmlinux | grep -v '\(compiled\)\|\(\.o$$\)\|\( [aUw] \)\|\(\.\.ng$$\)\|\(LASH[RL]DI\)' | sort > System.map
+		-o $(LINUX)
+	$(NM) $(LINUX) | grep -v '\(compiled\)\|\(\.o$$\)\|\( [aUw] \)\|\(\.\.ng$$\)\|\(LASH[RL]DI\)' | sort > System.map
 
 symlinks:
 	rm -f include/asm

@@ -21,7 +21,11 @@
  */
 struct linux_binprm{
 	char buf[BINPRM_BUF_SIZE];
+#ifndef NO_MM
 	struct page *page[MAX_ARG_PAGES];
+#else
+	char **envp, **argv;
+#endif
 	unsigned long p; /* current top of mem */
 	int sh_bang;
 	struct file * file;
@@ -52,9 +56,13 @@ extern int prepare_binprm(struct linux_binprm *);
 extern void remove_arg_zero(struct linux_binprm *);
 extern int search_binary_handler(struct linux_binprm *,struct pt_regs *);
 extern int flush_old_exec(struct linux_binprm * bprm);
+#ifndef NO_MM
 extern int setup_arg_pages(struct linux_binprm * bprm);
 extern int copy_strings(int argc,char ** argv,struct linux_binprm *bprm); 
 extern int copy_strings_kernel(int argc,char ** argv,struct linux_binprm *bprm);
+#else
+extern char **copy_strings(int argc,char ** argv); 
+#endif
 extern void compute_creds(struct linux_binprm *binprm);
 extern int do_coredump(long signr, struct pt_regs * regs);
 extern void set_binfmt(struct linux_binfmt *new);

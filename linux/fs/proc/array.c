@@ -50,6 +50,8 @@
  * Al Viro & Jeff Garzik :  moved most of the thing into base.c and
  *			 :  proc_misc.c. The rest may eventually go into
  *			 :  base.c too.
+ *
+ * David McCullough  :  added NO_MM support <davidm@lineo.com>
  */
 
 #include <linux/config.h>
@@ -177,6 +179,7 @@ static inline char * task_state(struct task_struct *p, char *buffer)
 
 static inline char * task_mem(struct mm_struct *mm, char *buffer)
 {
+#ifndef NO_MM
 	struct vm_area_struct * vma;
 	unsigned long data = 0, stack = 0;
 	unsigned long exec = 0, lib = 0;
@@ -213,6 +216,9 @@ static inline char * task_mem(struct mm_struct *mm, char *buffer)
 		data - stack, stack,
 		exec - lib, lib);
 	up(&mm->mmap_sem);
+#else /* !NO_MM */
+	/* DAVIDM is there something we can do here ? */
+#endif /* !NO_MM */
 	return buffer;
 }
 
@@ -322,11 +328,16 @@ int proc_pid_stat(struct task_struct *task, char * buffer)
 	if (mm) {
 		struct vm_area_struct *vma;
 		down(&mm->mmap_sem);
+#ifndef NO_MM
 		vma = mm->mmap;
 		while (vma) {
 			vsize += vma->vm_end - vma->vm_start;
 			vma = vma->vm_next;
 		}
+#else /* !NO_MM */
+		/* DAVIDM - we can probably work vsize out by walking the mmap list */
+		vsize = 0;
+#endif /* !NO_MM */
 		eip = KSTK_EIP(task);
 		esp = KSTK_ESP(task);
 		up(&mm->mmap_sem);
@@ -396,6 +407,8 @@ int proc_pid_stat(struct task_struct *task, char * buffer)
 	return res;
 }
 		
+#ifndef NO_MM
+
 static inline void statm_pte_range(pmd_t * pmd, unsigned long address, unsigned long size,
 	int * pages, int * shared, int * dirty, int * total)
 {
@@ -472,6 +485,8 @@ static void statm_pgd_range(pgd_t * pgd, unsigned long address, unsigned long en
 	}
 }
 
+#endif /* !NO_MM */
+
 int proc_pid_statm(struct task_struct *task, char * buffer)
 {
 	struct mm_struct *mm;
@@ -485,6 +500,7 @@ int proc_pid_statm(struct task_struct *task, char * buffer)
 	if (mm) {
 		struct vm_area_struct * vma;
 		down(&mm->mmap_sem);
+#ifndef NO_MM
 		vma = mm->mmap;
 		while (vma) {
 			pgd_t *pgd = pgd_offset(mm, vma->vm_start);
@@ -505,6 +521,9 @@ int proc_pid_statm(struct task_struct *task, char * buffer)
 				drs += pages;
 			vma = vma->vm_next;
 		}
+#else /* !NO_MM */
+		/* DAVIDM - can probably do some here as well, at least drs */
+#endif /* !NO_MM */
 		up(&mm->mmap_sem);
 		mmput(mm);
 	}
@@ -548,6 +567,7 @@ int proc_pid_statm(struct task_struct *task, char * buffer)
 ssize_t proc_pid_read_maps (struct task_struct *task, struct file * file, char * buf,
 			  size_t count, loff_t *ppos)
 {
+#ifndef NO_MM
 	struct mm_struct *mm;
 	struct vm_area_struct * map, * next;
 	char * destptr = buf, * buffer;
@@ -676,6 +696,10 @@ getlen_out:
 	free_page((unsigned long)buffer);
 out:
 	return retval;
+#else /* !NO_MM */
+	/* DAVIDM - no idea if this one is possible :-) */
+	return(buf);
+#endif /* !NO_MM */
 }
 
 #ifdef CONFIG_SMP

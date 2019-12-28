@@ -122,6 +122,8 @@ inside:
 	return last_pid;
 }
 
+#ifndef CONFIG_UCLINUX
+
 static inline int dup_mmap(struct mm_struct * mm)
 {
 	struct vm_area_struct * mpnt, *tmp, **pprev;
@@ -349,6 +351,153 @@ free_pt:
 fail_nomem:
 	return retval;
 }
+
+#else /* !CONFIG_UCLINUX */
+
+static inline int dup_mmap(struct mm_struct * mm)
+{
+	struct mm_tblock_struct * tmp = &current->mm->tblock;
+	struct mm_tblock_struct * newtmp = &mm->tblock;
+	extern long realalloc, askedalloc;	
+
+	/* Kill me slowly. UGLY! FIXME! */
+	memcpy(&mm->start_code, &current->mm->start_code, 15*sizeof(unsigned long));
+	mm->tblock.rblock = 0;
+	mm->tblock.next = 0;
+
+	while((tmp = tmp->next)) {
+		newtmp->next = kmalloc(sizeof(struct mm_tblock_struct), GFP_KERNEL);
+		if (!newtmp->next) return -ENOMEM; /* FIXME:  Does not unwind */
+		realalloc += ksize(newtmp->next);
+		askedalloc += sizeof(struct mm_tblock_struct);
+		newtmp->next->rblock = tmp->rblock;
+		if (tmp->rblock)
+			tmp->rblock->refcount++;
+		newtmp->next->next = 0;
+		newtmp = newtmp->next;
+	}
+	return 0;
+}
+
+/*
+ * Allocate and initialize an mm_struct.
+ */
+struct mm_struct * mm_alloc(void)
+{
+	struct mm_struct * mm;
+
+	mm = kmem_cache_alloc(mm_cachep, SLAB_KERNEL);
+	if (mm) {
+		memset(mm, 0, sizeof(*mm));
+		atomic_set(&mm->mm_users, 1);
+		atomic_set(&mm->mm_count, 1);
+		init_MUTEX(&mm->mmap_sem);
+		mm->page_table_lock = SPIN_LOCK_UNLOCKED;
+		return mm;
+	}
+	return NULL;
+}
+
+/*
+ * Called when the last reference to the mm
+ * is dropped: either by a lazy thread or by
+ * mmput. Free the mm.
+ */
+inline void __mmdrop(struct mm_struct *mm)
+{
+	if (mm == &init_mm) BUG();
+	kmem_cache_free(mm_cachep, mm);
+}
+
+/*
+ * Decrement the use count and release all resources for an mm.
+ */
+void mmput(struct mm_struct *mm)
+{
+	if (atomic_dec_and_test(&mm->mm_users)) {
+		exit_mmap(mm);
+		mmdrop(mm);
+	}
+}
+
+/* Please note the differences between mmput and mm_release.
+ * mmput is called whenever we stop holding onto a mm_struct,
+ * error success whatever.
+ *
+ * mm_release is called after a mm_struct has been removed
+ * from the current process.
+ *
+ * This difference is important for error handling, when we
+ * only half set up a mm_struct for a new process and need to restore
+ * the old one.  Because we mmput the new mm_struct before
+ * restoring the old one. . .
+ * Eric Biederman 10 January 1998
+ */
+void mm_release(void)
+{
+	struct task_struct *tsk = current;
+
+	/* notify parent sleeping on vfork() */
+	if (tsk->flags & PF_VFORK) {
+		tsk->flags &= ~PF_VFORK;
+		up(tsk->p_opptr->vfork_sem);
+	}
+}
+
+static inline int copy_mm(unsigned long clone_flags, struct task_struct * tsk)
+{
+	struct mm_struct * mm;
+	int retval;
+
+	tsk->min_flt = tsk->maj_flt = 0;
+	tsk->cmin_flt = tsk->cmaj_flt = 0;
+	tsk->nswap = tsk->cnswap = 0;
+
+	tsk->mm = NULL;
+	tsk->active_mm = NULL;
+
+	/*
+	 * Are we cloning a kernel thread?
+	 *
+	 * We need to steal a active VM for that..
+	 */
+	mm = current->mm;
+	if (!mm)
+		return 0;
+
+	if (clone_flags & CLONE_VM) {
+		atomic_inc(&mm->mm_users);
+		goto good_mm;
+	}
+
+	retval = -ENOMEM;
+	mm = mm_alloc();
+	if (!mm)
+		goto fail_nomem;
+
+	tsk->mm = mm;
+	tsk->active_mm = mm;
+
+#if DAVIDM /* is this needed,  I took it out as it didn't appear to be */
+	if (tsk->mm->executable)
+		atomic_inc(&tsk->mm->executable->i_count);
+#endif
+
+	if (init_new_context(tsk,mm))
+		goto free_pt;
+
+good_mm:
+	tsk->mm = mm;
+	tsk->active_mm = mm;
+	return 0;
+
+free_pt:
+	mmput(mm);
+fail_nomem:
+	return retval;
+}
+
+#endif /* !CONFIG_UCLINUX */
 
 static inline struct fs_struct *__copy_fs_struct(struct fs_struct *old)
 {

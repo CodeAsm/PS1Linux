@@ -105,6 +105,20 @@ static int __init console_setup(char *str)
 	return 1;
 }
 
+#ifdef CONFIG_UCLINUX
+/*
+ * DAVIDM - put this in so 2.0 and 2.4 NETtel images work with the
+ *          same boot args.
+ */
+
+static int __init CONSOLE_setup(char *str)
+{
+	return(console_setup(str));
+}
+
+__setup("CONSOLE=", CONSOLE_setup);
+#endif
+
 __setup("console=", console_setup);
 
 /*

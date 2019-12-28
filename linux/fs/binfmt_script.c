@@ -66,6 +66,7 @@ static int load_script(struct linux_binprm *bprm,struct pt_regs *regs)
 	 * This is done in reverse order, because of how the
 	 * user environment and arguments are stored.
 	 */
+#ifndef NO_MM
 	remove_arg_zero(bprm);
 	retval = copy_strings_kernel(1, &bprm->filename, bprm);
 	if (retval < 0) return retval; 
@@ -77,6 +78,9 @@ static int load_script(struct linux_binprm *bprm,struct pt_regs *regs)
 	}
 	retval = copy_strings_kernel(1, &i_name, bprm);
 	if (retval) return retval; 
+#else
+	BUG(); /* DAVIDM look at implementing remove_arg_zero and copy_strings.. */
+#endif
 	bprm->argc++;
 	/*
 	 * OK, now restart the process with the interpreter's dentry.

@@ -70,6 +70,7 @@ obj-$(CONFIG_BINFMT_MISC)	+= binfmt_misc.o
 obj-y				+= binfmt_script.o
 
 obj-$(CONFIG_BINFMT_ELF)	+= binfmt_elf.o
+obj-$(CONFIG_BINFMT_FLAT)	+= binfmt_flat.o
 
 # persistent filesystems
 obj-y += $(join $(subdir-y),$(subdir-y:%=/%.o))

@@ -207,6 +207,44 @@ static const char * interfaces[ 2 ] = { "TP", "AUI" };
 			inw( ioaddr + RCR );\
 			inw( ioaddr + RCR );  }
 
+#if defined(CONFIG_COLDFIRE) || defined(CONFIG_M68EZ328)
+
+/* this enables an interrupt in the interrupt mask register */
+#define SMC_ENABLE_INT(x) {\
+		unsigned char mask;\
+		SMC_SELECT_BANK(2);\
+		mask = inb( ioaddr + INT_MASK );\
+		mask |= (x);\
+		outw( mask << 8, ioaddr + INTERRUPT ); \
+}
+
+/* this disables an interrupt from the interrupt mask register */
+
+#define SMC_DISABLE_INT(x) {\
+		unsigned char mask;\
+		SMC_SELECT_BANK(2);\
+		mask = inb( ioaddr + INT_MASK );\
+		mask &= ~(x);\
+		outw( mask << 8, ioaddr + INTERRUPT ); \
+}
+
+/* set the interrupt mask register */
+#define	SMC_SET_INT(x) {\
+		SMC_SELECT_BANK(2);\
+		outw( ((unsigned short) (x)) << 8, ioaddr + INTERRUPT );\
+}
+
+/* acknowledge an interrupt */
+#define	SMC_ACK_INT(x) {\
+		unsigned short val;\
+		/* assume BANK 2 selected */\
+		val = inb( ioaddr + INT_MASK );\
+		val = (val << 8) | (x);\
+		outw( val, ioaddr + INTERRUPT );\
+}
+
+#else
+
 /* this enables an interrupt in the interrupt mask register */
 #define SMC_ENABLE_INT(x) {\
 		unsigned char mask;\
@@ -225,6 +263,17 @@ static const char * interfaces[ 2 ] = { "TP", "AUI" };
 		mask &= ~(x);\
 		outb( mask, ioaddr + INT_MASK ); \
 }
+
+/* set the interrupt mask register */
+#define	SMC_SET_INT(x) {\
+		SMC_SELECT_BANK(2);\
+		outb( (x), ioaddr + INT_MASK );\
+}
+
+/* acknowledge an interrupt */
+#define	SMC_ACK_INT(x)	outb( (x), ioaddr + INTERRUPT )
+
+#endif
 
 /*----------------------------------------------------------------------
  . Define the interrupts that I want to receive from the card

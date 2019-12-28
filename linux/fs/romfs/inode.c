@@ -425,7 +425,9 @@ romfs_readpage(struct file *file, struct page * page)
 
 	UnlockPage(page);
 
+#if 0 /* DAVIDM - this appeared to be wrong and needs to be rechecked */
 	__free_page(page);
+#endif
 	unlock_kernel();
 
 	return result;

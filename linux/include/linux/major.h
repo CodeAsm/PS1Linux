@@ -63,6 +63,7 @@
 #define ACSI_MAJOR	28
 #define AZTECH_CDROM_MAJOR 29
 #define GRAPHDEV_MAJOR	29	/* SparcLinux & Linux/68k /dev/fb */
+#define BLKMEM_MAJOR	31
 #define SHMIQ_MAJOR	85	/* Linux/mips, SGI /dev/shmiq */
 #define CM206_CDROM_MAJOR 32
 #define IDE2_MAJOR	33

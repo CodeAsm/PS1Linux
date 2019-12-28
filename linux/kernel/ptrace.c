@@ -5,6 +5,8 @@
  *
  * Common interfaces for "ptrace()" which we do not want
  * to continually duplicate across every architecture.
+ *
+ * NO_MM changes (C) Lineo, David McCullough <davidm@lineo.com>
  */
 
 #include <linux/sched.h>
@@ -16,6 +18,7 @@
 #include <asm/pgtable.h>
 #include <asm/uaccess.h>
 
+#ifndef NO_MM
 /*
  * Access another process' address space, one page at a time.
  */
@@ -81,8 +84,11 @@ bad_pmd:
 	return 0;
 }
 
+#endif
+
 static int access_mm(struct mm_struct *mm, struct vm_area_struct * vma, unsigned long addr, void *buf, int len, int write)
 {
+#ifndef NO_MM
 	int copied = 0;
 
 	for (;;) {
@@ -114,6 +120,13 @@ static int access_mm(struct mm_struct *mm, struct vm_area_struct * vma, unsigned
 		vma = vma->vm_next;
 	}
 	return copied;
+#else /* NO_MM */
+	if (write)
+		memcpy(addr, buf, len);
+	else
+		memcpy(buf, addr, len);
+	return(len);
+#endif /* NO_MM */
 }
 
 int access_process_vm(struct task_struct *tsk, unsigned long addr, void *buf, int len, int write)
@@ -131,11 +144,15 @@ int access_process_vm(struct task_struct *tsk, unsigned long addr, void *buf, in
 	if (!mm)
 		return 0;
 
+#ifndef NO_MM
 	down(&mm->mmap_sem);
 	vma = find_extend_vma(mm, addr);
 	copied = 0;
 	if (vma)
 		copied = access_mm(mm, vma, addr, buf, len, write);
+#else /* NO_MM */
+	copied = access_mm(mm, NULL, addr, buf, len, write);
+#endif /* NO_MM */
 
 	up(&mm->mmap_sem);
 	mmput(mm);
@@ -191,3 +208,4 @@ int ptrace_writedata(struct task_struct *tsk, char * src, unsigned long dst, int
 	}
 	return copied;
 }
+

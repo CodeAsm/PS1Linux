@@ -545,9 +545,7 @@ void generate_if( struct kconfig * cfg, struct condition * ocond,
 		printf( "\n\t" );
 	    printf( "set %s [expr $%s&15]",
 		vartable[cfg->nameindex].name, vartable[cfg->nameindex].name );
-	    printf( "} else {");
-	    printf( "set %s [expr $%s|16]}\n",
-		vartable[cfg->nameindex].name, vartable[cfg->nameindex].name );
+		printf( "}\n");
 	    break;
 
 	case token_choice_header:
@@ -607,13 +605,7 @@ void generate_if( struct kconfig * cfg, struct condition * ocond,
 	 */
 	    printf( "set %s [expr $%s&15]",
 		vartable[cfg->nameindex].name, vartable[cfg->nameindex].name );
-	    printf( "} else {" );
-
-	/*
-	 * Clear the disable bit to enable the correct radiobutton.
-	 */
-	    printf( "set %s [expr $%s|16]}\n",
-		vartable[cfg->nameindex].name, vartable[cfg->nameindex].name );
+	    printf( "}\n" );
 	    break;
 
 	case token_hex:
@@ -902,6 +894,29 @@ static void generate_update_var( struct kconfig * scfg, int menu_num )
 	    }
 	}
     }
+
+/*
+ *	set all conditional bool/tristates to off unless changed later
+ */
+    for ( cfg = scfg; cfg != NULL; cfg = cfg->next ) {
+		if (cfg->menu_number != menu_num)
+			continue;
+		if (!cfg->cond)
+			continue;
+		switch (cfg->token) {
+		case token_bool:
+		case token_tristate:
+			if (! vartable[cfg->nameindex].global_written) {
+				vartable[cfg->nameindex].global_written = 1;
+				global(vartable[cfg->nameindex].name);
+			}
+			printf("set %s [expr $%s|16]\n", vartable[cfg->nameindex].name,
+					vartable[cfg->nameindex].name);
+			break;
+		default:
+			break;
+		}
+	}
 
     for ( cfg = scfg; cfg != NULL; cfg = cfg->next )
     {

@@ -2,11 +2,16 @@
 # For a description of the syntax of this configuration file,
 # see Documentation/kbuild/config-language.txt.
 #
+#??? Virtual Console enable for PSX
+#define_bool CONFIG_VT y
+#define_bool VT_SINGLE_DRIVER y
+
 define_bool CONFIG_MIPS y
 
 mainmenu_name 'uClinux/mips (w/o MMU) Kernel Configuration'
 
 define_bool CONFIG_UCLINUX y
+define_bool CONFIG_UID16 y
 
 mainmenu_option next_comment
 comment 'Code maturity level options'
@@ -214,34 +219,43 @@ if [ "$CONFIG_ISA" = "y" -o "$CONFIG_PCI" = "y" ]; then
    endmenu
 fi
 
-if [ "$CONFIG_DECSTATION" != "y" -a \
-     "$CONFIG_SGI_IP22" != "y" -a \
-     "$CONFIG_PLAYSTATION" != "y"]; then
-source drivers/char/Config.in
+#if [ "$CONFIG_DECSTATION" != "y" -a \
+#     "$CONFIG_SGI_IP22" != "y" -a \
+#     "$CONFIG_PLAYSTATION" != "y"]; then
+#source drivers/char/Config.in
+#
+#source drivers/media/Config.in
+#fi
 
-source drivers/media/Config.in
-fi
+#if [ "$CONFIG_PLAYSTATION" = "y"]; then
+#    source drivers/char/Config.in
+#fi
 
 if [ "$CONFIG_PLAYSTATION" = "y" ]; then
    mainmenu_option next_comment
    comment 'PlayStation Character devices'
 
-   bool 'Support console over PlayStation SIO' CONFIG_PS_SIO_CONSOLE
-   bool 'Support console over PlayStation GPU' CONFIG_PS_GPU_CONSOLE
+   bool 'PlayStation SIO console' CONFIG_PS_SIO_CONSOLE
+   bool 'PlayStation GPU console' CONFIG_PS_GPU_CONSOLE
    endmenu
 fi
 
 source fs/Config.in
 
+if [ "$CONFIG_PLAYSTATION" = "y" ]; then
+  mainmenu_option next_comment
+  comment 'Console drivers'
+  
+  bool 'PSX GPU virtual console' CONFIG_GPUPSX_CONSOLE
+  bool 'PSX PC Keyboard support ???' CONFIG_PC_KEYB
+bool 'Virtual terminal' CONFIG_VT 
 if [ "$CONFIG_VT" = "y" ]; then
-   mainmenu_option next_comment
-
-   comment 'Console drivers'
-      if [ "$CONFIG_DECSTATION" != "y" ]; then
-	 bool 'VGA text console' CONFIG_VGA_CONSOLE
-      fi
-      bool 'Support for frame buffer devices' CONFIG_FB
-      source drivers/video/Config.in
+   bool '  Support for console on virtual terminal' CONFIG_VT_CONSOLE
+fi
+	  define_bool VT_SINGLE_DRIVER y
+  
+#      bool 'Support for frame buffer devices' CONFIG_FB
+#      source drivers/video/Config.in
    endmenu
 fi
 

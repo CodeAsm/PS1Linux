@@ -29,16 +29,17 @@
 #include <asm/ps/timer.h>
 
 #define FREQ_NOM  338720  /* Frequency ratio */
-#define FREQ_DEN  10000
+#define FREQ_CNT  33872
+#define FREQ_REL  10
 
 extern rwlock_t xtime_lock;
 
 static inline int timer_intr_valid(void) 
 {
-	static unsigned long long ticks, valid_ticks;
+	static unsigned long long ticks = 0;
 
-	if (ticks++ * FREQ_DEN >= valid_ticks * FREQ_NOM) {
-      valid_ticks++;
+	if (++ticks >= FREQ_REL) {
+      ticks = 0;
 		return 1;
 	}
 	return 0;
@@ -50,8 +51,6 @@ static inline int timer_intr_valid(void)
 static void inline
 timer_interrupt(int irq, void *dev_id, struct pt_regs *regs)
 {
-   volatile int * reg;
-
 	if (timer_intr_valid()) {
 	   if (!user_mode(regs)) {
 		   if (prof_buffer && current->pid) {
@@ -76,20 +75,21 @@ timer_interrupt(int irq, void *dev_id, struct pt_regs *regs)
 
 static void __init timer_enable(void)
 {
-   volatile int * reg;
+   int reg;
 
    /* Reset timer */
-   reg = (int *) TIMER2_MODE_REG;
-   *reg = 0;
+   reg = 0;
+   outw (reg, 0x1124);
 
    /* Set count limit */
-   reg = (int *) TIMER2_TARGET_REG;
-   *reg = FREQ_DEN;
+   reg = FREQ_CNT;
+   outw (reg, 0x1128);
    
    /* Run timer */
-   reg = (int *) TIMER2_MODE_REG;
-   *reg &= ~((TIMER_STOP | TIMER_CLOCK | TIMER_DIVSC) & 0x3ff);
-   *reg |= (TIMER_TO_TARGET | TIMER_INT) & 0x3ff;
+   reg = inw (0x1124);
+   reg &= ~((TIMER_STOP | TIMER_CLOCK | TIMER_DIVSC) & 0x3ff);
+   reg |= (TIMER_TO_TARGET | TIMER_INT) & 0x3ff;
+   outw (reg, 0x1124);
 }
 
 struct irqaction irq0 = {timer_interrupt, SA_INTERRUPT, 0,

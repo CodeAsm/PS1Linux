@@ -1271,6 +1271,9 @@ int __init blk_dev_init(void)
 #ifdef CONFIG_BLK_DEV_LVM
 	lvm_init();
 #endif
+#ifdef CONFIG_PSX_MEM_CARD
+	bu_init();
+#endif
 	return 0;
 };
 

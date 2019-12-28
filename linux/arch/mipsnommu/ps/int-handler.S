@@ -44,7 +44,10 @@
 		/*
 		 * Find irq with highest priority
 		 */
-1:		lw	t2, (t1)
+      li    t4, NR_INTS
+1:	   beq   t4, zero, ps_intr_unimplemented	
+      subu  t4, t4, 1
+      lw	   t2, (t1)
       nop
 		move	t3,t0
       nop
@@ -75,10 +78,11 @@
  * initialisation in ps_setup().
  */
 		EXPORT(ps_intr_unimplemented)
-ps_intr_unimplemented:        # !!! need set real interrupt number !!!
-		mfc0	a1,CP0_CAUSE		# cheats way of printing an arg!
+ps_intr_unimplemented:
+		lw	a1, INT_ACKN_REG
 		nop				# to be sure...
-		PANIC("Unimplemented cpu interrupt! CP0_CAUSE: 0x%x");
+      and a1, a1, 0x7ff
+		PANIC("Unimplemented cpu interrupt 0x%x !");
 
 
 /*
@@ -91,32 +95,13 @@ ps_intr_unimplemented:        # !!! need set real interrupt number !!!
  * 	  unused Interrupts are catched.
  */
 		.data
+      .align PTRLOG
 		EXPORT(cpu_mask_tbl)
 cpu_mask_tbl:
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
+      .space (NR_INTS)*PTRSIZE
 		.word	0x0000ffff		# End of list
 
 		EXPORT(cpu_irq_nr)
 cpu_irq_nr:
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000
-		.word	0x00000000 
-		.word	0x00000000
-		.word	0x00ffffff		# End of list
+      .space (NR_INTS)*PTRSIZE
+		.word	NR_INTS		   # End of list

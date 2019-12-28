@@ -18,6 +18,7 @@
 #include <linux/kdev_t.h>
 #include <linux/spinlock.h>
 
+
 struct vc_data;
 struct console_font_op;
 
@@ -57,6 +58,7 @@ extern const struct consw fb_con;	/* frame buffer based console */
 extern const struct consw vga_con;	/* VGA text console */
 extern const struct consw newport_con;	/* SGI Newport console  */
 extern const struct consw prom_con;	/* SPARC PROM console */
+extern const struct consw psxvga_con;	/* PSX GPU console */
 
 void take_over_console(const struct consw *sw, int first, int last, int deflt);
 void give_up_console(const struct consw *sw);

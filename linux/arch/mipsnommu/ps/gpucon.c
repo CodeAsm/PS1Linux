@@ -3,11 +3,19 @@
  */
 
 #include <linux/tty.h>
+#include <linux/tty_flip.h>
+#include <linux/serial.h>
 #include <linux/major.h>
 #include <linux/ptrace.h>
 #include <linux/init.h>
+#include <linux/console_struct.h>
+
 #include <linux/console.h>
 #include <linux/fs.h>
+
+//#include <asm/ps/sio.h>
+//#include <asm/types.h>
+#include <asm/io.h>
 #include <asm/ps/libpsx.h>
 
 //  MY DEFS & VARS
@@ -18,15 +26,20 @@
 #define PSX_FNT_W	 8
 
 static char psx_scrbuf[PSX_VSCR_W*PSX_SCR_H+1];		//PSX TEXT SCREEN BUFFER
-static char psx_curstr;				// POINTER TO CURRENT STRING
-static char psx_curx;				// POINTER TO CURRENT POSITION IN STR
-// END OF THEM
+static char psx_curstr;															// POINTER TO CURRENT STRING
+static char psx_curx;															// POINTER TO CURRENT POSITION IN STR
+// END OF DEFS & VARS
 
+
+//??? Standart rotines
 
 static void gpu_console_write(struct console *co, const char *msgbuf,
 			       unsigned size)
-{int  x,y,z;char txtbuf[66];
-	    
+{
+	int x,y,z;
+	
+
+// GPU section
 	if(size!=65535)z=size;else z=65534;
 
 	for(x=0;x<z;x++)
@@ -92,7 +105,6 @@ static int gpu_console_wait_key(struct console *co)
 
 static int __init gpu_console_setup(struct console *co, char *options)
 {
-
   int  x,y;
 
  for (x=0;x<PSX_VSCR_W*PSX_SCR_H;x++)
@@ -103,6 +115,7 @@ static int __init gpu_console_setup(struct console *co, char *options)
 	InitGPU( 0x8000009 );
 	cls();
 	LoadFont();
+
 
    return 0;   /* !!! check: we must return 0 on success ? !!! */
 }
@@ -129,5 +142,6 @@ static struct console sercons =
 
 void __init ps_gpu_console_init(void)
 {
+    
     register_console(&sercons);
 }

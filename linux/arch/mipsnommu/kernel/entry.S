@@ -1,4 +1,4 @@
-/* $Id: entry.S,v 1.1 2001/02/22 19:13:55 serg Exp $
+/* $Id: entry.S,v 1.2 2001/04/09 15:05:34 serg Exp $
  *
  * Low level exception handling
  *
@@ -160,21 +160,6 @@ EXPORT(exception_count_##exception);                                    \
 		.align	PTRLOG
 EXPORT(sys_call_table)
 #define SYS(call, narg) PTR call
-
-		/* Reserved space for all SVR4 syscalls. */
-		.space	(1000)*PTRSIZE
-
-#ifdef CONFIG_BINFMT_IRIX
-		/* 32bit IRIX5 system calls. */
-#include "irix5sys.h"
-#else
-		.space	(1000)*PTRSIZE		/* No IRIX syscalls */
-#endif
-
-		/* Reserved space for all the BSD43 and POSIX syscalls. */
-		.space	(2000)*PTRSIZE
-
-		/* Linux flavoured syscalls. */
 #include "syscalls.h"
 
 /*
@@ -183,19 +168,4 @@ EXPORT(sys_call_table)
 EXPORT(sys_narg_table)
 #undef SYS
 #define SYS(call, narg) .byte narg
-
-		/* Reserved space for all SVR4 flavoured syscalls. */
-		.space	(1000)
-
-#ifdef CONFIG_BINFMT_IRIX
-		/* 32bit IRIX5 system calls. */
-#include "irix5sys.h"
-#else
-		.space	(1000)			/* No IRIX syscalls */
-#endif
-
-		/* Reserved space for all the BSD43 and POSIX syscalls. */
-		.space	(2000)
-
-		/* Linux flavoured syscalls. */
 #include "syscalls.h"

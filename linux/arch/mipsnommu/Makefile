@@ -107,9 +107,15 @@ CORE_FILES    += arch/mipsnommu/ps/ps.o
 SUBDIRS       += arch/mipsnommu/ps arch/mipsnommu/ps/prom
 LIBS          += arch/mipsnommu/ps/prom/prom.a
 LOADADDR      += 0x80010000
-ifdef CONFIG_PS_GPU_CONSOLE
+ifdef CONFIG_PS_GPU_CONSOLE 
 SUBDIRS	      += arch/mipsnommu/ps/libpsx
 LIBS          += arch/mipsnommu/ps/libpsx/libpsx.a
+endif
+ifndef CONFIG_PS_GPU_CONSOLE
+ifdef CONFIG_GPUPSX_CONSOLE
+SUBDIRS	      += arch/mipsnommu/ps/libpsx
+LIBS          += arch/mipsnommu/ps/libpsx/libpsx.a
+endif
 endif
 endif
 

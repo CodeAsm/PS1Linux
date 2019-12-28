@@ -11,10 +11,13 @@
 #include <linux/init.h>
 #include <asm/irq.h>
 #include <asm/reboot.h>
+#include <asm/io.h>
 
 #include <asm/ps/interrupts.h>
+#include <asm/ps/io.h>
 
 extern asmlinkage void playstation_handle_int(void);
+extern asmlinkage void ps_intr_unimplemented(int irq, void *dev_id, struct pt_regs *regs);
 
 void psx_init (void);
 
@@ -28,8 +31,6 @@ volatile int * int_mask_reg = (int *) INT_MASK_REG;
 extern void ps_machine_restart(char *command);
 extern void ps_machine_halt(void);
 extern void ps_machine_power_off(void);
-
-extern int setup_ps_irq(int, struct irqaction *);
 
 static void __init ps_irq_setup(void)
 {
@@ -50,6 +51,8 @@ static void __init ps_irq_setup(void)
 void __init playstation_setup(void)
 {
     irq_setup = ps_irq_setup;
+
+    mips_io_port_base = PSX_HW_REG_BASE;
 
     _machine_restart = ps_machine_restart;
     _machine_halt = ps_machine_halt;

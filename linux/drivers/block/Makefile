@@ -33,6 +33,8 @@ obj-$(CONFIG_BLK_DEV_DAC960)	+= DAC960.o
 
 obj-$(CONFIG_BLK_DEV_NBD)	+= nbd.o
 
+obj-$(CONFIG_PSX_MEM_CARD)	+= bu.o
+
 subdir-$(CONFIG_PARIDE) += paride
 
 include $(TOPDIR)/Rules.make

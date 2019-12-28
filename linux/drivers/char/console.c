@@ -108,7 +108,7 @@
 #include "console_macros.h"
 
 
-const struct consw *conswitchp;
+const struct consw *conswitchp=&psxvga_con;
 
 /* A bitmap for codes <32. A bit of 1 indicates that the code
  * corresponding to that bit number invokes some special action
@@ -614,8 +614,8 @@ static void visual_init(int currcons, int init)
     /* ++Geert: sw->con_init determines console size */
     sw = conswitchp;
 #ifndef VT_SINGLE_DRIVER
-    if (con_driver_map[currcons])
-	sw = con_driver_map[currcons];
+//    if (con_driver_map[currcons])
+//	sw = con_driver_map[currcons];
 #endif
     cons_num = currcons;
     display_fg = &master_display_fg;
@@ -624,12 +624,14 @@ static void visual_init(int currcons, int init)
     hi_font_mask = 0;
     complement_mask = 0;
     can_do_color = 0;
+
     sw->con_init(vc_cons[currcons].d, init);
     if (!complement_mask)
         complement_mask = can_do_color ? 0x7700 : 0x0800;
     s_complement_mask = complement_mask;
     video_size_row = video_num_columns<<1;
     screenbuf_size = video_num_lines*video_size_row;
+
 }
 
 int vc_allocate(unsigned int currcons)	/* return 0 on success */
@@ -638,7 +640,6 @@ int vc_allocate(unsigned int currcons)	/* return 0 on success */
 		return -ENXIO;
 	if (!vc_cons[currcons].d) {
 	    long p, q;
-
 	    /* prevent users from taking too much memory */
 	    if (currcons >= MAX_NR_USER_CONSOLES && !capable(CAP_SYS_RESOURCE))
 	      return -EPERM;
@@ -655,6 +656,7 @@ int vc_allocate(unsigned int currcons)	/* return 0 on success */
 	    vc_cons[currcons].d = (struct vc_data *)p;
 	    vt_cons[currcons] = (struct vt_struct *)(p+sizeof(struct vc_data));
 	    visual_init(currcons, 1);
+
 	    if (!*vc_cons[currcons].d->vc_uni_pagedir_loc)
 		con_set_default_unimap(currcons);
 	    q = (long)kmalloc(screenbuf_size, GFP_KERNEL);
@@ -1815,7 +1817,6 @@ static int do_con_write(struct tty_struct * tty, int from_user,
 	draw_x = -1; \
 	}
 #endif
-
 	int c, tc, ok, n = 0, draw_x = -1;
 	unsigned int currcons;
 	unsigned long draw_from = 0, draw_to = 0;
@@ -1823,7 +1824,8 @@ static int do_con_write(struct tty_struct * tty, int from_user,
 	u16 himask, charmask;
 	const unsigned char *orig_buf = NULL;
 	int orig_count;
-
+	
+	
 	currcons = vt->vc_num;
 	if (!vc_cons_allocated(currcons)) {
 	    /* could this happen? */
@@ -2060,11 +2062,9 @@ void vt_console_print(struct console *co, const char * b, unsigned count)
 	const ushort *start;
 	ushort cnt = 0;
 	ushort myx;
-
 	/* console busy or not yet initialized */
 	if (!printable || test_and_set_bit(0, &printing))
 		return;
-
 	pm_access(pm_con);
 
 	if (kmsg_redirect && vc_cons_allocated(kmsg_redirect - 1))
@@ -2097,6 +2097,7 @@ void vt_console_print(struct console *co, const char * b, unsigned count)
 			if (cnt > 0) {
 				if (IS_VISIBLE)
 					sw->con_putcs(vc_cons[currcons].d, start, cnt, y, x);
+
 				x += cnt;
 				if (need_wrap)
 					x--;
@@ -2146,7 +2147,7 @@ static kdev_t vt_console_device(struct console *c)
 }
 
 struct console vt_console_driver = {
-	name:		"tty",
+	name:		"ttyS",			//???PSX   "tty"
 	write:		vt_console_print,
 	device:		vt_console_device,
 	wait_key:	keyboard_wait_for_keypress,
@@ -2372,17 +2373,16 @@ static int console_refcount;
 DECLARE_TASKLET_DISABLED(console_tasklet, console_softint, 0);
 
 void __init con_init(void)
-{
+{     
 	const char *display_desc = NULL;
 	unsigned int currcons = 0;
-
 	if (conswitchp)
 		display_desc = conswitchp->con_startup();
+
 	if (!display_desc) {
 		fg_console = 0;
 		return;
 	}
-
 	memset(&console_driver, 0, sizeof(struct tty_driver));
 	console_driver.magic = TTY_DRIVER_MAGIC;
 	console_driver.name = "vc/%d";
@@ -2416,29 +2416,31 @@ void __init con_init(void)
 	console_driver.throttle = con_throttle;
 	console_driver.unthrottle = con_unthrottle;
 
+
 	if (tty_register_driver(&console_driver))
 		panic("Couldn't register console driver\n");
-
-	init_timer(&console_timer);
-	console_timer.function = blank_screen;
-	if (blankinterval) {
-		mod_timer(&console_timer, jiffies + blankinterval);
-	}
-
 	/*
 	 * kmalloc is not running yet - we use the bootmem allocator.
 	 */
+
 	for (currcons = 0; currcons < MIN_NR_CONSOLES; currcons++) {
 		vc_cons[currcons].d = (struct vc_data *)
 				alloc_bootmem(sizeof(struct vc_data));
 		vt_cons[currcons] = (struct vt_struct *)
 				alloc_bootmem(sizeof(struct vt_struct));
+
 		visual_init(currcons, 1);
 		screenbuf = (unsigned short *) alloc_bootmem(screenbuf_size);
 		kmalloced = 0;
 		vc_init(currcons, video_num_lines, video_num_columns, 
 			currcons || !sw->con_save_screen);
 	}
+	init_timer(&console_timer);
+	console_timer.function = blank_screen;
+	if (blankinterval) {
+		mod_timer(&console_timer, jiffies + blankinterval);
+	}
+
 	currcons = fg_console = 0;
 	master_display_fg = vc_cons[currcons].d;
 	set_origin(currcons);

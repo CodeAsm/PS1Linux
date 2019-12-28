@@ -32,9 +32,10 @@ void prom_free_prom_memory (void)
 	 * the first page reserved for the exception handlers.
 	 */
 
-	end = PHYSADDR(&_ftext);
+	end = PHYSADDR(&_ftext) | KSEG0;
 
-	addr = PAGE_SIZE;
+	addr = PAGE_SIZE | KSEG0;
+   
 	while (addr < end) {
 		ClearPageReserved(virt_to_page(addr));
 		set_page_count(virt_to_page(addr), 1);
@@ -43,5 +44,12 @@ void prom_free_prom_memory (void)
 	}
 
 	printk("Freeing unused PROM memory: %ldk freed\n",
-	       (end - PAGE_SIZE) >> 10);
+	       (end - (PAGE_SIZE | KSEG0)) >> 10);
+}
+
+int is_in_rom(unsigned long addr) {
+
+// !!! this is stub now - fix me !!!
+
+		return 0;
 }

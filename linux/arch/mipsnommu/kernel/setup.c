@@ -62,8 +62,6 @@ void (*cpu_wait)(void) = NULL;
  */
 char cyclecounter_available;
 
-unsigned long loops_per_sec;
-
 /*
  * There are several bus types available for MIPS machines.  "RISC PC"
  * type machines have ISA, EISA, VLB or PCI available, DECstations

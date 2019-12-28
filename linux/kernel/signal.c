@@ -1240,7 +1240,7 @@ sys_ssetmask(int newmask)
 }
 #endif /* !defined(__alpha__) */
 
-#if !defined(__alpha__) && !defined(__ia64__) && !defined(__mips__)
+#if !defined(__alpha__) && !defined(__ia64__) && (!defined(__mips__) || defined(NO_MM))
 /*
  * For backwards compatibility.  Functionality superseded by sigaction.
  */

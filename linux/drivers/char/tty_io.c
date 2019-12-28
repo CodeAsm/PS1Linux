@@ -154,12 +154,6 @@ extern void sgi_serial_console_init(void);
 extern void sci_console_init(void);
 extern void m68328_console_init(void);
 extern void mcfrs_console_init(void);
-//#ifdef CONFIG_PS_SIO_CONSOLE
-//extern void ps_sio_console_init(void);
-//#endif
-//#ifdef CONFIG_PS_GPU_CONSOLE
-//extern void ps_gpu_console_init(void);
-//#endif
 
 #ifndef MIN
 #define MIN(a,b)	((a) < (b) ? (a) : (b))
@@ -2217,12 +2211,6 @@ void __init console_init(void)
 #ifdef CONFIG_COLDFIRE
 	mcfrs_console_init();
 #endif
-//#ifdef CONFIG_PS_SIO_CONSOLE
-//	ps_sio_console_init();
-//#endif
-//#ifdef CONFIG_PS_GPU_CONSOLE
-//	ps_gpu_console_init();
-//#endif
 }
 
 static struct tty_driver dev_tty_driver, dev_syscons_driver;
@@ -2304,8 +2292,9 @@ void __init tty_init(void)
 	if (tty_register_driver(&dev_console_driver))
 		panic("Couldn't register /dev/tty0 driver\n");
 
-	kbd_init();
+//	kbd_init();
 #endif
+
 #ifdef CONFIG_ESPSERIAL  /* init ESP before rs, so rs doesn't see the port */
 	espserial_init();
 #endif
@@ -2355,6 +2344,7 @@ void __init tty_init(void)
 #ifdef CONFIG_MOXA_INTELLIO
 	moxa_init();
 #endif	
+
 #ifdef CONFIG_VT
 	vcs_init();
 #endif

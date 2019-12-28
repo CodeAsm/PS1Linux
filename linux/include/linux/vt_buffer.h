@@ -20,7 +20,7 @@
 #endif
 
 #ifndef VT_BUF_HAVE_RW
-#define scr_writew(val, addr) (*(addr) = (val))
+#define scr_writew(val, addr) (*(addr) = (val)) //???PSX
 #define scr_readw(addr) (*(addr))
 #define scr_memcpyw(d, s, c) memcpy(d, s, c)
 #define scr_memmovew(d, s, c) memmove(d, s, c)

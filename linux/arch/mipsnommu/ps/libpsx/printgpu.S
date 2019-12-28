@@ -219,7 +219,7 @@ pp1:	END_TAG( 4 )
 
 			.balign	4
 font:
-#include "font/font.s"
+#include "font/font.S"
 			.balign	2048
 the_end:
 			

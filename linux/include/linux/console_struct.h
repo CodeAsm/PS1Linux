@@ -85,7 +85,7 @@ struct vc_data {
 };
 
 struct vc {
-	struct vc_data *d;
+	 struct vc_data *d;
 
 	/* might add  scrmem, vt_struct, kbd  at some time,
 	   to have everything in one place - the disadvantage

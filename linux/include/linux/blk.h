@@ -48,6 +48,7 @@ extern int bpcd_init(void);
 extern int ps2esdi_init(void);
 extern int jsfd_init(void);
 extern int blkmem_init(void);
+extern int bu_init (void);
 
 #if defined(CONFIG_ARCH_S390)
 extern int mdisk_init(void);
@@ -325,6 +326,13 @@ static void floppy_off(unsigned int nr);
 #define TIMEOUT_VALUE (25*HZ)
 #define DEVICE_REQUEST do_ida_request0
 #define DEVICE_NR(device) (MINOR(device) >> 4)
+
+#elif (MAJOR_NR == BU_MAJOR)
+
+/* PSX memory card */
+#define DEVICE_NAME "PSX memory card"
+#define DEVICE_REQUEST do_bu_request
+#define DEVICE_NR(device) (MINOR(device))
 
 #endif /* MAJOR_NR == whatever */
 

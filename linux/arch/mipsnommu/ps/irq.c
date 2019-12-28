@@ -29,12 +29,16 @@ volatile extern int * int_mask_reg;
 
 static inline void mask_irq(unsigned int irq_nr)
 {
-   *int_mask_reg &= ~(cpu_mask_tbl[irq_nr] & 0x7ff);
+   int mask = *int_mask_reg;
+
+   *int_mask_reg = mask & (~(cpu_mask_tbl[irq_nr] & 0x7ff));
 }
 
 static inline void unmask_irq(unsigned int irq_nr)
 {
-   *int_mask_reg |= (cpu_mask_tbl[irq_nr] & 0x7ff);
+   int mask = *int_mask_reg;
+
+   *int_mask_reg = mask | (cpu_mask_tbl[irq_nr] & 0x7ff);
 }
 
 void disable_irq(unsigned int irq_nr)
@@ -101,36 +105,42 @@ int get_irq_list(char *buf)
  */
 asmlinkage void do_IRQ(int irq, struct pt_regs *regs)
 {
-    struct irqaction *action;
-    int do_random, cpu;
+   struct irqaction *action;
+   int do_random, cpu;
 
-    cpu = smp_processor_id();
-    irq_enter(cpu, irq);
-    kstat.irqs[cpu][irq]++;
+   cpu = smp_processor_id();
+   irq_enter(cpu, irq);
+   kstat.irqs[cpu][irq]++;
+   
+   /* !!! acknowledge interrupt (here ?) !!! */
+   *int_ackn_reg = ~cpu_mask_tbl[irq];
 
-    mask_irq(irq);
-    action = *(irq + irq_action);
-    if (action) {
-	if (!(action->flags & SA_INTERRUPT))
-	    __sti();
-	action = *(irq + irq_action);
-	do_random = 0;
-	do {
-	    do_random |= action->flags;
-	    action->handler(irq, action->dev_id, regs);
-	    action = action->next;
-	} while (action);
-	if (do_random & SA_SAMPLE_RANDOM)
-	    add_interrupt_randomness(irq);
+   mask_irq(irq);
+   action = *(irq + irq_action);
+   if (action) {
+	   if (!(action->flags & SA_INTERRUPT))
+	      __sti();
+	   action = *(irq + irq_action);
+	   do_random = 0;
+	   do {
+	      do_random |= action->flags;
+	      action->handler(irq, action->dev_id, regs);
+	      action = action->next;
+	   } while (action);
+	   if (do_random & SA_SAMPLE_RANDOM)
+	      add_interrupt_randomness(irq);
+     
+	   __cli();
+   }
+   else {
+      printk ("do_IRQ: ackn = 0x%X\n", *int_ackn_reg);
+      printk ("do_IRQ: mask = 0x%X\n", *int_mask_reg);
+      panic ("do_IRQ: unregistered IRQ (0x%X) occured\n", irq);
+   }
 	unmask_irq(irq);
-   
-   *int_ackn_reg ^= (cpu_mask_tbl[irq] & 0x7ff);  /* !!! acknowledge interrupt (here ?) !!! */
-   
-	__cli();
-    }
-    irq_exit(cpu, irq);
+   irq_exit(cpu, irq);
 
-    /* unmasking and bottom half handling is done magically for us. */
+   /* unmasking and bottom half handling is done magically for us. */
 }
 
 /*
@@ -167,7 +177,7 @@ int setup_ps_irq(int irq, struct irqaction *new)
     *p = new;
 
     if (!shared) {
-	unmask_irq(irq);
+	   unmask_irq(irq);
     }
     restore_flags(flags);
     return 0;

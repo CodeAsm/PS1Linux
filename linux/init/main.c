@@ -273,6 +273,9 @@ static struct dev_name_struct {
 #ifdef CONFIG_NFTL
 	{ "nftla", 0x5d00 },
 #endif
+#ifdef CONFIG_PSX_MEM_CARD
+	{ "bu", (BU_MAJOR << MINORBITS) },
+#endif
 	{ NULL, 0 }
 };
 
@@ -559,6 +562,7 @@ asmlinkage void __init start_kernel(void)
 	kmem_cache_init();
 	sti();
 	calibrate_delay();
+   
 #ifdef CONFIG_BLK_DEV_INITRD
 	if (initrd_start && !initrd_below_start_ok &&
 			initrd_start < min_low_pfn << PAGE_SHIFT) {
@@ -771,8 +775,8 @@ static int init(void * unused)
 	free_initmem();
 	unlock_kernel();
 
-	if (open("/dev/console", O_RDWR, 0) < 0)
-		printk("Warning: unable to open an initial console.\n");
+ if (open("/dev/console", O_RDWR, 0) < 0)
+    printk("Warning: unable to open an initial console.\n");
 
 	(void) dup(0);
 	(void) dup(0);

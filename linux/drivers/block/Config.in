@@ -48,4 +48,8 @@ dep_bool '  Initial RAM disk (initrd) support' CONFIG_BLK_DEV_INITRD $CONFIG_BLK
 
 tristate 'ROM disk memory block device (blkmem)' CONFIG_BLK_DEV_BLKMEM
 
+if [ "$CONFIG_PLAYSTATION" = "y" ]; then
+   tristate 'PSX memory card support' CONFIG_PSX_MEM_CARD
+fi
+
 endmenu

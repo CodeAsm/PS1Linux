@@ -105,6 +105,11 @@ static_unused int _sys_fork(struct pt_regs regs)
 	return res;
 }
 
+save_static_function(sys_vfork);
+static_unused int _sys_vfork(struct pt_regs regs)
+{
+	return do_fork(CLONE_VFORK | CLONE_VM | SIGCHLD, regs.regs[29], &regs, 0);
+}
 
 save_static_function(sys_clone);
 static_unused int _sys_clone(struct pt_regs regs)
@@ -256,6 +261,24 @@ asmlinkage int sys_syscall(struct pt_regs regs)
 asmlinkage void bad_stack(void)
 {
 	do_exit(SIGSEGV);
+}
+
+extern asmlinkage int sys_select(int, fd_set *, fd_set *, fd_set *, struct timeval *);
+
+struct sel_arg_struct {
+	unsigned long n;
+	fd_set *inp, *outp, *exp;
+	struct timeval *tvp;
+};
+
+asmlinkage int old_select(struct sel_arg_struct *arg)
+{
+	struct sel_arg_struct a;
+
+	if (copy_from_user(&a, arg, sizeof(a)))
+		return -EFAULT;
+	/* sys_select() does the appropriate kernel locking */
+	return sys_select(a.n, a.inp, a.outp, a.exp, a.tvp);
 }
 
 /*

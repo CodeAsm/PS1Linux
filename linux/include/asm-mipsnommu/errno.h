@@ -136,7 +136,7 @@
 #define	EALREADY	149	/* Operation already in progress */
 #define	EINPROGRESS	150	/* Operation now in progress */
 #define	ESTALE		151	/* Stale NFS file handle */
-#define ECANCELED	158	/* AIO operation canceled */
+//#define ECANCELED	158	/* AIO operation canceled */
 
 /*
  * These error are Linux extensions.

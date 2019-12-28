@@ -20,16 +20,15 @@
 
 /*
  * Interrupt types list by priority
- * !!! now priority is not setted yet !!!
  */
-#define VBL          0
+#define VBL          7
 #define GPU 	      1
 #define CDROM	      2
 #define DMA		      3
 #define TIMER0		   4
 #define TIMER1		   5
 #define TIMER2		   6
-#define CONTROLLER	7
+#define CONTROLLER	0
 #define SIO		      8
 #define SPU		      9
 #define PIO		      10
@@ -63,13 +62,8 @@
  * Interrupt table structure to hide differences between different
  * systems such.
  */
-extern long cpu_mask_tbl[11];
-extern long cpu_irq_nr[11];
-
-/*
- * Common interrupt routine prototypes
- */
-extern void	ps_intr_unimplemented(void);
+extern long cpu_mask_tbl[NR_INTS];
+extern long cpu_irq_nr[NR_INTS];
 
 #endif
 #endif 

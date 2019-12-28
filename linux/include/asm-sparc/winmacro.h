@@ -1,4 +1,4 @@
-/* $Id: winmacro.h,v 1.22 2000/05/09 17:40:15 davem Exp $
+/* $Id: winmacro.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * winmacro.h: Window loading-unloading macros.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

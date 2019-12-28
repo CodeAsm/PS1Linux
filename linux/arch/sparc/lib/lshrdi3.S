@@ -1,4 +1,4 @@
-/* $Id: lshrdi3.S,v 1.1 1999/03/21 06:37:45 davem Exp $ */
+/* $Id: lshrdi3.S,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $ */
 
 #include <asm/cprefix.h>
 

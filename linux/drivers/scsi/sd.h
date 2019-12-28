@@ -12,7 +12,7 @@
 #ifndef _SD_H
 #define _SD_H
 /*
-   $Header: /usr/src/linux/kernel/blk_drv/scsi/RCS/sd.h,v 1.1 1992/07/24 06:27:38 root Exp root $
+   $Header: /home/cvs/PSXLinux/drivers/scsi/sd.h,v 1.1.1.1 2001/02/22 14:58:41 serg Exp $
  */
 
 #ifndef _SCSI_H

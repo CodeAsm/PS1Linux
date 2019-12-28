@@ -2,8 +2,8 @@
  *
  * Name:	ski2c.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.29 $
- * Date:	$Date: 2000/08/03 14:28:17 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Defines to access Voltage and Temperature Sensor
  *		(taken from Monalisa (taken from Concentrator))
  *
@@ -28,6 +28,9 @@
  * History:
  *
  *	$Log: ski2c.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.29  2000/08/03 14:28:17  rassmann
  *	- Added function to wait for I2C being ready before resetting the board.
  *	- Replaced one duplicate "out of range" message with correct one.

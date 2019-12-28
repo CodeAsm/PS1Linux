@@ -104,6 +104,9 @@
  
 /*
  * $Log: t128.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:42  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  */
 
 #include <asm/system.h>

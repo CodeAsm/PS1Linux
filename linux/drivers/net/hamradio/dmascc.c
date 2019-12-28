@@ -1,5 +1,5 @@
 /*
- * $Id: dmascc.c,v 1.27 2000/06/01 14:46:23 oe1kib Exp $
+ * $Id: dmascc.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $
  *
  * Driver for high-speed SCC boards (those with DMA support)
  * Copyright (C) 1997-2000 Klaus Kudielka

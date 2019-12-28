@@ -1,4 +1,4 @@
-/* $Id: urem.S,v 1.4 1996/09/30 02:22:42 davem Exp $
+/* $Id: urem.S,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * urem.S:      This routine was taken from glibc-1.09 and is covered
  *              by the GNU Library General Public License Version 2.
  */

@@ -19,6 +19,8 @@
 #if defined(CONFIG_M5206) || defined(CONFIG_M5206e)
 #define	MCFDMA_BASE0		0x200		/* Base address of DMA 0 */
 #define	MCFDMA_BASE1		0x240		/* Base address of DMA 1 */
+#elif defined(CONFIG_M5272)
+#define	MCFDMA_BASE0		0x0e0		/* Base address of DMA 0 */
 #elif defined(CONFIG_M5307) || defined(CONFIG_M5407)
 #define	MCFDMA_BASE0		0x300		/* Base address of DMA 0 */
 #define	MCFDMA_BASE1		0x340		/* Base address of DMA 1 */

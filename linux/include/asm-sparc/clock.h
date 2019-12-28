@@ -1,4 +1,4 @@
-/* $Id: clock.h,v 1.3 1995/11/25 02:31:25 davem Exp $
+/* $Id: clock.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * clock.h:  Definitions for clock operations on the Sparc.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

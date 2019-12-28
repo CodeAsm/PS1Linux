@@ -1,4 +1,4 @@
-/* $Id: floppy.h,v 1.28 2000/02/18 13:50:54 davem Exp $
+/* $Id: floppy.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * asm-sparc64/floppy.h: Sparc specific parts of the Floppy driver.
  *
  * Copyright (C) 1996 David S. Miller (davem@caip.rutgers.edu)

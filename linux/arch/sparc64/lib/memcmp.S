@@ -1,4 +1,4 @@
-/* $Id: memcmp.S,v 1.3 2000/03/23 07:51:08 davem Exp $
+/* $Id: memcmp.S,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * Sparc64 optimized memcmp code.
  *
  * Copyright (C) 1997 Jakub Jelinek (jj@sunsite.mff.cuni.cz)

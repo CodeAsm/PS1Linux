@@ -1,4 +1,4 @@
-/* $Id: auxio.h,v 1.2 1999/09/21 14:39:25 davem Exp $
+/* $Id: auxio.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * auxio.h:  Definitions and code for the Auxiliary I/O register.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

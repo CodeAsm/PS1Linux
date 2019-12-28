@@ -1,4 +1,4 @@
-/* $Id: teles0.c,v 2.13 2000/11/24 17:05:38 kai Exp $
+/* $Id: teles0.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * teles0.c     low level stuff for Teles Memory IO isdn cards
  *              based on the teles driver from Jan den Ouden
@@ -21,7 +21,7 @@
 
 extern const char *CardType[];
 
-const char *teles0_revision = "$Revision: 2.13 $";
+const char *teles0_revision = "$Revision: 1.1.1.1 $";
 
 #define TELES_IOMEM_SIZE	0x400
 #define byteout(addr,val) outb(val,addr)

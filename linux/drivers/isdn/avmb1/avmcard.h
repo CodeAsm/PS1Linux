@@ -1,9 +1,12 @@
 /*
- * $Id: avmcard.h,v 1.8 2000/10/10 17:44:19 kai Exp $
+ * $Id: avmcard.h,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  *
  * Copyright 1999 by Carsten Paeth (calle@calle.in-berlin.de)
  *
  * $Log: avmcard.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:24  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.8  2000/10/10 17:44:19  kai
  * changes from/for 2.2.18
  *

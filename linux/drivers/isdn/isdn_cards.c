@@ -1,4 +1,4 @@
-/* $Id: isdn_cards.c,v 1.14 2000/11/23 20:45:14 kai Exp $
+/* $Id: isdn_cards.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
 
  * Linux ISDN subsystem, initialization for non-modularized drivers.
  *

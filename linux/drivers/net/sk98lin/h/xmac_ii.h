@@ -2,8 +2,8 @@
  *
  * Name:	xmac_ii.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.27 $
- * Date:	$Date: 2000/05/17 11:00:46 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Defines and Macros for XaQti's Gigabit Ethernet Controller
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: xmac_ii.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.27  2000/05/17 11:00:46  malthoff
  *	Add bit for enable/disable power management in BCOM chip.
  *	

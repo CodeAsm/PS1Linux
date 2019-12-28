@@ -6,7 +6,7 @@ Specification and Internals for the New UHCI Driver (Whitepaper...)
 	Deti Fliegl, deti@fliegl.de (executive slave) (lead voice)
 	Thomas Sailer, sailer@ife.ee.ethz.ch (chief consultant) (cheer leader)
  
-	$Id: README.uhci,v 1.1 1999/12/14 14:03:02 fliegl Exp $
+	$Id: uhci.txt,v 1.1.1.1 2001/02/22 14:58:04 serg Exp $
 
 This document and the new uhci sources can be found on
 		http://hotswap.in.tum.de/usb

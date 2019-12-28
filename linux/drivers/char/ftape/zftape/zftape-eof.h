@@ -20,9 +20,9 @@
  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 
  *
- * $Source: /homes/cvs/ftape-stacked/ftape/zftape/zftape-eof.h,v $
- * $Revision: 1.2 $
- * $Date: 1997/10/05 19:19:03 $
+ * $Source: /home/cvs/PSXLinux/drivers/char/ftape/zftape/zftape-eof.h,v $
+ * $Revision: 1.1.1.1 $
+ * $Date: 2001/02/22 14:58:23 $
  *
  *      Definitions and declarations for the end of file markers
  *      for the QIC-40/80 floppy-tape driver for Linux.

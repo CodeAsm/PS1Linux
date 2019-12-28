@@ -2,8 +2,8 @@
  *
  * Name:	skdrv2nd.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.7 $
- * Date:	$Date: 1999/09/28 12:38:21 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Second header file for driver and all other modules
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skdrv2nd.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.7  1999/09/28 12:38:21  cgoos
  *	Added CheckQueue to SK_AC.
  *	

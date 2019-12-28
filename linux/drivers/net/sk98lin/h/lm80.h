@@ -2,8 +2,8 @@
  *
  * Name:	lm80.h	
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.3 $
- * Date:	$Date: 1999/11/22 13:41:19 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Contains all defines for the LM80 Chip
  *		(National Semiconductor).
  *
@@ -27,6 +27,9 @@
  *
  * History:
  *	$Log: lm80.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.3  1999/11/22 13:41:19  cgoos
  *	Changed license header to GPL.
  *	

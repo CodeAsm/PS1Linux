@@ -3,7 +3,7 @@
 /* Probe routines common to all DoC devices */
 /* (c) 1999 Machine Vision Holdings, Inc.   */
 /* Author: David Woodhouse <dwmw2@mvhi.com> */
-/* $Id: docprobe.c,v 1.21 2000/12/03 19:32:34 dwmw2 Exp $ */
+/* $Id: docprobe.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $ */
 
 
 
@@ -262,7 +262,7 @@ int __init init_doc(void)
 	
 	printk(KERN_NOTICE "M-Systems DiskOnChip driver. (C) 1999 Machine Vision Holdings, Inc.\n");
 #ifdef PRERELEASE
-	printk(KERN_INFO "$Id: docprobe.c,v 1.21 2000/12/03 19:32:34 dwmw2 Exp $\n");
+	printk(KERN_INFO "$Id: docprobe.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $\n");
 #endif
 	if (doc_config_location) {
 		printk("Using configured probe address 0x%lx\n", doc_config_location);

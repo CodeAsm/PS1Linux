@@ -1,5 +1,5 @@
 /*
-  $Id: fore200e.c,v 1.5 2000/04/14 10:10:34 davem Exp $
+  $Id: fore200e.c,v 1.1.1.1 2001/02/22 14:58:13 serg Exp $
 
   A FORE Systems 200E-series driver for ATM on Linux.
   Christophe Lizzi (lizzi@cnam.fr), October 1999-March 2000.

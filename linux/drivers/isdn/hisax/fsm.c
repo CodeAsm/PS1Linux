@@ -1,4 +1,4 @@
-/* $Id: fsm.c,v 1.14 2000/11/24 17:05:37 kai Exp $
+/* $Id: fsm.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * Author       Karsten Keil (keil@isdn4linux.de)
  *              based on the teles driver from Jan den Ouden

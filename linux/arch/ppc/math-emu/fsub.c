@@ -1,4 +1,4 @@
-/* $Id: fsub.c,v 1.1 1999/08/23 19:00:05 cort Exp $
+/* $Id: fsub.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  */
 
 #include <linux/types.h>

@@ -1,5 +1,5 @@
 
-/* $Id: mtd.h,v 1.26 2000/10/30 17:18:04 sjhill Exp $ */
+/* $Id: mtd.h,v 1.1.1.1 2001/02/22 14:59:01 serg Exp $ */
 
 #ifndef __MTD_MTD_H__
 #define __MTD_MTD_H__

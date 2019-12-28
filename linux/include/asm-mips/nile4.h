@@ -8,7 +8,7 @@
  *
  *	NEC Vrc 5074 System Controller Data Sheet, June 1998
  *
- *  $Id: nile4.h,v 1.1 2000/01/26 00:07:45 ralf Exp $
+ *  $Id: nile4.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  */
 
 

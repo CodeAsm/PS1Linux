@@ -9,7 +9,7 @@
  *	as published by the Free Software Foundation; either version
  *	2 of the License, or (at your option) any later version.
  *
- *	Version: $Id: ipmr.c,v 1.55 2000/11/28 13:13:27 davem Exp $
+ *	Version: $Id: ipmr.c,v 1.1.1.1 2001/02/22 14:59:02 serg Exp $
  *
  *	Fixes:
  *	Michael Chastain	:	Incorrect size of copying.

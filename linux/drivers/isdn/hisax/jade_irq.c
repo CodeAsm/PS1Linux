@@ -1,4 +1,4 @@
-/* $Id: jade_irq.c,v 1.5 2000/11/19 17:02:48 kai Exp $
+/* $Id: jade_irq.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * jade_irq.c   Low level JADE IRQ stuff (derived from original hscx_irq.c)
  *

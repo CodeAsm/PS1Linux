@@ -1,4 +1,4 @@
-# $Id$
+# $Id: Makefile,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
 # Makefile for the Baget/MIPS prom emulator library routines.
 #
 # Note! Dependencies are done automagically by 'make dep', which also

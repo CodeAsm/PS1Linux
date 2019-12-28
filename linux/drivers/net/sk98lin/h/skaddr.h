@@ -2,8 +2,8 @@
  *
  * Name:	skaddr.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.23 $
- * Date:	$Date: 2000/08/10 11:27:50 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Header file for Address Management (MC, UC, Prom).
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skaddr.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.23  2000/08/10 11:27:50  rassmann
  *	Editorial changes.
  *	Preserving 32-bit alignment in structs for the adapter context.

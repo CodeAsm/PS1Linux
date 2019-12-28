@@ -1,8 +1,8 @@
-#if 0 /* DAVIDM we don't use this, maybe we should, nah :-) */
 #ifndef __M68K_ENTRY_H
 #define __M68K_ENTRY_H
 
 #include <linux/config.h>
+#ifndef CONFIG_COLDFIRE
 #include <asm/setup.h>
 #include <asm/page.h>
 
@@ -73,24 +73,24 @@ PF_DTRACE_BIT = 5
  * that the stack frame is NOT for syscall
  */
 .macro	save_all_int
-	clrl	%sp@-		| stk_adj
-	pea	-1:w		| orig d0
-	movel	%d0,%sp@-	| d0
+	clrl	%sp@-		/* stk_adj */
+	pea	-1:w		/* orig d0 */
+	movel	%d0,%sp@-	/* d0 */
 	moveml	%d1-%d5/%a0-%a1/%curptr,%sp@-
 .endm
 
 .macro	save_all_sys
-	clrl	%sp@-		| stk_adj
-	movel	%d0,%sp@-	| orig d0
-	movel	%d0,%sp@-	| d0
+	clrl	%sp@-		/* stk_adj */
+	movel	%d0,%sp@-	/* orig d0 */
+	movel	%d0,%sp@-	/* d0 */
 	moveml	%d1-%d5/%a0-%a1/%curptr,%sp@-
 .endm
 
 .macro	restore_all
 	moveml	%sp@+,%a0-%a1/%curptr/%d1-%d5
 	movel	%sp@+,%d0
-	addql	#4,%sp		| orig d0
-	addl	%sp@+,%sp	| stk adj
+	addql	#4,%sp		/* orig d0 */
+	addl	%sp@+,%sp	/* stk adj */
 	rte
 .endm
 
@@ -98,7 +98,11 @@ PF_DTRACE_BIT = 5
 
 #define SAVE_SWITCH_STACK save_switch_stack
 #define RESTORE_SWITCH_STACK restore_switch_stack
+#if 0 // DAVIDM
 #define GET_CURRENT(tmp) get_current tmp
+#else
+#define GET_CURRENT(tmp)
+#endif
 
 .macro	save_switch_stack
 	moveml	%a3-%a6/%d6-%d7,%sp@-
@@ -108,11 +112,13 @@ PF_DTRACE_BIT = 5
 	moveml	%sp@+,%a3-%a6/%d6-%d7
 .endm
 
+#if 0 // DAVIDM
 .macro	get_current reg=%d0
 	movel	%sp,\reg
 	andw	#-KTHREAD_SIZE,\reg
 	movel	\reg,%curptr
 .endm
+#endif
 
 #else /* C source */
 
@@ -127,12 +133,15 @@ PF_DTRACE_BIT = 5
 	"pea	-1:w;"	    /* orig d0 = -1 */	\
 	"movel	%%d0,%%sp@-;" /* d0 */		\
 	"moveml	%%d1-%%d5/%%a0-%%a2,%%sp@-"
+
+#if 0 // DAVIDM
 #define GET_CURRENT(tmp) \
 	"movel	%%sp,"#tmp"\n\t" \
 	"andw	#-"STR(KTHREAD_SIZE)","#tmp"\n\t" \
 	"movel	"#tmp",%%a2"
+#endif
 
 #endif
 
+#endif /* CONFIG_COLDFIRE */
 #endif /* __M68K_ENTRY_H */
-#endif /* DAVIDM */

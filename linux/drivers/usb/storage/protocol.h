@@ -1,7 +1,7 @@
 /* Driver for USB Mass Storage compliant devices
  * Protocol Functions Header File
  *
- * $Id: protocol.h,v 1.3 2000/08/25 00:13:51 mdharm Exp $
+ * $Id: protocol.h,v 1.1.1.1 2001/02/22 14:58:44 serg Exp $
  *
  * Current development and maintenance by:
  *   (c) 1999, 2000 Matthew Dharm (mdharm-usb@one-eyed-alien.net)

@@ -1,4 +1,4 @@
-/* $Id: muldiv.c,v 1.5 1997/12/15 20:07:20 ecd Exp $
+/* $Id: muldiv.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * muldiv.c: Hardware multiply/division illegal instruction trap
  *		for sun4c/sun4 (which do not have those instructions)
  *

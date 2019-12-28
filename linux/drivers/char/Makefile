@@ -50,6 +50,17 @@ ifeq ($(ARCH),m68k)
    SERIAL   =
 endif
 
+
+ifeq ($(ARCH),m68knommu)
+   ifdef CONFIG_68328_SERIAL
+       KEYBD  =
+       SERIAL = 68328serial.o
+   else
+       KEYBD =
+   endif
+endif
+
+
 ifeq ($(ARCH),arm)
   ifneq ($(CONFIG_PC_KEYMAP),y)
     KEYMAP   =
@@ -87,6 +98,7 @@ endif
 
 obj-$(CONFIG_VT) += vt.o vc_screen.o consolemap.o consolemap_deftbl.o $(CONSOLE) selection.o
 obj-$(CONFIG_SERIAL) += $(SERIAL)
+obj-$(CONFIG_68328_SERIAL) += 68328serial.o
 obj-$(CONFIG_SERIAL_21285) += serial_21285.o
 obj-$(CONFIG_SERIAL_SA1100) += serial_sa1100.o
 obj-$(CONFIG_SERIAL_AMBA) += serial_amba.o

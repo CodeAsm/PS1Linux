@@ -1,4 +1,4 @@
-/* $Id: pci_psycho.c,v 1.17 2000/09/21 06:25:14 anton Exp $
+/* $Id: pci_psycho.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * pci_psycho.c: PSYCHO/U2P specific PCI controller support.
  *
  * Copyright (C) 1997, 1998, 1999 David S. Miller (davem@caipfs.rutgers.edu)

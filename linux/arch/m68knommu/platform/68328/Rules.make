@@ -17,9 +17,9 @@
 GCC_DIR = $(shell $(CC) -v 2>&1 | grep specs | sed -e 's/.* \(.*\)specs/\1\./')
 
 INCGCC = $(GCC_DIR)/include
-LIBGCC = $(GCC_DIR)/libgcc.a
+LIBGCC = $(GCC_DIR)/m68000/libgcc.a
 
-CFLAGS := $(CFLAGS) -pipe -DNO_MM -DNO_FPU -DNO_CACHE -m68000 -D__ELF__ -DMAGIC_ROM_PTR -DNO_FORGET -DUTS_SYSNAME='"uClinux"' -D__linux__
+CFLAGS := -fno-builtin -DNO_CACHE $(CFLAGS) -pipe -DNO_MM -DNO_FPU -DNO_CACHE -m68000 -D__ELF__ -DMAGIC_ROM_PTR -DNO_FORGET -DUTS_SYSNAME='"uClinux"' -D__linux__
 AFLAGS := $(AFLAGS) -pipe -DNO_MM -DNO_FPU -DNO_CACHE -m68000 -D__ELF__ -DMAGIC_ROM_PTR -DUTS_SYSNAME='"uClinux"' -Wa,--bitwise-or
 
 LINKFLAGS = -T arch/$(ARCH)/platform/$(PLATFORM)/$(BOARD)/$(MODEL).ld
@@ -28,8 +28,10 @@ HEAD := arch/$(ARCH)/platform/$(PLATFORM)/$(BOARD)/crt0_$(MODEL).o
 
 SUBDIRS := arch/$(ARCH)/kernel arch/$(ARCH)/mm arch/$(ARCH)/lib \
            arch/$(ARCH)/platform/$(PLATFORM) $(SUBDIRS)
+
 CORE_FILES := arch/$(ARCH)/kernel/kernel.o arch/$(ARCH)/mm/mm.o \
-            arch/$(ARCH)/platform/$(PLATFORM)/platform.o $(CORE_FILES)
+              arch/$(ARCH)/platform/$(PLATFORM)/platform.o $(CORE_FILES)
+
 LIBS += arch/$(ARCH)/lib/lib.a $(LIBGCC)
 
 ifdef CONFIG_FRAMEBUFFER
@@ -64,6 +66,7 @@ linux.trg linux.rom: linux.bin
 
 archclean:
 	@$(MAKEBOOT) clean
+	rm -f arch/$(ARCH)/platform/$(PLATFORM)/m68k_defs.h
 	rm -f linux.text linux.data linux.bin linux.rom linux.trg
 	rm -f linux.s19 romfs.s19
 	rm -f linux.img romdisk.img

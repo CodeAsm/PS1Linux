@@ -1,4 +1,4 @@
-/* $Id: vacserial.c,v 1.3 1999/08/17 22:18:37 ralf Exp $
+/* $Id: vacserial.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  * vacserial.c: VAC UART serial driver
  *              This code stealed and adopted from linux/drivers/char/serial.c
  *              See that for author info

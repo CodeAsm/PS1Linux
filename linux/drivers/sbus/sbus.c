@@ -1,4 +1,4 @@
-/* $Id: sbus.c,v 1.91 2000/11/08 05:04:06 davem Exp $
+/* $Id: sbus.c,v 1.1.1.1 2001/02/22 14:58:31 serg Exp $
  * sbus.c:  SBus support routines.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

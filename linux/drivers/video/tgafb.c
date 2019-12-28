@@ -3,7 +3,7 @@
  *
  *	Copyright (C) 1999,2000 Martin Lucina, Tom Zerucha
  *  
- *  $Id: tgafb.c,v 1.12.2.3 2000/04/04 06:44:56 mato Exp $
+ *  $Id: tgafb.c,v 1.1.1.1 2001/02/22 14:58:44 serg Exp $
  *
  *  This driver is partly based on the original TGA framebuffer device, which 
  *  was partly based on the original TGA console driver, which are

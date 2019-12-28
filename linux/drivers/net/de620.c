@@ -1,5 +1,5 @@
 /*
- *	de620.c $Revision: 1.40 $ BETA
+ *	de620.c $Revision: 1.1.1.1 $ BETA
  *
  *
  *	Linux driver for the D-Link DE-620 Ethernet pocket adapter.
@@ -39,7 +39,7 @@
  *
  *****************************************************************************/
 static const char *version =
-	"de620.c: $Revision: 1.40 $,  Bjorn Ekwall <bj0rn@blox.se>\n";
+	"de620.c: $Revision: 1.1.1.1 $,  Bjorn Ekwall <bj0rn@blox.se>\n";
 
 /***********************************************************************
  *

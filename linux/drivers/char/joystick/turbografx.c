@@ -1,5 +1,5 @@
 /*
- * $Id: turbografx.c,v 1.8 2000/05/29 20:39:38 vojtech Exp $
+ * $Id: turbografx.c,v 1.1.1.1 2001/02/22 14:58:23 serg Exp $
  *
  *  Copyright (c) 1998-2000 Vojtech Pavlik
  *

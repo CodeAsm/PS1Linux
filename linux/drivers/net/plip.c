@@ -1,4 +1,4 @@
-/* $Id: plip.c,v 1.3.6.2 1997/04/16 15:07:56 phil Exp $ */
+/* $Id: plip.c,v 1.1.1.1 2001/02/22 14:58:28 serg Exp $ */
 /* PLIP: A parallel port "network" driver for Linux. */
 /* This driver is for parallel port with 5-bit cable (LapLink (R) cable). */
 /*

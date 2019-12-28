@@ -3,7 +3,7 @@
  *
  * Copyright (C) 1998 Harald Koerfgen
  *
- * $Id: cmdline.c,v 1.2 1999/10/09 00:00:57 ralf Exp $
+ * $Id: cmdline.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  */
 #include <linux/init.h>
 #include <linux/kernel.h>

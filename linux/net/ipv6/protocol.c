@@ -5,7 +5,7 @@
  *
  *		PF_INET6 protocol dispatch tables.
  *
- * Version:	$Id: protocol.c,v 1.9 2000/10/03 07:29:01 anton Exp $
+ * Version:	$Id: protocol.c,v 1.1.1.1 2001/02/22 14:59:03 serg Exp $
  *
  * Authors:	Pedro Roque	<roque@di.fc.ul.pt>
  *

@@ -2,7 +2,7 @@
  *
  * Module Name: evsci - System Control Interrupt configuration and
  *                      legacy to ACPI mode state transition functions
- *              $Revision: 67 $
+ *              $Revision: 1.1.1.1 $
  *
  ******************************************************************************/
 

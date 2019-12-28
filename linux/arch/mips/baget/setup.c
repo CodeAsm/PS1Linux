@@ -1,4 +1,4 @@
-/* $Id: setup.c,v 1.4 1999/10/09 00:00:57 ralf Exp $
+/* $Id: setup.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  *
  * setup.c: Baget/MIPS specific setup, including init of the feature struct.
  *

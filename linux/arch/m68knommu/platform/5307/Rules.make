@@ -14,17 +14,10 @@
 # Copyright (C) 1994 by Hamish Macdonald
 # Copyright (C) 2000  Lineo Inc. (www.lineo.com)
 
-#
-
-# CROSS_COMPILE = $(GCC_EXEC_PREFIX)
-
 GCC_DIR = $(shell $(CC) -v 2>&1 | grep specs | sed -e 's/.* \(.*\)specs/\1\./')
 
 INCGCC = $(GCC_DIR)/include
 LIBGCC = $(GCC_DIR)/m5200/libgcc.a
-
-# INCGCC = $(TOOLS)/gcc-include
-# LIBGCC = $(TOOLS)/gcc-lib/libgcc.a
 
 CFLAGS := -fno-builtin -nostdinc $(CFLAGS) -I$(INCGCC) -pipe -DNO_MM -DNO_FPU -m5200 -Wa,-S -Wa,-m5200 -D__ELF__ -DMAGIC_ROM_PTR -DUTS_SYSNAME=\"uClinux\" -D__linux__
 AFLAGS := $(CFLAGS)
@@ -43,4 +36,5 @@ MAKEBOOT = $(MAKE) -C arch/$(ARCH)/boot
 
 archclean:
 	@$(MAKEBOOT) clean
+	rm -f arch/$(ARCH)/platform/$(PLATFORM)/m68k_defs.h
 

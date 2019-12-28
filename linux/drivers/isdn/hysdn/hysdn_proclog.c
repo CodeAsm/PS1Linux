@@ -1,4 +1,4 @@
-/* $Id: hysdn_proclog.c,v 1.9 2000/11/25 17:01:01 kai Exp $
+/* $Id: hysdn_proclog.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
 
  * Linux driver for HYSDN cards, /proc/net filesystem log functions.
  * written by Werner Cornelius (werner@titro.de) for Hypercope GmbH

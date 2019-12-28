@@ -10,7 +10,7 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * $Id: jffs_fm.h,v 1.10 2000/08/17 15:42:44 dwmw2 Exp $
+ * $Id: jffs_fm.h,v 1.1.1.1 2001/02/22 14:58:46 serg Exp $
  *
  * Ported to Linux 2.3.x and MTD:
  * Copyright (C) 2000  Alexander Larsson (alex@cendio.se), Cendio Systems AB

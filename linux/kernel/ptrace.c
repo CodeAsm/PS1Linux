@@ -122,9 +122,9 @@ static int access_mm(struct mm_struct *mm, struct vm_area_struct * vma, unsigned
 	return copied;
 #else /* NO_MM */
 	if (write)
-		memcpy(addr, buf, len);
+		memcpy((void *)addr, buf, len);
 	else
-		memcpy(buf, addr, len);
+		memcpy(buf, (void *)addr, len);
 	return(len);
 #endif /* NO_MM */
 }

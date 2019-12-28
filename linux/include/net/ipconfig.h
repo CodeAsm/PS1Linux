@@ -1,5 +1,5 @@
 /*
- *  $Id: ipconfig.h,v 1.3 1999/01/04 20:13:29 davem Exp $
+ *  $Id: ipconfig.h,v 1.1.1.1 2001/02/22 14:59:01 serg Exp $
  *
  *  Copyright (C) 1997 Martin Mares
  *

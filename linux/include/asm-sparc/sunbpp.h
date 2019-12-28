@@ -1,4 +1,4 @@
-/* $Id: sunbpp.h,v 1.1 1999/08/08 14:09:49 shadow Exp $
+/* $Id: sunbpp.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * include/asm-sparc/sunbpp.h
  */
 

@@ -28,7 +28,7 @@
  * Author: Rickard E. Faith, faith@cs.unc.edu
  * Copyright 1992, 1993, 1994, 1995, 1996 Rickard E. Faith
  *
- * $Id: fdomain.c,v 5.45 1996/10/02 15:13:06 root Exp $
+ * $Id: fd_mcs.c,v 1.1.1.1 2001/02/22 14:58:40 serg Exp $
 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the

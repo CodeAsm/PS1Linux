@@ -1,4 +1,4 @@
-/* $Id: VIScopy.S,v 1.25 2000/11/01 09:29:19 davem Exp $
+/* $Id: VIScopy.S,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * VIScopy.S: High speed copy operations utilizing the UltraSparc
  *            Visual Instruction Set.
  *

@@ -2,8 +2,8 @@
  *
  * Name:	skgeinit.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.46 $
- * Date:	$Date: 2000/08/10 11:28:00 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Structures and prototypes for the GE Init Module
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skgeinit.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.46  2000/08/10 11:28:00  rassmann
  *	Editorial changes.
  *	Preserving 32-bit alignment in structs for the adapter context.

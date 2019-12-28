@@ -1,4 +1,4 @@
-/* $Id: fcheck.c,v 1.3 2000/06/12 12:44:02 armin Exp $
+/* $Id: fcheck.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  * 
  * (c) 2000 Cytronics & Melware
  *

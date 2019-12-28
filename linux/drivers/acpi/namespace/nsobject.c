@@ -2,7 +2,7 @@
  *
  * Module Name: nsobject - Utilities for objects attached to namespace
  *                         table entries
- *              $Revision: 47 $
+ *              $Revision: 1.1.1.1 $
  *
  ******************************************************************************/
 

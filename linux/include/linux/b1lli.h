@@ -1,11 +1,14 @@
 /*
- * $Id: b1lli.h,v 1.8 1999/07/01 15:26:54 calle Exp $
+ * $Id: b1lli.h,v 1.1.1.1 2001/02/22 14:59:00 serg Exp $
  *
  * ISDN lowlevel-module for AVM B1-card.
  *
  * Copyright 1996 by Carsten Paeth (calle@calle.in-berlin.de)
  *
  * $Log: b1lli.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:59:00  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.8  1999/07/01 15:26:54  calle
  * complete new version (I love it):
  * + new hardware independed "capi_driver" interface that will make it easy to:

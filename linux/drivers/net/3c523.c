@@ -82,7 +82,7 @@
        Ganesh Sittampalam <ganesh.sittampalam@magdalen.oxford.ac.uk>
        Stuart Adamson <stuart.adamson@compsoc.net>
 	
-   $Header: /fsys2/home/chrisb/linux-1.3.59-MCA/drivers/net/RCS/3c523.c,v 1.1 1996/02/05 01:53:46 chrisb Exp chrisb $
+   $Header: /home/cvs/PSXLinux/drivers/net/3c523.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
  */
 
 #include <linux/module.h>

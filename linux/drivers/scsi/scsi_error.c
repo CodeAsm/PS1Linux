@@ -69,7 +69,7 @@
 #define HOST_RESET_SETTLE_TIME  10*HZ
 
 
-static const char RCSid[] = "$Header: /mnt/ide/home/eric/CVSROOT/linux/drivers/scsi/scsi_error.c,v 1.10 1997/12/08 04:50:35 eric Exp $";
+static const char RCSid[] = "$Header: /home/cvs/PSXLinux/drivers/scsi/scsi_error.c,v 1.1.1.1 2001/02/22 14:58:41 serg Exp $";
 
 STATIC int scsi_check_sense(Scsi_Cmnd * SCpnt);
 STATIC int scsi_request_sense(Scsi_Cmnd *);

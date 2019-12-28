@@ -8,6 +8,7 @@
  */
  
 #include <asm/dbg.h>
+#include <linux/module.h>
 #include <linux/errno.h>
 #include <linux/signal.h>
 #include <linux/sched.h>
@@ -24,6 +25,7 @@
 #include <linux/console.h>
 #include <linux/reboot.h>
 #include <linux/keyboard.h>
+#include <linux/init.h>
 
 #include <asm/io.h>
 #include <asm/irq.h>
@@ -32,14 +34,9 @@
 #include <asm/bitops.h>
 #include <asm/delay.h>
 #include <asm/uaccess.h>
+#include <asm/MC68328.h>
 
 #include "68328serial.h"
-
-static struct console m68328_driver = {
-	name:           "m68328",
-	flags:          CON_PRINTBUFFER,
-	index:          -1,
-};
 
 /* Turn off usage of real serial interrupt code, to "support" Copilot */
 #ifdef CONFIG_XCOPILOT_BUGS
@@ -93,6 +90,25 @@ static struct termios *serial_termios_locked[2];
 #endif
 
 /*
+ *	Setup for console. Argument comes from the boot command line.
+ */
+
+#if defined(CONFIG_M68EZ328ADS) || defined(CONFIG_ALMA_ANS)
+#define	CONSOLE_BAUD_RATE	115200
+#define	DEFAULT_CBAUD		B115200
+#endif
+
+#ifndef CONSOLE_BAUD_RATE
+#define	CONSOLE_BAUD_RATE	9600
+#define	DEFAULT_CBAUD		B9600
+#endif
+
+static int m68328_console_initted = 0;
+static int m68328_console_baud    = CONSOLE_BAUD_RATE;
+static int m68328_console_cbaud   = DEFAULT_CBAUD;
+
+
+/*
  * tmp_buf is used as a temporary buffer by serial_write.  We need to
  * lock it in case the memcpy_fromfs blocks while swapping in a page,
  * and some other program tries to do a serial write at the same time.
@@ -131,6 +147,8 @@ static inline int serial_paranoia_check(struct m68k_serial *info,
 static int baud_table[] = {
 	0, 50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400, 4800,
 	9600, 19200, 38400, 57600, 115200, 0 };
+
+#define BAUD_TABLE_SIZE (sizeof(baud_table)/sizeof(baud_table[0]))
 
 /* Sets or clears DTR/RTS on the requested line */
 static inline void m68k_rtsdtr(struct m68k_serial *ss, int set)
@@ -400,13 +418,14 @@ static void do_softint(void *private_)
 	tty = info->tty;
 	if (!tty)
 		return;
-
+#if 0
 	if (clear_bit(RS_EVENT_WRITE_WAKEUP, &info->event)) {
 		if ((tty->flags & (1 << TTY_DO_WRITE_WAKEUP)) &&
 		    tty->ldisc.write_wakeup)
 			(tty->ldisc.write_wakeup)(tty);
 		wake_up_interruptible(&tty->write_wait);
 	}
+#endif   
 }
 
 /*
@@ -1347,7 +1366,8 @@ static void show_serial_version(void)
 volatile int test_done;
 
 /* rs_init inits the driver */
-int rs68328_init(void)
+static int __init
+rs68328_init(void)
 {
 	int flags;
 	struct m68k_serial *info;
@@ -1368,21 +1388,8 @@ int rs68328_init(void)
 	serial_driver.type = TTY_DRIVER_TYPE_SERIAL;
 	serial_driver.subtype = SERIAL_TYPE_NORMAL;
 	serial_driver.init_termios = tty_std_termios;
-
-	
-        serial_driver.init_termios.c_cflag = 
-#if   defined(CONFIG_PILOT)
-		B9600 | CS8 | CREAD | HUPCL | CLOCAL;
-#elif defined(CONFIG_UCSIMM)
-		B9600 | CS8 | CREAD | HUPCL | CLOCAL;
-#elif defined(CONFIG_M68EZ328ADS)
-		B115200 | CS8 | CREAD | HUPCL | CLOCAL;
-#elif defined(CONFIG_ALMA_ANS)
-		B115200 | CS8 | CREAD | HUPCL | CLOCAL;
-#else 
-#error  Please, define the default console settings for your board
-#endif
-
+	serial_driver.init_termios.c_cflag = 
+			m68328_console_cbaud | CS8 | CREAD | HUPCL | CLOCAL;
 	serial_driver.flags = TTY_DRIVER_REAL_RAW;
 	serial_driver.refcount = &serial_refcount;
 	serial_driver.table = serial_table;
@@ -1472,18 +1479,103 @@ void unregister_serial(int line)
 	return;
 }
 	
+module_init(rs68328_init);
+/* DAVIDM module_exit(rs68328_fini); */
+
+
+
+static void m68328_set_baud()
+{
+	unsigned short ustcnt;
+	int	i;
+
+	ustcnt = USTCNT;
+	USTCNT = ustcnt & ~USTCNT_TXEN;
+
+again:
+	for (i = 0; i < sizeof(baud_table) / sizeof(baud_table[0]); i++)
+		if (baud_table[i] == m68328_console_baud)
+			break;
+	if (i >= sizeof(baud_table) / sizeof(baud_table[0])) {
+		m68328_console_baud = 9600;
+		goto again;
+	}
+
+	UBAUD = PUT_FIELD(UBAUD_DIVIDE,    hw_baud_table[i].divisor) | 
+		PUT_FIELD(UBAUD_PRESCALER, hw_baud_table[i].prescale);
+	ustcnt &= ~(USTCNT_PARITYEN | USTCNT_ODD_EVEN | USTCNT_STOP | USTCNT_8_7);
+	ustcnt |= USTCNT_8_7;
+	ustcnt |= USTCNT_TXEN;
+	USTCNT = ustcnt;
+	m68328_console_initted = 1;
+	return;
+}
+
+
+int m68328_console_setup(struct console *cp, char *arg)
+{
+	int		i, n = CONSOLE_BAUD_RATE;
+
+	if (!cp)
+		return(-1);
+
+	if (arg)
+		n = simple_strtoul(arg,NULL,0);
+
+	for (i = 0; i < BAUD_TABLE_SIZE; i++)
+		if (baud_table[i] == n)
+			break;
+	if (i < BAUD_TABLE_SIZE) {
+		m68328_console_baud = n;
+		m68328_console_cbaud = 0;
+		if (i > 15) {
+			m68328_console_cbaud |= CBAUDEX;
+			i -= 15;
+		}
+		m68328_console_cbaud |= i;
+	}
+
+	m68328_set_baud(); /* make sure baud rate changes */
+	return(0);
+}
+
+
+static kdev_t m68328_console_device(struct console *c)
+{
+	return MKDEV(TTY_MAJOR, 64 + c->index);
+}
+
+
 void m68328_console_write (struct console *co, const char *str,
 			   unsigned int count)
 {
+	if (!m68328_console_initted)
+		m68328_set_baud();
     while (count--) {
         if (*str == '\n')
            rs_put_char('\r');
         rs_put_char( *str++ );
     }
 }
-	
+
+
+static struct console m68328_driver = {
+	name:		"ttyS",
+	write:		m68328_console_write,
+	read:		NULL,
+	device:		m68328_console_device,
+	wait_key:	NULL,
+	unblank:	NULL,
+	setup:		m68328_console_setup,
+	flags:		CON_PRINTBUFFER,
+	index:		-1,
+	cflag:		0,
+	next:		NULL
+};
+
+
 void m68328_console_init(void)
 {
-	m68328_driver.write = m68328_console_write;
 	register_console(&m68328_driver);
 }
+

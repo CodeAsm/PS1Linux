@@ -1,4 +1,4 @@
-/* $Id: scsi_debug.c,v 1.1 1992/07/24 06:27:38 root Exp root $
+/* $Id: scsi_debug.c,v 1.1.1.1 2001/02/22 14:58:41 serg Exp $
  *  linux/kernel/scsi_debug.c
  *
  *  Copyright (C) 1992  Eric Youngdale

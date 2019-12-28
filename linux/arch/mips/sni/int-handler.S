@@ -1,4 +1,4 @@
-/* $Id: int-handler.S,v 1.4 1999/01/04 16:03:58 ralf Exp $
+/* $Id: int-handler.S,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  *
  * SNI RM200 PCI specific interrupt handler code.
  *

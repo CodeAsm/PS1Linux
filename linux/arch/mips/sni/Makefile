@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.3 1999/01/04 16:03:57 ralf Exp $
+# $Id: Makefile,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
 #
 # Makefile for the SNI specific part of the kernel
 #

@@ -2,7 +2,7 @@
 /*
  * mtd/include/compatmac.h
  *
- * $Id: compatmac.h,v 1.4 2000/07/03 10:01:38 dwmw2 Exp $
+ * $Id: compatmac.h,v 1.1.1.1 2001/02/22 14:59:01 serg Exp $
  *
  * Extensions and omissions from the normal 'linux/compatmac.h'
  * files. hopefully this will end up empty as the 'real' one 

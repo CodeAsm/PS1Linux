@@ -35,6 +35,8 @@
 #else
 #define	MCF_CLK		54000000
 #endif
+#elif defined(CONFIG_M5272)
+#define	MCF_CLK		66000000
 #elif defined(CONFIG_M5307)
 #define	MCF_CLK		45000000
 #elif defined(CONFIG_M5407)

@@ -1,4 +1,4 @@
-/* $Id: callc.c,v 2.51 2000/11/24 17:05:37 kai Exp $
+/* $Id: callc.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * Author       Karsten Keil (keil@isdn4linux.de)
  *              based on the teles driver from Jan den Ouden
@@ -20,7 +20,7 @@
 #define MOD_USE_COUNT ( GET_USE_COUNT (&__this_module))
 #endif	/* MODULE */
 
-const char *lli_revision = "$Revision: 2.51 $";
+const char *lli_revision = "$Revision: 1.1.1.1 $";
 
 extern struct IsdnCard cards[];
 extern int nrcards;

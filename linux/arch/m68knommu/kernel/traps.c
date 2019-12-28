@@ -52,8 +52,12 @@ e_vector vectors[256] = {
 	0, 0, buserr, trap, trap, trap, trap, trap,
 	trap, trap, trap, trap, trap, trap, trap, trap,
 	trap, trap, trap, trap, trap, trap, trap, trap,
+#ifdef CONFIG_COLDFIRE
 	inthandler, inthandler, inthandler, inthandler,
 	inthandler, inthandler, inthandler, inthandler,
+#else
+	trap, trap, trap, trap, trap, trap, trap, trap,
+#endif     
 	/* TRAP #0-15 */
 	system_call, trap, trap, trap, trap, trap, trap, trap,
 	trap, trap, trap, trap, trap, trap, trap, trap,

@@ -1,4 +1,4 @@
-/* $Id: offset.c,v 1.11 1999/09/28 22:25:50 ralf Exp $
+/* $Id: offset.c,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  *
  * offset.c: Calculate pt_regs and task_struct offsets.
  *

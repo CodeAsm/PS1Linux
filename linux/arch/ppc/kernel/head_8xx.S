@@ -1,7 +1,7 @@
 /*
  *  arch/ppc/kernel/except_8xx.S
  *
- *  $Id: head_8xx.S,v 1.4 1999/09/18 18:43:19 dmalek Exp $
+ *  $Id: head_8xx.S,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  *  PowerPC version 
  *    Copyright (C) 1995-1996 Gary Thomas (gdt@linuxppc.org)

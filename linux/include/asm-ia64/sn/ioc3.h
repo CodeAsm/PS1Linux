@@ -1,4 +1,4 @@
-/* $Id: ioc3.h,v 1.2 2000/11/16 19:49:17 pfg Exp $
+/* $Id: ioc3.h,v 1.1.1.1 2001/02/22 14:58:49 serg Exp $
  *
  * Copyright (C) 1999 Ralf Baechle
  * This file is part of the Linux driver for the SGI IOC3.

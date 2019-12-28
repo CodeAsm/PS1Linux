@@ -1,4 +1,4 @@
-/* $Id: idprom.c,v 1.22 1996/11/13 05:09:25 davem Exp $
+/* $Id: idprom.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  * idprom.c: Routines to load the idprom into kernel addresses and
  *           interpret the data contained within.
  *

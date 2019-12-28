@@ -1,4 +1,4 @@
-/* $Id: tc.c,v 1.3 1999/10/09 00:01:32 ralf Exp $
+/* $Id: tc.c,v 1.1.1.1 2001/02/22 14:58:43 serg Exp $
  * tc-init: We assume the TURBOchannel to be up and running so
  * just probe for Modules and fill in the global data structure
  * tc_bus.

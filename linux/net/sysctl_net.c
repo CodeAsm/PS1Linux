@@ -5,6 +5,9 @@
  * Added /proc/sys/net directories for each protocol family. [MS]
  *
  * $Log: sysctl_net.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:59:02  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.2  1996/05/08  20:24:40  shaver
  * Added bits for NET_BRIDGE and the NET_IPV4_ARP stuff and
  * NET_IPV4_IP_FORWARD.

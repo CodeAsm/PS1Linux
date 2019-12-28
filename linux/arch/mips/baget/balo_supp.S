@@ -1,4 +1,4 @@
-/* $Id: balo_supp.S,v 1.1 1999/01/17 03:49:38 ralf Exp $
+/* $Id: balo_supp.S,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  * balo_supp.S: BAget Loader supplement
  *
  * Copyright (C) 1998 Gleb Raiko & Vladimir Roganov

@@ -376,4 +376,4 @@ kuznet@ms2.inr.ac.ru
 Updated by:
 Andi Kleen
 ak@muc.de
-$Id: ip-sysctl.txt,v 1.17 2000/11/06 07:15:36 davem Exp $
+$Id: ip-sysctl.txt,v 1.1.1.1 2001/02/22 14:58:04 serg Exp $

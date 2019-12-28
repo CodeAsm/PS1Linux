@@ -1,4 +1,4 @@
-/* $Id: l3_1tr6.c,v 2.13 2000/11/19 17:02:48 kai Exp $
+/* $Id: l3_1tr6.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  *  German 1TR6 D-channel protocol
  *
@@ -17,7 +17,7 @@
 #include <linux/ctype.h>
 
 extern char *HiSax_getrev(const char *revision);
-const char *l3_1tr6_revision = "$Revision: 2.13 $";
+const char *l3_1tr6_revision = "$Revision: 1.1.1.1 $";
 
 #define MsgHead(ptr, cref, mty, dis) \
 	*ptr++ = dis; \

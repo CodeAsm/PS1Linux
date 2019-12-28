@@ -68,7 +68,7 @@ asmlinkage void inthandler5(void);
 asmlinkage void inthandler6(void);
 asmlinkage void inthandler7(void);
 
-extern void *_ramvec[];
+extern e_vector *_ramvec;
 
 /* irq node variables for the 32 (potential) on chip sources */
 static irq_node_t *int_irq_list[INTERNAL_IRQS];

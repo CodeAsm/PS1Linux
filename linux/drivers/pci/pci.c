@@ -1,5 +1,5 @@
 /*
- *	$Id: pci.c,v 1.91 1999/01/21 13:34:01 davem Exp $
+ *	$Id: pci.c,v 1.1.1.1 2001/02/22 14:58:30 serg Exp $
  *
  *	PCI Bus Services, see include/linux/pci.h for further explanation.
  *

@@ -2,7 +2,7 @@
  *
  * Module Name: evmisc - ACPI device notification handler dispatch
  *                       and ACPI Global Lock support
- *              $Revision: 20 $
+ *              $Revision: 1.1.1.1 $
  *
  *****************************************************************************/
 

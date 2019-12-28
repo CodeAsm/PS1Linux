@@ -192,6 +192,10 @@ asmlinkage int sys_ptrace(long request, long pid, long addr, long data)
 					tmp = ((tmp & 0xffff0000) << 15) |
 					      ((tmp & 0x0000ffff) << 16);
 #endif
+			} else if (addr == 49) {
+				tmp = child->mm->start_code;
+			} else if (addr == 50) {
+				tmp = child->mm->start_data;
 			} else
 				goto out;
 			ret = put_user(tmp,(unsigned long *) data);

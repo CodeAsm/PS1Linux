@@ -2,7 +2,7 @@
  *
  * Module Name: evxfregn - External Interfaces, ACPI Operation Regions and
  *                         Address Spaces.
- *              $Revision: 26 $
+ *              $Revision: 1.1.1.1 $
  *
  *****************************************************************************/
 

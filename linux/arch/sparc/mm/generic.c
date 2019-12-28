@@ -1,4 +1,4 @@
-/* $Id: generic.c,v 1.10 2000/08/09 00:00:15 davem Exp $
+/* $Id: generic.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * generic.c: Generic Sparc mm routines that are not dependent upon
  *            MMU type but are Sparc specific.
  *

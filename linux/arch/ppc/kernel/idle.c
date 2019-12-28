@@ -1,5 +1,5 @@
 /*
- * $Id: idle.c,v 1.68 1999/10/15 18:16:03 cort Exp $
+ * $Id: idle.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  * Idle daemon for PowerPC.  Idle daemon will handle any action
  * that needs to be taken when the system becomes idle.

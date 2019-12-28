@@ -5,7 +5,7 @@
  *
  *		The IP to API glue.
  *		
- * Version:	$Id: ip_sockglue.c,v 1.54 2000/11/28 13:34:56 davem Exp $
+ * Version:	$Id: ip_sockglue.c,v 1.1.1.1 2001/02/22 14:59:02 serg Exp $
  *
  * Authors:	see ip.c
  *

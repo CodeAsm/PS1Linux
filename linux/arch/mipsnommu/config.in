@@ -1,0 +1,274 @@
+#
+# For a description of the syntax of this configuration file,
+# see Documentation/kbuild/config-language.txt.
+#
+define_bool CONFIG_MIPS y
+
+mainmenu_name 'uClinux/mips (w/o MMU) Kernel Configuration'
+
+define_bool CONFIG_UCLINUX y
+
+mainmenu_option next_comment
+comment 'Code maturity level options'
+bool 'Prompt for development and/or incomplete code/drivers' CONFIG_EXPERIMENTAL
+endmenu
+
+mainmenu_option next_comment
+comment 'Machine selection'
+if [ "$CONFIG_EXPERIMENTAL" = "y" ]; then
+   bool 'Support for Sony PlayStation' CONFIG_PLAYSTATION
+fi
+
+#
+# Select some configuration options automatically for certain systems.
+#
+unset CONFIG_ARC32
+unset CONFIG_BOARD_SCACHE
+unset CONFIG_HAVE_STD_PC_SERIAL_PORT
+unset CONFIG_I8259
+unset CONFIG_ISA
+unset CONFIG_PCI
+unset CONFIG_MIPS_JAZZ
+unset CONFIG_SWAP_IO_SPACE
+unset CONFIG_VIDEO_G364
+unset CONFIG_PC_KEYB
+
+define_bool CONFIG_MCA n
+define_bool CONFIG_SBUS n
+
+if [ "$CONFIG_ISA" != "y" ]; then
+   define_bool CONFIG_ISA n
+   define_bool CONFIG_EISA n
+else
+   define_bool CONFIG_EISA y
+fi
+
+if [ "$CONFIG_PCI" != "y" ]; then
+   define_bool CONFIG_PCI n
+fi
+
+if [ "$CONFIG_I8259" != "y" ]; then
+   define_bool CONFIG_I8259 n
+fi
+endmenu
+
+mainmenu_option next_comment
+comment 'Loadable module support'
+bool 'Enable loadable module support' CONFIG_MODULES
+if [ "$CONFIG_MODULES" = "y" ]; then
+   bool '  Set version information on all module symbols' CONFIG_MODVERSIONS
+   bool '  Kernel module loader' CONFIG_KMOD
+fi
+endmenu
+
+mainmenu_option next_comment
+comment 'CPU selection'
+
+choice 'CPU type' \
+	"R3000 CONFIG_CPU_R3000	\
+	 R6000 CONFIG_CPU_R6000	\
+	 R4300 CONFIG_CPU_R4300	\
+	 R4x00 CONFIG_CPU_R4X00	\
+	 R5000 CONFIG_CPU_R5000	\
+         R5432 CONFIG_CPU_R5432 \
+	 RM7000 CONFIG_CPU_RM7000 \
+	 R52xx CONFIG_CPU_NEVADA \
+	 R8000 CONFIG_CPU_R8000	\
+	 R10000 CONFIG_CPU_R10000 \
+	 MIPS32 CONFIG_CPU_MIPS32" R4x00
+
+bool 'Override CPU Options' CONFIG_CPU_ADVANCED
+
+if [ "$CONFIG_CPU_ADVANCED" = "y" ]; then
+   bool '  ll/sc Instructions available' CONFIG_CPU_HAS_LLSC
+   bool '  Writeback Buffer available' CONFIG_CPU_HAS_WB
+fi
+endmenu
+
+mainmenu_option next_comment
+comment 'General setup'
+if [ "$CONFIG_PLAYSTATION" = "y" ]; then
+   define_bool CONFIG_CPU_LITTLE_ENDIAN y
+else
+   bool 'Generate little endian code' CONFIG_CPU_LITTLE_ENDIAN
+fi
+bool 'Kernel floating-point emulation' CONFIG_MIPS_FPU_EMULATOR
+
+if [ "$CONFIG_PROC_FS" = "y" ]; then
+   define_bool CONFIG_KCORE_ELF y
+fi
+define_bool CONFIG_ELF_KERNEL y
+
+tristate 'Kernel support for flat binaries' CONFIG_BINFMT_FLAT
+tristate 'Kernel support for a.out binaries' CONFIG_BINFMT_AOUT
+tristate 'Kernel support for ELF binaries' CONFIG_BINFMT_ELF
+tristate 'Kernel support for MISC binaries' CONFIG_BINFMT_MISC
+
+bool 'Networking support' CONFIG_NET
+
+if [ "$CONFIG_PCI" = "y" ]; then
+    source drivers/pci/Config.in
+fi
+
+bool 'System V IPC' CONFIG_SYSVIPC
+bool 'BSD Process Accounting' CONFIG_BSD_PROCESS_ACCT
+bool 'Sysctl support' CONFIG_SYSCTL
+
+source drivers/parport/Config.in
+
+endmenu
+
+if [ "$CONFIG_ISA" = "y" ]; then
+   source drivers/pnp/Config.in
+fi
+
+if [ "$CONFIG_HOTPLUG" = "y" ] ; then
+   source drivers/pcmcia/Config.in
+else
+   define_bool CONFIG_PCMCIA n
+fi
+
+source drivers/mtd/Config.in
+
+source drivers/block/Config.in
+
+source drivers/md/Config.in
+
+if [ "$CONFIG_NET" = "y" ]; then
+   source net/Config.in
+fi
+
+mainmenu_option next_comment
+comment 'ATA/IDE/MFM/RLL support'
+ 
+tristate 'ATA/IDE/MFM/RLL support' CONFIG_IDE
+ 
+if [ "$CONFIG_IDE" != "n" ]; then
+   source drivers/ide/Config.in
+else
+   define_bool CONFIG_BLK_DEV_IDE_MODES n
+   define_bool CONFIG_BLK_DEV_HD n
+fi
+endmenu
+
+if [ "$CONFIG_NET" = "y" ]; then
+   mainmenu_option next_comment
+   comment 'Network device support'
+
+   bool 'Network device support' CONFIG_NETDEVICES
+   if [ "$CONFIG_NETDEVICES" = "y" ]; then
+
+      if [ "$CONFIG_SGI_IP22" != "y" -a \
+      	   "$CONFIG_PLAYSTATION" != "y" -a \
+	   "$CONFIG_BAGET_MIPS" != "y" ]; then
+
+	 source drivers/net/Config.in
+
+	 if [ "$CONFIG_ATM" = "y" ]; then
+	    source drivers/atm/Config.in
+	 fi
+      else
+	 tristate 'Dummy net driver support' CONFIG_DUMMY
+	 tristate 'SLIP (serial line) support' CONFIG_SLIP
+	 if [ "$CONFIG_SLIP" != "n" ]; then
+	    bool ' CSLIP compressed headers' CONFIG_SLIP_COMPRESSED
+	    bool ' Keepalive and linefill' CONFIG_SLIP_SMART
+	 fi
+	 tristate 'PPP (point-to-point) support' CONFIG_PPP
+	 if [ ! "$CONFIG_PPP" = "n" ]; then
+	    comment 'CCP compressors for PPP are only built as modules.'
+	 fi
+         if [ "$CONFIG_SGI_IP22" = "y" ]; then
+	    bool 'SGI Seeq ethernet controller support' CONFIG_SGISEEQ
+	 fi
+	 if [ "$CONFIG_DECSTATION" = "y" ]; then
+	    bool 'DEC LANCE ethernet controller support' CONFIG_DECLANCE
+	 fi
+	 if [ "$CONFIG_BAGET_MIPS" = "y" ]; then
+	    tristate 'Baget AMD LANCE support' CONFIG_BAGETLANCE
+	 fi
+      fi
+   fi
+   endmenu
+fi
+
+if [ "$CONFIG_ISA" = "y" -o "$CONFIG_PCI" = "y" ]; then
+   mainmenu_option next_comment
+   comment 'ISDN subsystem'
+
+   if [ "$CONFIG_NET" != "n" ]; then
+      tristate 'ISDN support' CONFIG_ISDN
+      if [ "$CONFIG_ISDN" != "n" ]; then
+	 source drivers/isdn/Config.in
+      fi
+   fi
+   endmenu
+
+   mainmenu_option next_comment
+   comment 'Old CD-ROM drivers (not SCSI, not IDE)'
+
+   bool 'Support non-SCSI/IDE/ATAPI drives' CONFIG_CD_NO_IDESCSI
+   if [ "$CONFIG_CD_NO_IDESCSI" != "n" ]; then
+      source drivers/cdrom/Config.in
+   fi
+   endmenu
+fi
+
+if [ "$CONFIG_DECSTATION" != "y" -a \
+     "$CONFIG_SGI_IP22" != "y" -a \
+     "$CONFIG_PLAYSTATION" != "y"]; then
+source drivers/char/Config.in
+
+source drivers/media/Config.in
+fi
+
+if [ "$CONFIG_PLAYSTATION" = "y" ]; then
+   mainmenu_option next_comment
+   comment 'PlayStation Character devices'
+
+   bool 'Support console over PlayStation SIO' CONFIG_PS_SIO_CONSOLE
+   bool 'Support console over PlayStation GPU' CONFIG_PS_GPU_CONSOLE
+   endmenu
+fi
+
+source fs/Config.in
+
+if [ "$CONFIG_VT" = "y" ]; then
+   mainmenu_option next_comment
+
+   comment 'Console drivers'
+      if [ "$CONFIG_DECSTATION" != "y" ]; then
+	 bool 'VGA text console' CONFIG_VGA_CONSOLE
+      fi
+      bool 'Support for frame buffer devices' CONFIG_FB
+      source drivers/video/Config.in
+   endmenu
+fi
+
+mainmenu_option next_comment
+comment 'Sound'
+
+tristate 'Sound card support' CONFIG_SOUND
+if [ "$CONFIG_SOUND" != "n" ]; then
+   source drivers/sound/Config.in
+fi
+endmenu
+
+source drivers/usb/Config.in
+source drivers/input/Config.in
+
+mainmenu_option next_comment
+comment 'Kernel hacking'
+
+bool 'Are you using a crosscompiler' CONFIG_CROSSCOMPILE
+if [ "$CONFIG_MODULES" = "y" ]; then
+   bool ' Build fp execption handler module' CONFIG_MIPS_FPE_MODULE
+fi
+if [ "$CONFIG_SERIAL" = "y" ]; then
+  bool 'Remote GDB kernel debugging' CONFIG_REMOTE_DEBUG
+fi
+bool 'Magic SysRq key' CONFIG_MAGIC_SYSRQ
+if [ "$CONFIG_SMP" != "y" ]; then
+   bool 'Run uncached' CONFIG_MIPS_UNCACHED
+fi
+endmenu

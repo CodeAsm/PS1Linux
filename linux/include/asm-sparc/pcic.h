@@ -1,4 +1,4 @@
-/* $Id: pcic.h,v 1.4 1999/11/17 07:34:20 zaitcev Exp $
+/* $Id: pcic.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * pcic.h: JavaEngine 1 specific PCI definitions.
  *
  * Copyright (C) 1998 V. Roganov and G. Raiko

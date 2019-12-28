@@ -46,7 +46,10 @@
  */
 
 /*
- * $Log: sun3_NCR5380.c,v $
+ * $Log: sun3_scsi.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:41  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  */
 
 #define AUTOSENSE

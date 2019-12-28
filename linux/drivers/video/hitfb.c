@@ -1,5 +1,5 @@
 /*
- * $Id: hitfb.c,v 1.2 2000/07/04 06:24:46 yaegashi Exp $
+ * $Id: hitfb.c,v 1.1.1.1 2001/02/22 14:58:44 serg Exp $
  * linux/drivers/video/hitfb.c -- Hitachi LCD frame buffer device
  * (C) 1999 Mihai Spatar
  * (C) 2000 YAEGASHI Takeshi

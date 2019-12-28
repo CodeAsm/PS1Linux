@@ -1,5 +1,5 @@
 /*
- * Almost: $Id: mtdchar.c,v 1.21 2000/12/09 21:15:12 dwmw2 Exp $
+ * Almost: $Id: mtdchar.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
  * (With some of the compatibility for previous kernels taken out)
  *
  * Character-device access to raw MTD devices.

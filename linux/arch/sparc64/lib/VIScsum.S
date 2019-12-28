@@ -1,4 +1,4 @@
-/* $Id: VIScsum.S,v 1.6 2000/02/20 23:21:39 davem Exp $
+/* $Id: VIScsum.S,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * VIScsum.S: High bandwidth IP checksumming utilizing the UltraSparc
  *            Visual Instruction Set.
  *

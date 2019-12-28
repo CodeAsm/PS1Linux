@@ -3,7 +3,7 @@
  * Module Name: rscreate - Acpi_rs_create_resource_list
  *                         Acpi_rs_create_pci_routing_table
  *                         Acpi_rs_create_byte_stream
- *              $Revision: 22 $
+ *              $Revision: 1.1.1.1 $
  *
  ******************************************************************************/
 

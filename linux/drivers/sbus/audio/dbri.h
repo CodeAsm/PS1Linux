@@ -1,4 +1,4 @@
-/* $Id: dbri.h,v 1.13 2000/10/13 00:34:24 uzi Exp $
+/* $Id: dbri.h,v 1.1.1.1 2001/02/22 14:58:31 serg Exp $
  * drivers/sbus/audio/cs4231.h
  *
  * Copyright (C) 1997 Rudolf Koenig (rfkoenig@immd4.informatik.uni-erlangen.de)

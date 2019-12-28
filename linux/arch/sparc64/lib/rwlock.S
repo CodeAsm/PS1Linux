@@ -1,4 +1,4 @@
-/* $Id: rwlock.S,v 1.4 2000/09/09 00:00:34 davem Exp $
+/* $Id: rwlock.S,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * rwlocks.S: These things are too big to do inline.
  *
  * Copyright (C) 1999 David S. Miller (davem@redhat.com)

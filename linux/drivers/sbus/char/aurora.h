@@ -1,4 +1,4 @@
-/*	$Id: aurora.h,v 1.5 1999/12/02 09:55:16 davem Exp $
+/*	$Id: aurora.h,v 1.1.1.1 2001/02/22 14:58:31 serg Exp $
  *	linux/drivers/sbus/char/aurora.h -- Aurora multiport driver
  *
  *	Copyright (c) 1999 by Oliver Aldulea (oli@bv.ro)

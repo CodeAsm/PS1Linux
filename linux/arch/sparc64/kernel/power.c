@@ -1,4 +1,4 @@
-/* $Id: power.c,v 1.8 2000/07/11 22:41:33 davem Exp $
+/* $Id: power.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * power.c: Power management driver.
  *
  * Copyright (C) 1999 David S. Miller (davem@redhat.com)

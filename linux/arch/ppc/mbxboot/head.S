@@ -7,7 +7,7 @@
 	.text
 
 /*
- * $Id: head.S,v 1.6 1999/09/15 00:02:25 dmalek Exp $
+ * $Id: head.S,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *	
  * This code is loaded by the ROM loader at some arbitrary location.
  * Move it to high memory so that it can load the kernel at 0x0000.

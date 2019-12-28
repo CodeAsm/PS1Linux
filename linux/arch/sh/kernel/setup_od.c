@@ -1,4 +1,4 @@
-/* $Id: setup_od.c,v 1.1 2000/06/14 09:35:59 stuart_menefy Exp $
+/* $Id: setup_od.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  *
  * arch/sh/kernel/setup_od.c
  *

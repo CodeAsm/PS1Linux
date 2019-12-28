@@ -2,8 +2,8 @@
  *
  * Name:	sktimer.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.12 $
- * Date:	$Date: 1999/11/22 13:38:51 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	High level timer functions.
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: sktimer.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.12  1999/11/22 13:38:51  cgoos
  *	Changed license header to GPL.
  *	
@@ -76,7 +79,7 @@
 	Event queue and dispatcher
 */
 static const char SysKonnectFileId[] =
-	"$Header: /usr56/projects/ge/schedule/sktimer.c,v 1.12 1999/11/22 13:38:51 cgoos Exp $" ;
+	"$Header: /home/cvs/PSXLinux/drivers/net/sk98lin/sktimer.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $" ;
 
 #include "h/skdrv1st.h"		/* Driver Specific Definitions */
 #include "h/skdrv2nd.h"		/* Adapter Control- and Driver specific Def. */

@@ -5,7 +5,7 @@
  *
  *		Implementation of the Transmission Control Protocol(TCP).
  *
- * Version:	$Id: tcp_input.c,v 1.205 2000/12/13 18:31:48 davem Exp $
+ * Version:	$Id: tcp_input.c,v 1.1.1.1 2001/02/22 14:59:02 serg Exp $
  *
  * Authors:	Ross Biro, <bir7@leland.Stanford.Edu>
  *		Fred N. van Kempen, <waltje@uWalt.NL.Mugnet.ORG>

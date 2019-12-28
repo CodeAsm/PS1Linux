@@ -1,4 +1,4 @@
-/* $Id: page.h,v 1.9 2000/02/24 00:13:19 ralf Exp $
+/* $Id: page.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  *
  * Definitions for page handling
  *

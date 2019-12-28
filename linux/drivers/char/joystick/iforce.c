@@ -1,5 +1,5 @@
 /*
- * $Id: iforce.c,v 1.7 2000/06/04 14:03:36 vojtech Exp $
+ * $Id: iforce.c,v 1.1.1.1 2001/02/22 14:58:23 serg Exp $
  *
  *  Copyright (c) 2000 Vojtech Pavlik
  *

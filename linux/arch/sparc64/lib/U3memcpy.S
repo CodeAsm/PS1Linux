@@ -1,4 +1,4 @@
-/* $Id: U3memcpy.S,v 1.2 2000/11/01 09:29:19 davem Exp $
+/* $Id: U3memcpy.S,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * U3memcpy.S: UltraSparc-III optimized memcpy.
  *
  * Copyright (C) 1999, 2000 David S. Miller (davem@redhat.com)

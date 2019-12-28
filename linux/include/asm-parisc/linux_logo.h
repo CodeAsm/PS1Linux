@@ -1,4 +1,4 @@
-/* $Id: linux_logo.h,v 1.1.1.1 1999/03/15 19:41:01 pjlahaie Exp $
+/* $Id: linux_logo.h,v 1.1.1.1 2001/02/22 14:58:58 serg Exp $
  * include/asm-parisc/linux_logo.h: This is a linux logo
  *                                to be displayed on boot.
  *

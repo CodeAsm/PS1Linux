@@ -1,4 +1,4 @@
-/* $Id: starfire.h,v 1.1 2000/09/21 06:18:53 anton Exp $
+/* $Id: starfire.h,v 1.1.1.1 2001/02/22 14:59:00 serg Exp $
  * starfire.h: Group all starfire specific code together.
  *
  * Copyright (C) 2000 Anton Blanchard (anton@linuxcare.com)

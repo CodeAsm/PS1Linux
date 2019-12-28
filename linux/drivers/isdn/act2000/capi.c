@@ -1,4 +1,4 @@
-/* $Id: capi.c,v 1.9 2000/11/12 16:32:06 kai Exp $
+/* $Id: capi.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  *
  * ISDN lowlevel-module for the IBM ISDN-S0 Active 2000.
  *        CAPI encoder/decoder

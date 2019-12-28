@@ -1,4 +1,4 @@
-/* $Id: atp870u.c,v 1.0 1997/05/07 15:22:00 root Exp root $
+/* $Id: atp870u.c,v 1.1.1.1 2001/02/22 14:58:32 serg Exp $
  *  linux/kernel/atp870u.c
  *
  *  Copyright (C) 1997	Wu Ching Chen
@@ -37,7 +37,7 @@
 void mydlyu(unsigned int);
 
 /*
- *   static const char RCSid[] = "$Header: /usr/src/linux/kernel/blk_drv/scsi/RCS/atp870u.c,v 1.0 1997/05/07 15:22:00 root Exp root $";
+ *   static const char RCSid[] = "$Header: /home/cvs/PSXLinux/drivers/scsi/atp870u.c,v 1.1.1.1 2001/02/22 14:58:32 serg Exp $";
  */
 
 static unsigned char admaxu = 1;

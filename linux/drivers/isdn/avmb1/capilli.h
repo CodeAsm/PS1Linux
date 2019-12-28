@@ -1,5 +1,5 @@
 /*
- * $Id: capilli.h,v 1.4 1999/07/23 08:51:05 calle Exp $
+ * $Id: capilli.h,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  * 
  * Kernel CAPI 2.0 Driver Interface for Linux
  * 

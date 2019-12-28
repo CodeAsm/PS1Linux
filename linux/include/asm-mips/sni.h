@@ -1,4 +1,4 @@
-/* $Id: sni.h,v 1.2 1998/09/19 19:19:39 ralf Exp $
+/* $Id: sni.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  *
  * SNI specific definitions
  *

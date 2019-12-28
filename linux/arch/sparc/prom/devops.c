@@ -1,4 +1,4 @@
-/* $Id: devops.c,v 1.13 2000/08/26 02:38:03 anton Exp $
+/* $Id: devops.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * devops.c:  Device operations using the PROM.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

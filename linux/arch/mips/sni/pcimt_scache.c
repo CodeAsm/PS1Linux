@@ -1,4 +1,4 @@
-/* $Id: pcimt_scache.c,v 1.4 1999/01/04 16:03:59 ralf Exp $
+/* $Id: pcimt_scache.c,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  *
  * arch/mips/sni/pcimt_scache.c
  *

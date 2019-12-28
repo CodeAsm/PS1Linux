@@ -2,8 +2,8 @@
  *
  * Name:	skcsum.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.7 $
- * Date:	$Date: 2000/06/29 13:17:05 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Store/verify Internet checksum in send/receive packets.
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skcsum.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.7  2000/06/29 13:17:05  rassmann
  *	Corrected reception of a packet with UDP checksum == 0 (which means there
  *	is no UDP checksum).
@@ -63,7 +66,7 @@
 
 #ifndef lint
 static const char SysKonnectFileId[] = "@(#)"
-	"$Id: skcsum.c,v 1.7 2000/06/29 13:17:05 rassmann Exp $"
+	"$Id: skcsum.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $"
 	" (C) SysKonnect.";
 #endif	/* !lint */
 

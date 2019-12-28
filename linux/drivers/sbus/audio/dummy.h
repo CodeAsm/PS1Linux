@@ -1,4 +1,4 @@
-/* $Id: dummy.h,v 1.3 1999/09/21 14:37:41 davem Exp $
+/* $Id: dummy.h,v 1.1.1.1 2001/02/22 14:58:31 serg Exp $
  * drivers/sbus/audio/dummy.h
  *
  * Copyright (C) 1998 Derrick J. Brashear (shadow@dementia.org)

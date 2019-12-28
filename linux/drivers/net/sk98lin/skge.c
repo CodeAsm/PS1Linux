@@ -2,8 +2,8 @@
  *
  * Name:      	skge.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.29 $
- * Date:       	$Date: 2000/02/21 13:31:56 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:       	$Date: 2001/02/22 14:58:29 $
  * Purpose:	The main driver source module
  *
  ******************************************************************************/
@@ -46,6 +46,9 @@
  * History:
  *
  *	$Log: skge.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Kernel 2.4.x specific:
  *	Revision 1.xx  2000/09/12 13:31:56  cgoos
  *	Fixed missign "dev=NULL in skge_probe.

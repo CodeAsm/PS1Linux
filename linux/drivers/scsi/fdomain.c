@@ -295,7 +295,7 @@
 
 #include <linux/config.h>	/* for CONFIG_PCI */
   
-#define VERSION          "$Revision: 5.50 $"
+#define VERSION          "$Revision: 1.1.1.1 $"
 
 /* START OF USER DEFINABLE OPTIONS */
 

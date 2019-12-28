@@ -83,6 +83,7 @@ extern int sonic_probe(struct net_device *);
 extern int SK_init(struct net_device *);
 extern int seeq8005_probe(struct net_device *);
 extern int smc_init( struct net_device * );
+extern int fec_enet_init( struct net_device * );
 extern int sgiseeq_probe(struct net_device *);
 extern int atarilance_probe(struct net_device *);
 extern int sun3lance_probe(struct net_device *);
@@ -331,7 +332,10 @@ struct devprobe parport_probes[] __initdata = {
 
 struct devprobe m68k_probes[] __initdata = {
 #if defined(CONFIG_COLDFIRE) && defined(CONFIG_SMC9194)
-	{smc_init, 0},			/* here so that we probe for multiple devices */
+	{smc_init, 0},		/* here so that we probe for multiple devices */
+#endif
+#if defined(CONFIG_COLDFIRE) && defined(CONFIG_FEC)
+	{fec_enet_init, 0},	/* here so that we probe for multiple devices */
 #endif
 #ifdef CONFIG_ATARILANCE	/* Lance-based Atari ethernet boards */
 	{atarilance_probe, 0},

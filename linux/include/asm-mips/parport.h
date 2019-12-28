@@ -1,4 +1,4 @@
-/* $Id$
+/* $Id: parport.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  *
  * Copyright (C) 1999, 2000  Tim Waugh <tim@cyberelk.demon.co.uk>
  *

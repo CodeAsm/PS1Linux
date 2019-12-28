@@ -2,8 +2,8 @@
  *
  * Name:	skvpd.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.10 $
- * Date:	$Date: 2000/08/10 11:29:07 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Defines and Macros for VPD handling
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skvpd.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.10  2000/08/10 11:29:07  rassmann
  *	Editorial changes.
  *	Preserving 32-bit alignment in structs for the adapter context.

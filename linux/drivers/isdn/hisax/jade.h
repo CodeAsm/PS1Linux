@@ -1,4 +1,4 @@
-/* $Id: jade.h,v 1.3 2000/06/26 08:59:14 keil Exp $
+/* $Id: jade.h,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  * jade.h   JADE specific defines
  *
  * Author   Roland Klabunde (R.Klabunde@Berkom.de)

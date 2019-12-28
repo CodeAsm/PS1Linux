@@ -2,8 +2,8 @@
  *
  * Name:	skgepnm2.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.28 $
- * Date:	$Date: 2000/08/03 15:12:48 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Defines for Private Network Management Interface
  *
  ****************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skgepnm2.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.28  2000/08/03 15:12:48  rwahl
  *	- Additional comment for MAC statistic data structure.
  *	

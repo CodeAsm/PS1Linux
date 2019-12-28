@@ -2,8 +2,8 @@
  *
  * Name:	skqueue.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.15 $
- * Date:	$Date: 1999/11/22 13:36:29 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Management of an event queue.
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skqueue.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.15  1999/11/22 13:36:29  cgoos
  *	Changed license header to GPL.
  *	
@@ -82,7 +85,7 @@
 	Event queue and dispatcher
 */
 static const char SysKonnectFileId[] =
-	"$Header: /usr56/projects/ge/schedule/skqueue.c,v 1.15 1999/11/22 13:36:29 cgoos Exp $" ;
+	"$Header: /home/cvs/PSXLinux/drivers/net/sk98lin/skqueue.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $" ;
 
 #include "h/skdrv1st.h"		/* Driver Specific Definitions */
 #include "h/skqueue.h"		/* Queue Definitions */

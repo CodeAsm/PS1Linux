@@ -1,5 +1,5 @@
 
-/* $Id: sunkbdmap.c,v 1.1 1997/09/07 15:40:27 ecd Exp $
+/* $Id: sunkbdmap.c,v 1.1.1.1 2001/02/22 14:58:31 serg Exp $
  * sunkbdmap.c: Wrapper around sunkeymap.c to change table names.
  *
  * Copyright (C) 1997  Eddie C. Dost  (ecd@skynet.be)

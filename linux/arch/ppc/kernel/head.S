@@ -1,7 +1,7 @@
 /*
  *  arch/ppc/kernel/head.S
  *
- *  $Id: head.S,v 1.154 1999/10/12 00:33:31 cort Exp $
+ *  $Id: head.S,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  *  PowerPC version 
  *    Copyright (C) 1995-1996 Gary Thomas (gdt@linuxppc.org)

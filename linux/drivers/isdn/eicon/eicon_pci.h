@@ -1,4 +1,4 @@
-/* $Id: eicon_pci.h,v 1.6 2000/05/07 08:51:04 armin Exp $
+/* $Id: eicon_pci.h,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * ISDN low-level module for Eicon active ISDN-Cards (PCI part).
  *

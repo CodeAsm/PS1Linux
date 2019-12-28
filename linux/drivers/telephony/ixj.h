@@ -35,7 +35,7 @@
  * TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  *
  *****************************************************************************/
-static char ixj_h_rcsid[] = "$Id: ixj.h,v 3.14 2000/03/30 22:06:48 eokerson Exp $";
+static char ixj_h_rcsid[] = "$Id: ixj.h,v 1.1.1.1 2001/02/22 14:58:43 serg Exp $";
 
 #ifndef _I386_TYPES_H
 #include <asm/types.h>

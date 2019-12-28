@@ -19,9 +19,9 @@
  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 
  *
- * $Source: /homes/cvs/ftape-stacked/ftape/lowlevel/fc-10.h,v $
- * $Revision: 1.1 $
- * $Date: 1997/09/19 09:05:22 $
+ * $Source: /home/cvs/PSXLinux/drivers/char/ftape/lowlevel/fc-10.h,v $
+ * $Revision: 1.1.1.1 $
+ * $Date: 2001/02/22 14:58:23 $
  *
  *      This file contains definitions for the FC-10 code
  *      of the QIC-40/80 floppy-tape driver for Linux.

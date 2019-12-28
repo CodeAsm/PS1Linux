@@ -10,7 +10,7 @@
  * - added inflateIncomp and deflateOutputPending
  * - allow strm->next_out to be NULL, meaning discard the output
  *
- * $Id: zlib.c,v 1.3 1997/12/23 10:47:42 paulus Exp $
+ * $Id: zlib.c,v 1.1.1.1 2001/02/22 14:58:28 serg Exp $
  */
 
 /* 

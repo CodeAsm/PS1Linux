@@ -13,9 +13,12 @@
  * General Public License for more details.
  *
  *
- * $Id: aha152x.c,v 2.3 2000/11/04 16:40:26 fischer Exp $
+ * $Id: aha152x.c,v 1.1.1.1 2001/02/22 14:58:32 serg Exp $
  *
  * $Log: aha152x.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:32  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 2.3  2000/11/04 16:40:26  fischer
  * - handle data overruns
  * - extend timeout for data phases

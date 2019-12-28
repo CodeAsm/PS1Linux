@@ -1,4 +1,4 @@
-/* $Id: cf-enabler.c,v 1.2 2000/06/08 05:50:10 gniibe Exp $
+/* $Id: cf-enabler.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  *
  *  linux/drivers/block/cf-enabler.c
  *

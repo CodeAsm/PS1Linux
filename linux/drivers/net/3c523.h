@@ -15,7 +15,7 @@
  *
  * See 3c523.c for details.
  *
- * $Header: /home/chrisb/linux-1.2.13-3c523/drivers/net/RCS/3c523.h,v 1.6 1996/01/20 05:09:00 chrisb Exp chrisb $
+ * $Header: /home/cvs/PSXLinux/drivers/net/3c523.h,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
  */
 
 /*

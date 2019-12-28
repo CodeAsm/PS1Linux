@@ -1,4 +1,4 @@
-/* $Id: pci_sabre.c,v 1.20 2000/06/26 19:40:27 davem Exp $
+/* $Id: pci_sabre.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * pci_sabre.c: Sabre specific PCI controller support.
  *
  * Copyright (C) 1997, 1998, 1999 David S. Miller (davem@caipfs.rutgers.edu)

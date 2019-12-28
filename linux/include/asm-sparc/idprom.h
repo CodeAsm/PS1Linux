@@ -1,4 +1,4 @@
-/* $Id: idprom.h,v 1.6 1996/08/04 10:35:07 ecd Exp $
+/* $Id: idprom.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * idprom.h: Macros and defines for idprom routines
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

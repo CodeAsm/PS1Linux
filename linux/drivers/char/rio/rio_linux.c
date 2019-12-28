@@ -26,15 +26,18 @@
  *      USA.
  *
  * Revision history:
- * $Log: rio.c,v $
+ * $Log: rio_linux.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:23  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.1  1999/07/11 10:13:54  wolff
  * Initial revision
  *
  * */
 
 
-#define RCS_ID "$Id: rio.c,v 1.1 1999/07/11 10:13:54 wolff Exp wolff $"
-#define RCS_REV "$Revision: 1.1 $"
+#define RCS_ID "$Id: rio_linux.c,v 1.1.1.1 2001/02/22 14:58:23 serg Exp $"
+#define RCS_REV "$Revision: 1.1.1.1 $"
 
 
 #include <linux/module.h>

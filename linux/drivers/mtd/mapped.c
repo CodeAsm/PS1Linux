@@ -1,6 +1,6 @@
 // -*- mode: cpp; mode: fold -*-
 // Description                                                          /*{{{*/
-// $Id: mapped.c,v 1.8 2000/03/31 14:40:42 dwmw2 Exp $
+// $Id: mapped.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
 /* ######################################################################
 
    Flash MTD Routines

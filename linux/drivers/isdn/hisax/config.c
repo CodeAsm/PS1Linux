@@ -1,4 +1,4 @@
-/* $Id: config.c,v 2.57.6.6 2000/12/10 23:39:19 kai Exp $
+/* $Id: config.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * Author       Karsten Keil (keil@isdn4linux.de)
  *              based on the teles driver from Jan den Ouden

@@ -1,4 +1,4 @@
-/* $Id: spitfire.h,v 1.10 2000/10/06 13:10:29 anton Exp $
+/* $Id: spitfire.h,v 1.1.1.1 2001/02/22 14:59:00 serg Exp $
  * spitfire.h: SpitFire/BlackBird/Cheetah inline MMU operations.
  *
  * Copyright (C) 1996 David S. Miller (davem@caip.rutgers.edu)

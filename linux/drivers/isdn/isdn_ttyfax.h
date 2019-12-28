@@ -1,4 +1,4 @@
-/* $Id: isdn_ttyfax.h,v 1.2 2000/05/11 22:29:21 kai Exp $
+/* $Id: isdn_ttyfax.h,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
 
  * header for Linux ISDN subsystem, tty_fax related functions (linklevel).
  *

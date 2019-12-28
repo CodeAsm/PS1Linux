@@ -9,7 +9,7 @@
  *  kswapd added: 7.1.96  sct
  *  Removed kswapd_ctl limits, and swap out as many pages as needed
  *  to bring the system back to freepages.high: 2.4.97, Rik van Riel.
- *  Version: $Id: vmscan.c,v 1.4 2001/01/05 18:32:16 davidm Exp $
+ *  Version: $Id: vmscan.c,v 1.1.1.1 2001/02/22 14:59:02 serg Exp $
  *  Zone aware kswapd started 02/00, Kanoj Sarcar (kanoj@sgi.com).
  *  Multiqueue VM started 5.8.00, Rik van Riel.
  */

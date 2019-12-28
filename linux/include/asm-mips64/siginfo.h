@@ -1,4 +1,4 @@
-/* $Id: siginfo.h,v 1.2 2000/01/27 01:05:37 ralf Exp $
+/* $Id: siginfo.h,v 1.1.1.1 2001/02/22 14:58:58 serg Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive

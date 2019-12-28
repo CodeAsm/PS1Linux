@@ -19,9 +19,9 @@
  USA.
 
  *
- * $Source: /homes/cvs/ftape-stacked/ftape/compressor/zftape-compress.h,v $
- * $Revision: 1.1 $
- * $Date: 1997/10/05 19:12:32 $
+ * $Source: /home/cvs/PSXLinux/drivers/char/ftape/compressor/zftape-compress.h,v $
+ * $Revision: 1.1.1.1 $
+ * $Date: 2001/02/22 14:58:23 $
  *
  * This file contains macros and definitions for zftape's
  * builtin compression code.

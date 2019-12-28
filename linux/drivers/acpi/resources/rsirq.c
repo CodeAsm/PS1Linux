@@ -4,7 +4,7 @@
  *                      Acpi_rs_irq_stream
  *                      Acpi_rs_extended_irq_resource
  *                      Acpi_rs_extended_irq_stream
- *              $Revision: 11 $
+ *              $Revision: 1.1.1.1 $
  *
  ******************************************************************************/
 

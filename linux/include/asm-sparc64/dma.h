@@ -1,4 +1,4 @@
-/* $Id: dma.h,v 1.19 2000/01/28 13:43:14 jj Exp $
+/* $Id: dma.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * include/asm-sparc64/dma.h
  *
  * Copyright 1996 (C) David S. Miller (davem@caip.rutgers.edu)

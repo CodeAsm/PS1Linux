@@ -20,7 +20,7 @@
  *	along with this program; if not, write to the Free Software
  *	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- *  $Id: inode.c,v 1.3 2000/01/11 13:58:25 tom Exp $
+ *  $Id: inode.c,v 1.1.1.1 2001/02/22 14:58:43 serg Exp $
  *
  *  History:
  *   0.1  04.01.2000  Created

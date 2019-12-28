@@ -1,4 +1,4 @@
-/* $Id$
+/* $Id: ip27-klconfig.c,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  *
  * Copyright (C) 1999, 2000 Ralf Baechle (ralf@gnu.org)
  * Copyright (C) 1999, 2000 Silicon Graphics, Inc.

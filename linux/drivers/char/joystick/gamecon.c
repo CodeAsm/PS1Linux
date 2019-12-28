@@ -1,5 +1,5 @@
 /*
- * $Id: gamecon.c,v 1.5 2000/06/25 09:56:58 vojtech Exp $
+ * $Id: gamecon.c,v 1.1.1.1 2001/02/22 14:58:23 serg Exp $
  *
  *  Copyright (c) 1999-2000 Vojtech Pavlik
  *

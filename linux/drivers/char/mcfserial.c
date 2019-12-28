@@ -1,7 +1,7 @@
 /*
  * mcfserial.c -- serial driver for ColdFire internal UARTS.
  *
- * Copyright (c) 1999 Greg Ungerer <gerg@lineo.com>
+ * Copyright (c) 1999-2001 Greg Ungerer <gerg@lineo.com>
  * Copyright (c) 2000-2001 Lineo, Inc. <www.lineo.com> 
  *
  * Based on code from 68332serial.c which was:
@@ -65,22 +65,26 @@ struct timer_list mcfrs_timer_struct;
 #endif
 
 /*
- *	Default console port and baud rate...
+ *	Default console baud rate,  we use this as the default
+ *	for all ports so init can just open /dev/console and
+ *	keep going.  Perhaps one day the cflag settings for the
+ *	console can be used instead.
  */
-#ifndef CONSOLE_PORT
-#define	CONSOLE_PORT		0
+
+#if defined(CONFIG_M5272)
+#define	CONSOLE_BAUD_RATE	19200
+#define	DEFAULT_CBAUD		B19200
 #endif
+
 #ifndef CONSOLE_BAUD_RATE
 #define	CONSOLE_BAUD_RATE	9600
+#define	DEFAULT_CBAUD		B9600
 #endif
 
-#undef	CONSOLE_BAUD_RATE
-#define	CONSOLE_BAUD_RATE	115200 /* DAVIDM remove this */
-
 int mcfrs_console_inited = 0;
-int mcfrs_console_port = CONSOLE_PORT;
+int mcfrs_console_port = -1;
 int mcfrs_console_baud = CONSOLE_BAUD_RATE;
-
+int mcfrs_console_cbaud = DEFAULT_CBAUD;
 
 DECLARE_TASK_QUEUE(mcf_tq_serial);
 
@@ -104,7 +108,7 @@ static int		mcfrs_serial_refcount;
 
 #define _INLINE_ inline
 
-#define	IRQBASE	224
+#define	IRQBASE	73
 
 /*
  *	Configuration table, UARTs to look for at startup.
@@ -128,6 +132,8 @@ static int mcfrs_baud_table[] = {
 	0, 50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400, 4800,
 	9600, 19200, 38400, 57600, 115200, 230400, 460800, 0
 };
+#define MCFRS_BAUD_TABLE_SIZE \
+			(sizeof(mcfrs_baud_table)/sizeof(mcfrs_baud_table[0]))
 
 
 #ifndef MIN
@@ -695,7 +701,6 @@ static void mcfrs_change_speed(struct mcf_serial *info)
 #endif
 
 	i = cflag & CBAUD;
-i = B115200;
 	if (i & CBAUDEX) {
 		i &= ~CBAUDEX;
 		if (i < 1 || i > 4)
@@ -1553,6 +1558,23 @@ int mcfrs_open(struct tty_struct *tty, struct file * filp)
  */
 static void mcfrs_irqinit(struct mcf_serial *info)
 {
+#ifdef CONFIG_M5272
+	volatile unsigned long	*icrp;
+
+	icrp = (volatile unsigned long *) (MCF_MBAR + MCFSIM_ICR2);
+	switch (info->line) {
+	case 0:
+		*icrp = 0xe0000000;
+		break;
+	case 1:
+		*icrp = 0x0e000000;
+		break;
+	default:
+		printk("SERIAL: don't know how to handle UART %d interrupt?\n",
+			info->line);
+		return;
+	}
+#else
 	volatile unsigned char	*icrp, *uartp;
 
 	switch (info->line) {
@@ -1576,6 +1598,7 @@ static void mcfrs_irqinit(struct mcf_serial *info)
 
 	uartp = (volatile unsigned char *) info->addr;
 	uartp[MCFUART_UIVR] = info->irq;
+#endif
 
 	if (request_irq(info->irq, mcfrs_interrupt, SA_INTERRUPT,
 	    "ColdFire UART", NULL)) {
@@ -1684,7 +1707,7 @@ mcfrs_init(void)
 	mcfrs_serial_driver.init_termios = tty_std_termios;
 
 	mcfrs_serial_driver.init_termios.c_cflag =
-		B115200 /* DAVIDM 9600 */ | CS8 | CREAD | HUPCL | CLOCAL;
+		mcfrs_console_cbaud | CS8 | CREAD | HUPCL | CLOCAL;
 	mcfrs_serial_driver.flags = TTY_DRIVER_REAL_RAW;
 	mcfrs_serial_driver.refcount = &mcfrs_serial_refcount;
 	mcfrs_serial_driver.table = mcfrs_serial_table;
@@ -1776,7 +1799,7 @@ module_init(mcfrs_init);
  *	Quick and dirty UART initialization, for console output.
  */
 
-void mcfrs_console_init(void)
+void mcfrs_init_console(void)
 {
 	volatile unsigned char	*uartp;
 	unsigned int		clk;
@@ -1815,18 +1838,33 @@ void mcfrs_console_init(void)
 
 int mcfrs_console_setup(struct console *cp, char *arg)
 {
+	int		i, n = CONSOLE_BAUD_RATE;
+
 	if (!cp)
 		return(-1);
 
 	if (!strncmp(cp->name, "ttyS", 4))
-		mcfrs_console_port = cp->name[4] - '0';
+		mcfrs_console_port = cp->index;
 	else if (!strncmp(cp->name, "cua", 3))
-		mcfrs_console_port = cp->name[3] - '0';
+		mcfrs_console_port = cp->index;
 	else
 		return(-1);
+
 	if (arg)
-		mcfrs_console_baud = simple_strtoul(arg,NULL,0);
-	mcfrs_console_init(); /* make sure baud rate changes */
+		n = simple_strtoul(arg,NULL,0);
+	for (i = 0; i < MCFRS_BAUD_TABLE_SIZE; i++)
+		if (mcfrs_baud_table[i] == n)
+			break;
+	if (i < MCFRS_BAUD_TABLE_SIZE) {
+		mcfrs_console_baud = n;
+		mcfrs_console_cbaud = 0;
+		if (i > 15) {
+			mcfrs_console_cbaud |= CBAUDEX;
+			i -= 15;
+		}
+		mcfrs_console_cbaud |= i;
+	}
+	mcfrs_init_console(); /* make sure baud rate changes */
 	return(0);
 }
 
@@ -1839,7 +1877,7 @@ static kdev_t mcfrs_console_device(struct console *c)
 
 /*
  *	Output a single character, using UART polled mode.
- *	This is ised for console output.
+ *	This is used for console output.
  */
 
 void mcfrs_put_char(char ch)
@@ -1863,7 +1901,7 @@ void mcfrs_put_char(char ch)
 				break;
 	}
 	if (i >= 0x10000)
-		mcfrs_console_init(); /* try and get it back */
+		mcfrs_init_console(); /* try and get it back */
 	restore_flags(flags);
 
 	return;
@@ -1877,7 +1915,7 @@ void mcfrs_put_char(char ch)
 void mcfrs_console_write(struct console *cp, const char *p, unsigned len)
 {
 	if (!mcfrs_console_inited)
-		mcfrs_console_init();
+		mcfrs_init_console();
 	while (len-- > 0) {
 		if (*p == '\n')
 			mcfrs_put_char('\r');
@@ -1889,8 +1927,8 @@ void mcfrs_console_write(struct console *cp, const char *p, unsigned len)
  * declare our consoles
  */
 
-struct console mcfrs_console0 = {
-	name:		"ttyS0",
+struct console mcfrs_console = {
+	name:		"ttyS",
 	write:		mcfrs_console_write,
 	read:		NULL,
 	device:		mcfrs_console_device,
@@ -1903,18 +1941,9 @@ struct console mcfrs_console0 = {
 	next:		NULL
 };
 
-struct console mcfrs_console1 = {
-	name:		"ttyS1",
-	write:		mcfrs_console_write,
-	read:		NULL,
-	device:		NULL,
-	wait_key:	NULL,
-	unblank:	NULL,
-	setup:		mcfrs_console_setup,
-	flags:		CON_PRINTBUFFER,
-	index:		-1,
-	cflag:		0,
-	next:		NULL
-};
+void __init mcfrs_console_init()
+{
+	register_console(&mcfrs_console);
+}
 
 /****************************************************************************/

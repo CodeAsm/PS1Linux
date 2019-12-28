@@ -1,4 +1,4 @@
-/* $Id: ashldi3.S,v 1.1 1998/04/06 16:09:28 jj Exp $
+/* $Id: ashldi3.S,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * ashldi3.S:	Math-emu code creates all kinds of references to
  *              this little routine on the sparc with gcc.
  *

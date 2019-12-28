@@ -8,7 +8,7 @@
  *  Copyright (C) 2000 Geert Uytterhoeven <geert@sonycom.com>
  *                     Sony Software Development Center Europe (SDCE), Brussels
  *
- *  $Id: int-handler.S,v 1.1 2000/01/26 00:07:44 ralf Exp $
+ *  $Id: int-handler.S,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  */
 
 #include <asm/asm.h>

@@ -1,4 +1,4 @@
-/* $Id: central.c,v 1.14 2000/09/21 06:25:14 anton Exp $
+/* $Id: central.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * central.c: Central FHC driver for Sunfire/Starfire/Wildfire.
  *
  * Copyright (C) 1997, 1999 David S. Miller (davem@redhat.com)

@@ -12,7 +12,7 @@
  * based on one of the several variants of the LINUX inode-subsystem
  * with added complexity of the diskquota system.
  * 
- * Version: $Id: dquot.c,v 6.3 1996/11/17 18:35:34 mvw Exp mvw $
+ * Version: $Id: dquot.c,v 1.1.1.1 2001/02/22 14:58:45 serg Exp $
  * 
  * Author:	Marco van Wieringen <mvw@planets.elm.net>
  *

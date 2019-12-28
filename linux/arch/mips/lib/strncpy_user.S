@@ -1,4 +1,4 @@
-/* $Id: strncpy_user.S,v 1.3 1999/08/21 22:19:11 ralf Exp $
+/* $Id: strncpy_user.S,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive

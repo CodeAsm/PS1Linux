@@ -2,7 +2,7 @@
  *
  * Module Name: nsutils - Utilities for accessing ACPI namespace, accessing
  *                        parents and siblings and Scope manipulation
- *              $Revision: 74 $
+ *              $Revision: 1.1.1.1 $
  *
  *****************************************************************************/
 

@@ -2,8 +2,8 @@
  *
  * Name:	skaddr.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.36 $
- * Date:	$Date: 2000/08/07 11:10:39 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Manage Addresses (Multicast and Unicast) and Promiscuous Mode.
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skaddr.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.36  2000/08/07 11:10:39  rassmann
  *	Editorial changes.
  *	
@@ -172,7 +175,7 @@
 
 #ifndef	lint
 static const char SysKonnectFileId[] =
-	"@(#) $Id: skaddr.c,v 1.36 2000/08/07 11:10:39 rassmann Exp $ (C) SysKonnect.";
+	"@(#) $Id: skaddr.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $ (C) SysKonnect.";
 #endif	/* !defined(lint) */
 
 #define __SKADDR_C

@@ -2,8 +2,8 @@
  *
  * Name:	ski2c.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.44 $
- * Date:	$Date: 2000/08/07 15:49:03 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Funktions to access Voltage and Temperature Sensor
  *		(taken from Monalisa (taken from Concentrator))
  *
@@ -28,6 +28,9 @@
  * History:
  *
  *	$Log: ski2c.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.44  2000/08/07 15:49:03  gklug
  *	fix: SK_INFAST only in NetWare driver
  *	
@@ -183,7 +186,7 @@
 	I2C Protocol
 */
 static const char SysKonnectFileId[] =
-	"$Id: ski2c.c,v 1.44 2000/08/07 15:49:03 gklug Exp $";
+	"$Id: ski2c.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $";
 
 #include "h/skdrv1st.h"		/* Driver Specific Definitions */
 #include "h/lm80.h"

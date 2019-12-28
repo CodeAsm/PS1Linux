@@ -1,5 +1,5 @@
 /*
- * $Id: amijoy.c,v 1.5 2000/07/21 22:52:24 vojtech Exp $
+ * $Id: amijoy.c,v 1.1.1.1 2001/02/22 14:58:23 serg Exp $
  *
  *  Copyright (c) 1998-2000 Vojtech Pavlik
  *

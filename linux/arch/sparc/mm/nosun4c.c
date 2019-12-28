@@ -1,4 +1,4 @@
-/* $Id: nosun4c.c,v 1.3 2000/02/14 04:52:36 jj Exp $
+/* $Id: nosun4c.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * nosun4c.c: This file is a bunch of dummies for SMP compiles, 
  *         so that it does not need sun4c and avoid ifdefs.
  *

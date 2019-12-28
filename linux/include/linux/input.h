@@ -2,7 +2,7 @@
 #define _INPUT_H
 
 /*
- * $Id: input.h,v 1.18 2000/07/25 21:36:56 vojtech Exp $
+ * $Id: input.h,v 1.1.1.1 2001/02/22 14:59:00 serg Exp $
  *
  *  Copyright (c) 1999-2000 Vojtech Pavlik
  *

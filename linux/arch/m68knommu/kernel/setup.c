@@ -36,7 +36,6 @@
 #include <asm/pgtable.h>
 #endif
 
-/*  conswitchp               = &fb_con;*/
 #ifdef CONFIG_CONSOLE
 extern struct consw *conswitchp;
 #ifdef CONFIG_FRAMEBUFFER
@@ -52,9 +51,6 @@ struct task_struct *_current_task;
 
 char command_line[512];
 char saved_command_line[512];
-char console_device[16];
-
-char console_default[] = "CONSOLE=/dev/ttyS0";
 
 /* setup some dummy routines */
 static void dummy_waitbut(void)
@@ -112,6 +108,9 @@ void (*mach_power_off)( void ) = NULL;
 #if defined(CONFIG_M5206e)
 	#define	CPU "COLDFIRE(m5206e)"
 #endif
+#if defined(CONFIG_M5272)
+	#define CPU "COLDFIRE(m5272)"
+#endif
 #if defined(CONFIG_M5307)
 	#define	CPU "COLDFIRE(m5307)"
 #endif
@@ -122,22 +121,6 @@ void (*mach_power_off)( void ) = NULL;
 	#define	CPU "UNKOWN"
 #endif
 
-
-/*
- * Tell the kernel about any console devices we may have,  the user
- * can use bootargs select which one they get.  The default will be
- * the console you register first.
- */
-
-void setup_console(void)
-{
-#ifdef CONFIG_COLDFIRE
-	extern struct console mcfrs_console0, mcfrs_console1;
-	register_console(&mcfrs_console0);
-	register_console(&mcfrs_console1);
-#endif /* CONFIG_COLDFIRE */
-}
-
 #if defined( CONFIG_TELOS) || defined( CONFIG_UCSIMM ) || (defined( CONFIG_PILOT ) && defined( CONFIG_M68328 ))
 #define CAT_ROMARRAY
 #endif
@@ -145,8 +128,7 @@ void setup_console(void)
 extern int _stext, _etext, _sdata, _edata, _sbss, _ebss, _end;
 extern int _ramstart, _ramend;
 
-void setup_arch(char **cmdline_p,
-		unsigned long * memory_start_p, unsigned long * memory_end_p)
+void setup_arch(char **cmdline_p)
 {
 	int bootmap_size;
 
@@ -164,13 +146,8 @@ void setup_arch(char **cmdline_p,
 	flash_probe();
 #endif
 
-#ifdef CONFIG_COLDFIRE
 	memory_start = PAGE_ALIGN(_ramstart);
 	memory_end = _ramend; /* by now the stack is part of the init task */
-#else
-	memory_start = &_end;
-	memory_end = &_ramend - 4096; /* <- stack area, DAVIDM drop 4096 */
-#endif
 
 	init_mm.start_code = (unsigned long) &_stext;
 	init_mm.end_code = (unsigned long) &_etext;
@@ -179,7 +156,6 @@ void setup_arch(char **cmdline_p,
 
 	config_BSP(&command_line[0], sizeof(command_line));
 
-	setup_console();
 	printk("\x0F\r\n\nuClinux/" CPU "\n");
 #ifdef CONFIG_COLDFIRE
 	printk("COLDFIRE port done by Greg Ungerer, gerg@lineo.com\n");
@@ -243,8 +219,6 @@ void setup_arch(char **cmdline_p,
 	if (strlen(*cmdline_p)) 
 		printk("Command line: '%s'\n", *cmdline_p);
 #endif
-	*memory_start_p = memory_start;
-	*memory_end_p = memory_end;
 	/*rom_length = (unsigned long)&_flashend - (unsigned long)&_romvec;*/
 	
 #ifdef CONFIG_CONSOLE
@@ -290,7 +264,7 @@ int get_cpuinfo(char * buffer)
     fpu = "none";
 
 #ifdef CONFIG_COLDFIRE
-    clockfreq = (loops_per_jiffy*HZ)*7/2;
+    clockfreq = (loops_per_jiffy*HZ)*3;
 #else
     clockfreq = (loops_per_jiffy*HZ)*16;
 #endif

@@ -1,5 +1,5 @@
 /*
- * $Id: mtdcore.c,v 1.27 2000/12/10 01:10:09 dwmw2 Exp $
+ * $Id: mtdcore.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
  *
  * Core registration and callback routines for MTD
  * drivers and users.

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 1997/12/15 20:08:56 ecd Exp $
+# $Id: Makefile,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
 # Makefile for the Sparc64 boot stuff.
 #
 # Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

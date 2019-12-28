@@ -2,7 +2,7 @@
 #define __LINUX_UHCI_H
 
 /*
-   $Id: usb-uhci.h,v 1.55 2000/05/13 12:50:30 acher Exp $
+   $Id: usb-uhci.h,v 1.1.1.1 2001/02/22 14:58:43 serg Exp $
  */
 #define MODNAME "usb-uhci"
 #define UHCI_LATENCY_TIMER 0

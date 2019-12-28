@@ -1,4 +1,4 @@
-/* $Id: serial.h,v 1.9 2000/02/16 01:45:55 ralf Exp $
+/* $Id: serial.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive

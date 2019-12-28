@@ -1,4 +1,4 @@
-/* $Id: eicon_io.c,v 1.13 2000/05/07 08:51:04 armin Exp $
+/* $Id: eicon_io.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  *
  * ISDN low-level module for Eicon active ISDN-Cards.
  * Code for communicating with hardware.

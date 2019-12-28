@@ -37,8 +37,8 @@
  *
  ***************************************************************************/
 
-static char ixj_c_rcsid[] = "$Id: ixj.c,v 3.31 2000/04/14 19:24:47 jaugenst Exp $";
-static char ixj_c_revision[] = "$Revision: 3.31 $";
+static char ixj_c_rcsid[] = "$Id: ixj.c,v 1.1.1.1 2001/02/22 14:58:43 serg Exp $";
+static char ixj_c_revision[] = "$Revision: 1.1.1.1 $";
 
 //#define PERFMON_STATS
 #define IXJDEBUG 0

@@ -1,7 +1,7 @@
 /*
- * $Source: /homes/cvs/ftape-stacked/ftape/compressor/lzrw3.c,v $
- * $Revision: 1.1 $
- * $Date: 1997/10/05 19:12:29 $
+ * $Source: /home/cvs/PSXLinux/drivers/char/ftape/compressor/lzrw3.c,v $
+ * $Revision: 1.1.1.1 $
+ * $Date: 2001/02/22 14:58:23 $
  *
  * Implementation of Ross Williams lzrw3 algorithm. Adaption for zftape.
  *

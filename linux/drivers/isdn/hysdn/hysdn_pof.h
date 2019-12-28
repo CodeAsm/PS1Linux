@@ -1,4 +1,4 @@
-/* $Id: hysdn_pof.h,v 1.2 2000/11/13 22:51:47 kai Exp $
+/* $Id: hysdn_pof.h,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
 
  * Linux driver for HYSDN cards, definitions used for handling pof-files.
  * written by Werner Cornelius (werner@titro.de) for Hypercope GmbH

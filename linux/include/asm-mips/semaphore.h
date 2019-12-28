@@ -1,4 +1,4 @@
-/* $Id: semaphore.h,v 1.12 1999/12/08 22:05:10 harald Exp $
+/* $Id: semaphore.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  *
  * SMP- and interrupt-safe semaphores..
  *

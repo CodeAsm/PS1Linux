@@ -54,8 +54,8 @@ EXPORT_SYMBOL(strrchr);
 EXPORT_SYMBOL(strstr);
 EXPORT_SYMBOL(local_irq_count);
 EXPORT_SYMBOL(local_bh_count);
-EXPORT_SYMBOL(enable_irq);
-EXPORT_SYMBOL(disable_irq);
+EXPORT_SYMBOL(mach_enable_irq);
+EXPORT_SYMBOL(mach_disable_irq);
 EXPORT_SYMBOL(kernel_thread);
 #ifdef CONFIG_VME
 EXPORT_SYMBOL(vme_brdtype);

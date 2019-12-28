@@ -1,4 +1,4 @@
-/* $Id: byteorder.h,v 1.8 1998/11/02 09:29:32 ralf Exp $
+/* $Id: byteorder.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive

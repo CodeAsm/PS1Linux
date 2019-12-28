@@ -1,4 +1,4 @@
-/* $Id: fpu.c,v 1.29 2000/03/22 13:42:10 gniibe Exp $
+/* $Id: fpu.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  *
  * linux/arch/sh/kernel/fpu.c
  *

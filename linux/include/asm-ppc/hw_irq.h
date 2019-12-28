@@ -1,5 +1,5 @@
 /*
- * $Id: irq_control.h,v 1.8 1999/09/15 23:58:48 cort Exp $
+ * $Id: hw_irq.h,v 1.1.1.1 2001/02/22 14:58:58 serg Exp $
  *
  * Copyright (C) 1999 Cort Dougan <cort@cs.nmt.edu>
  */

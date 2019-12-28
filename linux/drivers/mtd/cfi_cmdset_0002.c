@@ -6,7 +6,7 @@
  *
  * This code is GPL
  *
- * $Id: cfi_cmdset_0002.c,v 1.1 2000/07/11 12:32:09 dwmw2 Exp $
+ * $Id: cfi_cmdset_0002.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
  *
  */
 

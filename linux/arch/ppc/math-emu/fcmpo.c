@@ -1,4 +1,4 @@
-/* $Id: fcmpo.c,v 1.1 1999/08/23 18:59:26 cort Exp $
+/* $Id: fcmpo.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  */
 
 #include <linux/types.h>

@@ -1,4 +1,4 @@
-/* $Id: umul.S,v 1.4 1996/09/30 02:22:39 davem Exp $
+/* $Id: umul.S,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * umul.S:      This routine was taken from glibc-1.09 and is covered
  *              by the GNU Library General Public License Version 2.
  */

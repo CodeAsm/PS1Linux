@@ -113,6 +113,11 @@ static int __init console_setup(char *str)
 
 static int __init CONSOLE_setup(char *str)
 {
+	/*
+	 *	2.4 does not want the /dev/ options on the front
+	 */
+	if (strncmp(str, "/dev/", 5) == 0)
+		return(console_setup(str + 5));
 	return(console_setup(str));
 }
 

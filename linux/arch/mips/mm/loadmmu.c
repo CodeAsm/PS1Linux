@@ -3,7 +3,7 @@
  *
  * Copyright (C) 1996 David S. Miller (dm@engr.sgi.com)
  *
- * $Id: loadmmu.c,v 1.17 2000/03/13 10:33:05 raiko Exp $
+ * $Id: loadmmu.c,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  */
 #include <linux/config.h>
 #include <linux/init.h>

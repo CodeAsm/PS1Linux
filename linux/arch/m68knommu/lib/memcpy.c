@@ -1,7 +1,10 @@
+
 #include <linux/types.h>
+#include <linux/autoconf.h>
 
 void * memcpy(void * to, const void * from, size_t n)
 {
+#ifdef CONFIG_COLDFIRE
   void *xto = to;
   size_t temp;
 
@@ -50,4 +53,10 @@ void * memcpy(void * to, const void * from, size_t n)
       *cto = *cfrom;
     }
   return xto;
+#else
+	const char *c_from = from;
+	char *c_to = to;
+	while (n-- > 0)
+		*c_to++ = *c_from++;
+#endif
 }

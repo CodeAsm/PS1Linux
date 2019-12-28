@@ -35,17 +35,13 @@
 #include <asm/system.h>
 #include <asm/machdep.h>
 #include <asm/shglcore.h>
+#include <asm/virtconvert.h>
 
-#ifndef PAGE_OFFSET
-#define PAGE_OFFSET 0
-#endif
+#undef DEBUG
 
 static unsigned long totalram_pages = 0;
 
 extern void die_if_kernel(char *,struct pt_regs *,long);
-#if DAVIDM /* this seems to be gone */
-extern void show_net_buffers(void);
-#endif
 
 extern void free_initmem(void);
 
@@ -98,11 +94,6 @@ void show_mem(void)
     printk("%d pages nonshared\n",nonshared);
     printk("%d pages shared\n",shared);
     show_buffers();
-#if DAVIDM /* this seems to be gone */
-#ifdef CONFIG_NET
-    show_net_buffers();
-#endif
-#endif
 }
 
 extern unsigned long memory_start;

@@ -9,7 +9,7 @@
  *	Al Longyear <longyear@netcom.com>, Paul Mackerras <Paul.Mackerras@cs.anu.edu.au>
  *
  * Original release 01/11/99
- * $Id: n_hdlc.c,v 3.2 2000/11/06 22:34:38 paul Exp $
+ * $Id: n_hdlc.c,v 1.1.1.1 2001/02/22 14:58:14 serg Exp $
  *
  * This code is released under the GNU General Public License (GPL)
  *

@@ -1,4 +1,4 @@
-/* $Id: icn.h,v 1.30 2000/11/13 22:51:48 kai Exp $
+/* $Id: icn.h,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
 
  * ISDN lowlevel-module for the ICN active ISDN-Card.
  *

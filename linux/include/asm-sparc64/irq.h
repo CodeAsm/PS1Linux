@@ -1,4 +1,4 @@
-/* $Id: irq.h,v 1.19 2000/06/26 19:40:27 davem Exp $
+/* $Id: irq.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * irq.h: IRQ registers on the 64-bit Sparc.
  *
  * Copyright (C) 1996 David S. Miller (davem@caip.rutgers.edu)

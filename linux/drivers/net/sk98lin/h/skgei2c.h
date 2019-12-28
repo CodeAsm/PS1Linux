@@ -2,8 +2,8 @@
  *
  * Name:	skgei2c.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.17 $
- * Date:	$Date: 1999/11/22 13:55:25 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Special genesis defines for I2C
  *		(taken from Monalisa (taken from Concentrator))
  *
@@ -28,6 +28,9 @@
  * History:
  *
  *	$Log: skgei2c.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.17  1999/11/22 13:55:25  cgoos
  *	Changed license header to GPL.
  *	

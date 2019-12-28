@@ -7,7 +7,7 @@
  *	Andi Kleen		<ak@muc.de>
  *	Alexey Kuznetsov	<kuznet@ms2.inr.ac.ru>
  *
- *	$Id: exthdrs.c,v 1.10 2000/01/09 02:19:55 davem Exp $
+ *	$Id: exthdrs.c,v 1.1.1.1 2001/02/22 14:59:03 serg Exp $
  *
  *	This program is free software; you can redistribute it and/or
  *      modify it under the terms of the GNU General Public License

@@ -2,7 +2,7 @@
 ** *************************************************************************
 **
 **
-**     R C L A N M T L . H             $Revision: 6 $
+**     R C L A N M T L . H             $Revision: 1.1.1.1 $
 **
 **
 **  RedCreek I2O LAN Message Transport Layer header file.

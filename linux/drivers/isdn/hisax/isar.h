@@ -1,4 +1,4 @@
-/* $Id: isar.h,v 1.9 2000/06/26 08:59:13 keil Exp $
+/* $Id: isar.h,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * isar.h   ISAR (Siemens PSB 7110) specific defines
  *

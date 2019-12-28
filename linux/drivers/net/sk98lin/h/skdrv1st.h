@@ -2,8 +2,8 @@
  *
  * Name:	skdrv1st.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.8 $
- * Date:	$Date: 2000/02/21 12:19:18 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	First header file for driver and all other modules
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skdrv1st.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.8  2000/02/21 12:19:18  cgoos
  *	Added default for SK_DEBUG_CHKMOD/_CHKCAT
  *	

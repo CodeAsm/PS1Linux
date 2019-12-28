@@ -7,7 +7,7 @@
  */
 
 /*
-    $Header: /usr/src/linux/include/linux/RCS/scsi.h,v 1.3 1993/09/24 12:20:33 drew Exp $
+    $Header: /home/cvs/PSXLinux/include/scsi/scsi.h,v 1.1.1.1 2001/02/22 14:59:01 serg Exp $
 
     For documentation on the OPCODES, MESSAGES, and SENSE values,
     please consult the SCSI standard.

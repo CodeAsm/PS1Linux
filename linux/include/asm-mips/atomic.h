@@ -11,7 +11,7 @@
  *
  * Copyright (C) 1996, 1997 by Ralf Baechle
  *
- * $Id: atomic.h,v 1.6 1999/07/26 19:42:42 harald Exp $
+ * $Id: atomic.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  */
 #ifndef __ASM_ATOMIC_H
 #define __ASM_ATOMIC_H

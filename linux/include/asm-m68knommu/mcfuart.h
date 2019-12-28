@@ -18,7 +18,10 @@
  *	Define the base address of the UARTS within the MBAR address
  *	space.
  */
-#if defined(CONFIG_M5204) || defined(CONFIG_M5206) || defined(CONFIG_M5206e)
+#if defined(CONFIG_M5272)
+#define	MCFUART_BASE1		0x100		/* Base address of UART1 */
+#define	MCFUART_BASE2		0x140		/* Base address of UART2 */
+#elif defined(CONFIG_M5204) || defined(CONFIG_M5206) || defined(CONFIG_M5206e)
 #if defined(CONFIG_NETtel)
 #define	MCFUART_BASE1		0x180		/* Base address of UART1 */
 #define	MCFUART_BASE2		0x140		/* Base address of UART2 */

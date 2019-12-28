@@ -1,4 +1,4 @@
-/* $Id: cert.c,v 2.3 2000/06/26 08:59:12 keil Exp $
+/* $Id: cert.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * Author       Karsten Keil (keil@isdn4linux.de)
  *

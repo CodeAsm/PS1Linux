@@ -17,10 +17,13 @@
 /* Renamed and updated to 1.3.x by Michael Griffith <grif@cs.ucr.edu> */
 
 /*
- * $Date: 1995/09/22 02:32:56 $
- * $Revision: 0.5 $
+ * $Date: 2001/02/22 14:58:41 $
+ * $Revision: 1.1.1.1 $
  *
- * $Log: isp1020.h,v $
+ * $Log: qlogicisp.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:41  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 0.5  1995/09/22  02:32:56  root
  * do auto request sense
  *

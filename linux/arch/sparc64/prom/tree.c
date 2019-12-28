@@ -1,4 +1,4 @@
-/* $Id: tree.c,v 1.10 1998/01/10 22:39:00 ecd Exp $
+/* $Id: tree.c,v 1.1.1.1 2001/02/22 14:58:12 serg Exp $
  * tree.c: Basic device tree traversal/scanning for the Linux
  *         prom library.
  *

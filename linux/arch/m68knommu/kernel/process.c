@@ -188,7 +188,12 @@ void flush_thread(void)
 
 asmlinkage int m68k_fork(struct pt_regs *regs)
 {
+#ifdef NO_MM
+	/* fork almost works,  enough to trick you into looking elsewhere :-( */
+	return(-EINVAL);
+#else
 	return do_fork(SIGCHLD, rdusp(), regs, 0);
+#endif
 }
 
 asmlinkage int m68k_vfork(struct pt_regs *regs)

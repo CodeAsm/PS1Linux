@@ -1,6 +1,6 @@
 // -*- mode: cpp; mode: fold -*-
 // Description                                                          /*{{{*/
-// $Id: mapped.h,v 1.2 2000/03/14 17:13:12 dwmw2 Exp $
+// $Id: mapped.h,v 1.1.1.1 2001/02/22 14:59:01 serg Exp $
 /* ######################################################################
 
    Memory Mapped  MTD Routines

@@ -1,4 +1,4 @@
-/* $Id: vino.c,v 1.5 1999/10/09 00:01:14 ralf Exp $
+/* $Id: vino.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
  * drivers/char/vino.c
  *
  * (incomplete) Driver for the Vino Video input system found in SGI Indys.

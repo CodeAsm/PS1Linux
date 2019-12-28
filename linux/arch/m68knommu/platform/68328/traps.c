@@ -42,11 +42,11 @@ static irq_node_t nodes[NUM_IRQ_NODES];
 #if defined( CONFIG_M68328 ) || defined ( CONFIG_M68EZ328 )
  
 asm ("
-	.global _start, _ramend
+	.global _start, __ramend
 	.section .romvec
  
 e_vectors:
-	.long _ramend-4, _start, buserr, trap, trap, trap, trap, trap
+	.long __ramend-4, _start, buserr, trap, trap, trap, trap, trap
 	.long trap, trap, trap, trap, trap, trap, trap, trap
 	.long trap, trap, trap, trap, trap, trap, trap, trap
 	.long trap, trap, trap, trap
@@ -112,7 +112,7 @@ int request_irq(unsigned int irq, void (*handler)(int, void *, struct pt_regs *)
                 unsigned long flags, const char *devname, void *dev_id)
 {
 	if (irq)
-		return mach_request_irq(IRQ_IDX(irq), handler, flags, devname, dev_id);
+		return mach_request_irq(irq, handler, flags, devname, dev_id);
 
 	if (irq < IRQ1 || irq > IRQ7) {
 		printk("%s: Incorrect IRQ %d from %s\n", __FUNCTION__, irq, devname);
@@ -141,7 +141,7 @@ int request_irq(unsigned int irq, void (*handler)(int, void *, struct pt_regs *)
 void free_irq(unsigned int irq, void *dev_id)
 {
 	if (irq) {
-		mach_free_irq(IRQ_IDX(irq), dev_id);
+		mach_free_irq(irq, dev_id);
 		return;
 	}
 
@@ -174,18 +174,6 @@ unsigned long probe_irq_on (void)
 int probe_irq_off (unsigned long irqs)
 {
 	return 0;
-}
-
-void enable_irq(unsigned int irq)
-{
-	if ((irq) && mach_enable_irq)
-		mach_enable_irq(IRQ_IDX(irq));
-}
-
-void disable_irq(unsigned int irq)
-{
-	if ((irq) && mach_disable_irq)
-		mach_disable_irq(IRQ_IDX(irq));
 }
 
 asmlinkage void process_int(unsigned long vec, struct pt_regs *fp)

@@ -1,11 +1,14 @@
 /*
- * $Id: t1isa.c,v 1.16 2000/11/23 20:45:14 kai Exp $
+ * $Id: t1isa.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  * 
  * Module for AVM T1 HEMA-card.
  * 
  * (c) Copyright 1999 by Carsten Paeth (calle@calle.in-berlin.de)
  * 
  * $Log: t1isa.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:24  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.16  2000/11/23 20:45:14  kai
  * fixed module_init/exit stuff
  * Note: compiled-in kernel doesn't work pre 2.2.18 anymore.
@@ -104,7 +107,7 @@
 #include "capilli.h"
 #include "avmcard.h"
 
-static char *revision = "$Revision: 1.16 $";
+static char *revision = "$Revision: 1.1.1.1 $";
 
 /* ------------------------------------------------------------- */
 

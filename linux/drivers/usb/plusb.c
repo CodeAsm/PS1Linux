@@ -30,7 +30,7 @@
  *  OHCI should be faster.  Increase the MTU for faster transfers of large
  *  files (up-to 800Kbytes/second).  (16384 is a good size)
  *
- *  $Id: plusb.c,v 1.18 2000/02/14 10:38:58 fliegl Exp $
+ *  $Id: plusb.c,v 1.1.1.1 2001/02/22 14:58:43 serg Exp $
  *
  *  Changelog:
  *

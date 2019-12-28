@@ -2,8 +2,8 @@
  *
  * Name:	skvpd.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.27 $
- * Date:	$Date: 2000/08/10 11:29:06 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Shared software to read and write VPD data
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skvpd.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.27  2000/08/10 11:29:06  rassmann
  *	Editorial changes.
  *	Preserving 32-bit alignment in structs for the adapter context.
@@ -130,7 +133,7 @@
 	Please refer skvpd.txt for infomation how to include this module
  */
 static const char SysKonnectFileId[] =
-	"@(#)$Id: skvpd.c,v 1.27 2000/08/10 11:29:06 rassmann Exp $ (C) SK";
+	"@(#)$Id: skvpd.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $ (C) SK";
 
 #include "h/skdrv1st.h"
 #include "h/sktypes.h"

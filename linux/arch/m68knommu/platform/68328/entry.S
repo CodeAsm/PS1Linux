@@ -31,13 +31,18 @@
 #include <linux/sys.h>
 #include <linux/config.h>
 #include <linux/linkage.h>
-#include "entry.h" /* FIXME */
+#include <asm/entry.h>
 #include <asm/errno.h>
 #include <asm/setup.h>
 #include <asm/segment.h>
 #include <asm/traps.h>
 
 #include "m68k_defs.h"
+
+#define IMMED #
+#define DBG_PUTC(x) moveb IMMED x,0xfffff907; \
+					moveb IMMED '\r',0xfffff907; \
+					moveb IMMED '\n',0xfffff907
 
 .globl SYMBOL_NAME(system_call), SYMBOL_NAME(buserr), SYMBOL_NAME(trap)
 .globl SYMBOL_NAME(resume), SYMBOL_NAME(ret_from_exception)
@@ -68,7 +73,8 @@ ENTRY(trap)
 
 ENTRY(reschedule)
 	/* save top of frame*/
-	movel	%sp,%curptr@(TASK_THREAD+THREAD_ESP0)
+	movel   SYMBOL_NAME(_current_task),%a2
+	movel	%sp,%a2@(TASK_THREAD+THREAD_ESP0)
 
 	pea	SYMBOL_NAME(ret_from_exception)
 	jmp	SYMBOL_NAME(schedule)
@@ -122,9 +128,10 @@ ENTRY(system_call)
 
 	GET_CURRENT(%d1)
 	/* save top of frame*/
-	movel	%sp,%curptr@(TASK_THREAD+THREAD_ESP0)
+	movel   SYMBOL_NAME(_current_task),%a2
+	movel	%sp,%a2@(TASK_THREAD+THREAD_ESP0)
 
-	btst	#PF_TRACESYS_BIT,%curptr@(TASK_FLAGS+PF_TRACESYS_OFF)
+	btst	#PF_TRACESYS_BIT,%a2@(TASK_FLAGS+PF_TRACESYS_OFF)
 	jne	do_trace
 	cmpl	#NR_syscalls,%d0
 	jcc	badsys
@@ -132,7 +139,8 @@ ENTRY(system_call)
 	lsl	#2,%d0
 #if 1
 	lea	SYMBOL_NAME(sys_call_table),%a0
-	jbsr	%a0@(%d0)
+	movel	%a0@(%d0), %a0
+	jbsr	%a0@
 #else
 	jbsr	SYMBOL_NAME(sys_call_table)@(%d0)
 #endif
@@ -145,20 +153,21 @@ SYMBOL_NAME_LABEL(ret_from_exception)
 	/* kernel stack, otherwise stack overflow can occur during*/
 	/* heavy interupt load*/
 	andw	#ALLOWINT,%sr
-	tstl	%curptr@(TASK_NEEDRESCHED)
+	movel   SYMBOL_NAME(_current_task),%a2
+	tstl	%a2@(TASK_NEEDRESCHED)
 	jne	SYMBOL_NAME(reschedule)
 #if 0
-	cmpl	#SYMBOL_NAME(task),%curptr	/* task[0] cannot have signals*/
+	cmpl	#SYMBOL_NAME(task),%a2	/* task[0] cannot have signals*/
 	jeq	2f
 #endif
 					/* check for delayed trace*/
-	bclr	#PF_DTRACE_BIT,%curptr@(TASK_FLAGS+PF_DTRACE_OFF)
+	bclr	#PF_DTRACE_BIT,%a2@(TASK_FLAGS+PF_DTRACE_OFF)
 	jne	do_delayed_trace
 5:
-	tstl	%curptr@(TASK_STATE)	/* state*/
+	tstl	%a2@(TASK_STATE)	/* state*/
 	jne	SYMBOL_NAME(reschedule)
 
-	tstl	%curptr@(TASK_SIGPENDING)
+	tstl	%a2@(TASK_SIGPENDING)
 	jne	Lsignal_return
 2:	RESTORE_ALL
 
@@ -176,7 +185,7 @@ Lsignal_return:
 do_delayed_trace:
 	bclr	#7,%sp@(PT_SR)		/* clear trace bit in SR*/
 	pea	1			/* send SIGTRAP*/
-	movel	%curptr,%sp@-
+	movel	%a2,%sp@-
 	pea	LSIGTRAP
 	jbsr	SYMBOL_NAME(send_sig)
 	addql	#8,%sp
@@ -462,23 +471,24 @@ SYMBOL_NAME_LABEL(resume)
 	/* save fs (sfc,%dfc) (may be pointing to kernel memory) */
 	movec	%sfc,%d0
 	movew	%d0,%a0@(TASK_THREAD+THREAD_FS)
+#endif
+
+	/* save non-scratch registers on stack */
+	SAVE_SWITCH_STACK
 
 	/* save usp */
 	/* it is better to use a movel here instead of a movew 8*) */
-	movec	%usp,%d0
-	movel	%d0,%a0@(TASK_THREAD+THREAD_USP)
-#endif
-	/* save non-scratch registers on stack */
-	SAVE_SWITCH_STACK
+	movel	%usp,%a2
+	movel	%a2,%a0@(TASK_THREAD+THREAD_USP)
 
 	/* save current kernel stack pointer */
 	movel	%sp,%a0@(TASK_THREAD+THREAD_KSP)
 
 	/* Return previous task in %d1 */
-	movel	%curptr,%d1
+	movel   SYMBOL_NAME(_current_task),%d1
 
 	/* switch to new task (a1 contains new task) */
-	movel	%a1,%curptr
+	movel   %a1, SYMBOL_NAME(_current_task)
 
 	/* restore the kernel stack pointer */
 	movel	%a1@(TASK_THREAD+THREAD_KSP),%sp
@@ -489,6 +499,7 @@ SYMBOL_NAME_LABEL(resume)
 	/* restore user stack pointer */
 	movel	%a1@(TASK_THREAD+THREAD_USP),%a0
 	movel	%a0,%usp
+
 #ifdef USE_SFC_DFC
 	/* restore fs (sfc,%dfc) */
 	movew	%a1@(TASK_THREAD+THREAD_FS),%a0
@@ -499,6 +510,7 @@ SYMBOL_NAME_LABEL(resume)
 	movew	%a1@(TASK_THREAD+THREAD_SR),%sr
 
 	rts
+
 
 .data
 ALIGN

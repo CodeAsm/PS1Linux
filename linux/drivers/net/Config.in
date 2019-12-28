@@ -169,6 +169,7 @@ if [ "$CONFIG_NET_ETHERNET" = "y" ]; then
       tristate '    D-Link DE600 pocket adapter support' CONFIG_DE600
       tristate '    D-Link DE620 pocket adapter support' CONFIG_DE620
    fi
+   bool 'FEC ethernet controller (of ColdFire 5272)' CONFIG_FEC
 fi
 
 endmenu

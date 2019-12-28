@@ -2,8 +2,8 @@
  *
  * Name:	skgepnmi.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.78 $
- * Date:	$Date: 2000/09/12 10:44:58 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Private Network Management Interface
  *
  ****************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skgepnmi.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.78  2000/09/12 10:44:58  cgoos
  *	Fixed SK_PNMI_STORE_U32 calls with typecasted argument.
  *	
@@ -332,7 +335,7 @@
 
 
 static const char SysKonnectFileId[] =
-	"@(#) $Id: skgepnmi.c,v 1.78 2000/09/12 10:44:58 cgoos Exp $"
+	"@(#) $Id: skgepnmi.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $"
 	" (C) SysKonnect.";
 
 #include "h/skdrv1st.h"

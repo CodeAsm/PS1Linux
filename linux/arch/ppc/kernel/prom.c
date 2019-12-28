@@ -1,5 +1,5 @@
 /*
- * $Id: prom.c,v 1.79 1999/10/08 01:56:32 paulus Exp $
+ * $Id: prom.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  * Procedures for interfacing to the Open Firmware PROM on
  * Power Macintosh computers.

@@ -2,8 +2,8 @@
  *
  * Name:	skrlmt.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.49 $
- * Date:	$Date: 1999/11/22 13:38:02 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Manage links on SK-NET Adapters, esp. redundant ones.
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skrlmt.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.49  1999/11/22 13:38:02  cgoos
  *	Changed license header to GPL.
  *	Added initialization to some variables to avoid compiler warnings.
@@ -218,7 +221,7 @@
 
 #ifndef	lint
 static const char SysKonnectFileId[] =
-	"@(#) $Id: skrlmt.c,v 1.49 1999/11/22 13:38:02 cgoos Exp $ (C) SysKonnect.";
+	"@(#) $Id: skrlmt.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $ (C) SysKonnect.";
 #endif	/* !defined(lint) */
 
 #define __SKRLMT_C

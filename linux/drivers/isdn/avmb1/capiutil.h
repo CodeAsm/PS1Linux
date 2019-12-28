@@ -1,5 +1,5 @@
 /*
- * $Id: capiutil.h,v 1.5 2000/03/03 15:50:42 calle Exp $
+ * $Id: capiutil.h,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  * 
  * CAPI 2.0 defines & types
  * 
@@ -7,6 +7,9 @@
  * Rewritten for Linux 1996 by Carsten Paeth (calle@calle.in-berlin.de)
  * 
  * $Log: capiutil.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:24  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.5  2000/03/03 15:50:42  calle
  * - kernel CAPI:
  *   - Changed parameter "param" in capi_signal from __u32 to void *.

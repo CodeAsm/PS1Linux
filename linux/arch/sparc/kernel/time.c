@@ -1,4 +1,4 @@
-/* $Id: time.c,v 1.57 2000/09/16 07:33:45 davem Exp $
+/* $Id: time.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * linux/arch/sparc/kernel/time.c
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

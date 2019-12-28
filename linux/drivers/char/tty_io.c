@@ -152,6 +152,14 @@ extern void rs285_console_init(void);
 extern void sa1100_rs_console_init(void);
 extern void sgi_serial_console_init(void);
 extern void sci_console_init(void);
+extern void m68328_console_init(void);
+extern void mcfrs_console_init(void);
+//#ifdef CONFIG_PS_SIO_CONSOLE
+//extern void ps_sio_console_init(void);
+//#endif
+//#ifdef CONFIG_PS_GPU_CONSOLE
+//extern void ps_gpu_console_init(void);
+//#endif
 
 #ifndef MIN
 #define MIN(a,b)	((a) < (b) ? (a) : (b))
@@ -2203,6 +2211,18 @@ void __init console_init(void)
 #ifdef CONFIG_SERIAL_AMBA_CONSOLE
 	ambauart_console_init();
 #endif
+#ifdef CONFIG_68328_SERIAL
+	m68328_console_init();
+#endif
+#ifdef CONFIG_COLDFIRE
+	mcfrs_console_init();
+#endif
+//#ifdef CONFIG_PS_SIO_CONSOLE
+//	ps_sio_console_init();
+//#endif
+//#ifdef CONFIG_PS_GPU_CONSOLE
+//	ps_gpu_console_init();
+//#endif
 }
 
 static struct tty_driver dev_tty_driver, dev_syscons_driver;

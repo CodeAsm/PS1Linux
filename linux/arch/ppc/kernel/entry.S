@@ -1,7 +1,7 @@
 /*
  *  arch/ppc/kernel/entry.S
  *
- *  $Id: entry.S,v 1.4 1999/09/14 05:18:14 dmalek Exp $
+ *  $Id: entry.S,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  *  PowerPC version 
  *    Copyright (C) 1995-1996 Gary Thomas (gdt@linuxppc.org)

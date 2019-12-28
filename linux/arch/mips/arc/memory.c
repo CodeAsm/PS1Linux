@@ -4,7 +4,7 @@
  *
  * Copyright (C) 1996 David S. Miller (dm@engr.sgi.com)
  *
- * $Id: memory.c,v 1.10 2000/01/27 23:21:57 ralf Exp $
+ * $Id: memory.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  */
 #include <linux/init.h>
 #include <linux/kernel.h>

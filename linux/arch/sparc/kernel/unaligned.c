@@ -1,4 +1,4 @@
-/* $Id: unaligned.c,v 1.22 2000/04/29 08:05:21 anton Exp $
+/* $Id: unaligned.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * unaligned.c: Unaligned load/store trap handling with special
  *              cases for the kernel to do them more quickly.
  *

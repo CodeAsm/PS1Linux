@@ -4,7 +4,7 @@
  * Copyright (C) 1996 David S. Miller (dm@engr.sgi.com)
  * Copyright (C) 1999 Andrew R. Baker (andrewb@uab.edu) - Indigo2 changes
  *
- * $Id: indy_mc.c,v 1.7 1999/12/04 03:59:00 ralf Exp $
+ * $Id: indy_mc.c,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  */
 #include <linux/init.h>
 #include <linux/kernel.h>

@@ -1,11 +1,14 @@
 /*
- * $Id: capifs.c,v 1.14.6.1 2000/11/28 12:02:45 kai Exp $
+ * $Id: capifs.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  * 
  * (c) Copyright 2000 by Carsten Paeth (calle@calle.de)
  *
  * Heavily based on devpts filesystem from H. Peter Anvin
  * 
  * $Log: capifs.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:24  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.14.6.1  2000/11/28 12:02:45  kai
  * MODULE_DEVICE_TABLE for 2.4
  *
@@ -93,7 +96,7 @@
 
 MODULE_AUTHOR("Carsten Paeth <calle@calle.de>");
 
-static char *revision = "$Revision: 1.14.6.1 $";
+static char *revision = "$Revision: 1.1.1.1 $";
 
 struct capifs_ncci {
 	struct inode *inode;

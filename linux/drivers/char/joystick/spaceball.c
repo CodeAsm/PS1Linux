@@ -1,5 +1,5 @@
 /*
- * $Id: spaceball.c,v 1.7 2000/06/24 11:55:40 vojtech Exp $
+ * $Id: spaceball.c,v 1.1.1.1 2001/02/22 14:58:23 serg Exp $
  *
  *  Copyright (c) 1999-2000 Vojtech Pavlik
  *

@@ -1,0 +1,28 @@
+	Linux kernel release 2.4.xx for PlayStation (PSX) alpha
+
+  It is distributed under the GNU General Public License - see the
+  accompanying COPYING file for more details. 
+
+(c) 2001 Blockman Trading S.R.O
+
+Software requirements:
+    egcs-1.1.2-1 MIPS cross compiler (see Linux/MIPS HOWTO to build proper binaries).
+    binutils-2.9.5-1 MIPS (see Linux/MIPS HOWTO to build proper binaries).
+    Linux/MIPS HOWTO (URL: http://oss.sgi.com/mips/mips-howto.html).
+    Serial Boot for PSX (for transfer kernel to PSX).
+
+Hardware requirements:
+     PSX 
+     bootable disk or Serial Boot for PSX with cable. 
+     
+Authors:
+    Makarenkov S., Nazarov S., Parmukhin K.
+    
+Note. Don't forget to visit www.runix.ru for future releases and...
+    PlayStation 2 version coming soooon.
+    
+All product names mentioned herein may be the trademarks or registered trademarks
+of their respective owners.
+
+	
+

@@ -1,4 +1,4 @@
-/* $Id: entry64.S,v 1.6 2000/01/12 02:59:26 davem Exp $
+/* $Id: entry64.S,v 1.1.1.1 2001/02/22 14:58:12 serg Exp $
  * entry64.S:  Solaris syscall emulation entry point.
  *
  * Copyright (C) 1996,1997,1998 Jakub Jelinek   (jj@sunsite.mff.cuni.cz)

@@ -1,5 +1,5 @@
 /*
- * $Id: input.c,v 1.7 2000/05/28 17:31:36 vojtech Exp $
+ * $Id: input.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  *
  *  Copyright (c) 1999-2000 Vojtech Pavlik
  *

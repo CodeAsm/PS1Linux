@@ -1,11 +1,14 @@
 /*
- * $Id: b1dma.c,v 1.11 2000/11/19 17:02:47 kai Exp $
+ * $Id: b1dma.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  * 
  * Common module for AVM B1 cards that support dma with AMCC
  * 
  * (c) Copyright 2000 by Carsten Paeth (calle@calle.in-berlin.de)
  * 
  * $Log: b1dma.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:24  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.11  2000/11/19 17:02:47  kai
  * compatibility cleanup - part 3
  *
@@ -62,7 +65,7 @@
 #include "capicmd.h"
 #include "capiutil.h"
 
-static char *revision = "$Revision: 1.11 $";
+static char *revision = "$Revision: 1.1.1.1 $";
 
 /* ------------------------------------------------------------- */
 

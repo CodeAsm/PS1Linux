@@ -1,7 +1,7 @@
 #ifndef	__ASM_SH_KEYBOARD_H
 #define	__ASM_SH_KEYBOARD_H
 /*
- *	$Id: keyboard.h,v 1.1 2000/06/10 21:45:48 yaegashi Exp $
+ *	$Id: keyboard.h,v 1.1.1.1 2001/02/22 14:58:58 serg Exp $
  */
 
 #include <asm/machvec.h>

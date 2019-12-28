@@ -6,7 +6,7 @@
  *                     Acpi_rs_fixed_io_stream
  *                     Acpi_rs_dma_resource
  *                     Acpi_rs_dma_stream
- *              $Revision: 10 $
+ *              $Revision: 1.1.1.1 $
  *
  ******************************************************************************/
 

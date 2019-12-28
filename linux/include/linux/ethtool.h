@@ -1,4 +1,4 @@
-/* $Id: ethtool.h,v 1.2 2000/11/12 10:05:57 davem Exp $
+/* $Id: ethtool.h,v 1.1.1.1 2001/02/22 14:59:00 serg Exp $
  * ethtool.h: Defines for Linux ethtool.
  *
  * Copyright (C) 1998 David S. Miller (davem@redhat.com)

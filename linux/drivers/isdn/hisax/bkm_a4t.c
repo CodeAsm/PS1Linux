@@ -1,4 +1,4 @@
-/* $Id: bkm_a4t.c,v 1.13.6.2 2000/11/29 16:00:14 kai Exp $
+/* $Id: bkm_a4t.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  * bkm_a4t.c    low level stuff for T-Berkom A4T
  *              derived from the original file sedlbauer.c
  *              derived from the original file niccy.c
@@ -24,7 +24,7 @@
 
 extern const char *CardType[];
 
-const char *bkm_a4t_revision = "$Revision: 1.13.6.2 $";
+const char *bkm_a4t_revision = "$Revision: 1.1.1.1 $";
 
 
 static inline u_char

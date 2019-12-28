@@ -1,4 +1,4 @@
-/* $Id: irq.c,v 1.8 2000/02/08 02:01:17 grundler Exp $
+/* $Id: irq.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  * Code to handle x86 style IRQs plus some generic interrupt stuff.
  *

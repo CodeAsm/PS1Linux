@@ -2,7 +2,7 @@
  *
  * Module Name: rscalc - Acpi_rs_calculate_byte_stream_length
  *                       Acpi_rs_calculate_list_length
- *              $Revision: 16 $
+ *              $Revision: 1.1.1.1 $
  *
  ******************************************************************************/
 

@@ -15,9 +15,9 @@
 # along with this program; see the file COPYING.  If not, write to
 # the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #
-# $Source: /homes/cvs/ftape-stacked/ftape/lowlevel/Makefile,v $
-# $Revision: 1.4 $
-# $Date: 1997/10/07 09:26:02 $
+# $Source: /home/cvs/PSXLinux/drivers/char/ftape/lowlevel/Makefile,v $
+# $Revision: 1.1.1.1 $
+# $Date: 2001/02/22 14:58:23 $
 #
 #      Makefile for the lowlevel part QIC-40/80/3010/3020 floppy-tape
 #      driver for Linux.

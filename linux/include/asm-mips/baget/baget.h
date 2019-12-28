@@ -1,4 +1,4 @@
-/* $Id$
+/* $Id: baget.h,v 1.1.1.1 2001/02/22 14:58:58 serg Exp $
  * baget.h: Definitions specific to Baget/MIPS machines.
  *
  * Copyright (C) 1998 Gleb Raiko & Vladimir Roganov

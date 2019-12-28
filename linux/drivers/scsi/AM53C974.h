@@ -22,6 +22,9 @@
 
 /*
  * $Log: AM53C974.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:31  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  */
 
 #ifndef AM53C974_H

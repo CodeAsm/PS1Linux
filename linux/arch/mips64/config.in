@@ -1,4 +1,4 @@
-# $Id: config.in,v 1.19 2000/03/27 01:44:45 ralf Exp $
+# $Id: config.in,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
 #
 # For a description of the syntax of this configuration file,
 # see Documentation/kbuild/config-language.txt.

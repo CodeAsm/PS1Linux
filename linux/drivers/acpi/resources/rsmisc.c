@@ -8,7 +8,7 @@
  *                       Acpi_rs_end_dependent_functions_resource
  *                       Acpi_rs_start_dependent_functions_stream
  *                       Acpi_rs_end_dependent_functions_stream
- *              $Revision: 10 $
+ *              $Revision: 1.1.1.1 $
  *
  ******************************************************************************/
 

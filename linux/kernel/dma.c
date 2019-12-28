@@ -1,4 +1,4 @@
-/* $Id: dma.c,v 1.7 1994/12/28 03:35:33 root Exp root $
+/* $Id: dma.c,v 1.1.1.1 2001/02/22 14:59:01 serg Exp $
  * linux/kernel/dma.c: A DMA channel allocator. Inspired by linux/kernel/irq.c.
  *
  * Written by Hennus Bergman, 1992.

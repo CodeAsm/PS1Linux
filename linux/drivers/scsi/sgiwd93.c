@@ -7,7 +7,7 @@
  * 
  * (In all truth, Jed Schimmel wrote all this code.)
  *
- * $Id: sgiwd93.c,v 1.19 2000/02/04 07:40:47 ralf Exp $
+ * $Id: sgiwd93.c,v 1.1.1.1 2001/02/22 14:58:41 serg Exp $
  */
 #include <linux/init.h>
 #include <linux/types.h>

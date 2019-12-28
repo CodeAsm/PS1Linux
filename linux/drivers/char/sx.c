@@ -33,6 +33,9 @@
  *
  * Revision history:
  * $Log: sx.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:22  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.33  2000/03/09 10:00:00  pvdl,wolff
  * - Fixed module and port counting
  * - Fixed signal handling
@@ -200,8 +203,8 @@
  * */
 
 
-#define RCS_ID "$Id: sx.c,v 1.33 2000/03/08 10:01:02 wolff, pvdl Exp $"
-#define RCS_REV "$Revision: 1.33 $"
+#define RCS_ID "$Id: sx.c,v 1.1.1.1 2001/02/22 14:58:22 serg Exp $"
+#define RCS_REV "$Revision: 1.1.1.1 $"
 
 
 #include <linux/module.h>

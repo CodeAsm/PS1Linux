@@ -1,4 +1,4 @@
-/* $Id: ip22-sc.c,v 1.2 1999/12/04 03:59:01 ralf Exp $
+/* $Id: ip22-sc.c,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  *
  * indy_sc.c: Indy cache managment functions.
  *

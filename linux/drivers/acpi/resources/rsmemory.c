@@ -6,7 +6,7 @@
  *                        Acpi_rs_fixed_memory32_resource
  *                        Acpi_rs_memory32_range_stream
  *                        Acpi_rs_fixed_memory32_stream
- *              $Revision: 10 $
+ *              $Revision: 1.1.1.1 $
  *
  ******************************************************************************/
 

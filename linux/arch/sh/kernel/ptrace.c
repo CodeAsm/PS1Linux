@@ -1,4 +1,4 @@
-/* $Id: ptrace.c,v 1.6 2000/06/08 23:44:50 gniibe Exp $
+/* $Id: ptrace.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  *
  * linux/arch/sh/kernel/ptrace.c
  *

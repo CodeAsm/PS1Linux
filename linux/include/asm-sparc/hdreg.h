@@ -1,4 +1,4 @@
-/* $Id: hdreg.h,v 1.2 2000/12/05 00:56:36 anton Exp $
+/* $Id: hdreg.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * hdreg.h: SPARC PCI specific IDE glue.
  *
  * Copyright (C) 1997  David S. Miller (davem@caip.rutgers.edu)

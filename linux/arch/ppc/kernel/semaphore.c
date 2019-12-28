@@ -1,5 +1,5 @@
 /*
- * $Id: semaphore.c,v 1.1 1999/08/31 15:11:44 cort Exp $
+ * $Id: semaphore.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  * PowerPC-specific semaphore code.
  *

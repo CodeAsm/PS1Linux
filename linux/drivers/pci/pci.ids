@@ -4,7 +4,7 @@
 #	Maintained by Martin Mares <pci-ids@ucw.cz>
 #	If you have any new entries, send them to the maintainer.
 #
-#	$Id: pci.ids,v 1.62 2000/06/28 10:56:36 mj Exp $
+#	$Id: pci.ids,v 1.1.1.1 2001/02/22 14:58:30 serg Exp $
 #
 
 # Vendors, devices and subsystems. Please keep sorted.

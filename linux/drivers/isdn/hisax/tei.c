@@ -1,4 +1,4 @@
-/* $Id: tei.c,v 2.17 2000/11/24 17:05:38 kai Exp $
+/* $Id: tei.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * Author       Karsten Keil (keil@isdn4linux.de)
  *              based on the teles driver from Jan den Ouden
@@ -17,7 +17,7 @@
 #include <linux/init.h>
 #include <linux/random.h>
 
-const char *tei_revision = "$Revision: 2.17 $";
+const char *tei_revision = "$Revision: 1.1.1.1 $";
 
 #define ID_REQUEST	1
 #define ID_ASSIGNED	2

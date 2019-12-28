@@ -20,7 +20,7 @@
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.		     */
 /* ------------------------------------------------------------------------- */
 
-/* $Id: i2c-id.h,v 1.25 2000/10/12 07:27:29 simon Exp $ */
+/* $Id: i2c-id.h,v 1.1.1.1 2001/02/22 14:59:00 serg Exp $ */
 
 #ifndef I2C_ID_H
 #define I2C_ID_H

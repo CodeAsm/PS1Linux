@@ -1,4 +1,4 @@
-/* $Id: advansys.h,v 1.18 1999/11/29 21:47:16 bobf Exp bobf $ */
+/* $Id: advansys.h,v 1.1.1.1 2001/02/22 14:58:32 serg Exp $ */
 
 /*
  * advansys.h - Linux Host Driver for AdvanSys SCSI Adapters

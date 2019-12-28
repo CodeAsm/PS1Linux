@@ -1,4 +1,4 @@
-/* $Id: sunhme.c,v 1.105 2000/12/05 02:00:36 anton Exp $
+/* $Id: sunhme.c,v 1.1.1.1 2001/02/22 14:58:28 serg Exp $
  * sunhme.c: Sparc HME/BigMac 10/100baseT half/full duplex auto switching,
  *           auto carrier detecting ethernet driver.  Also known as the
  *           "Happy Meal Ethernet" found on SunSwift SBUS cards.

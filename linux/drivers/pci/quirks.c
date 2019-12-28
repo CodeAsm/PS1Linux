@@ -1,5 +1,5 @@
 /*
- * $Id: quirks.c,v 1.5 1998/05/02 19:24:14 mj Exp $
+ * $Id: quirks.c,v 1.1.1.1 2001/02/22 14:58:30 serg Exp $
  *
  *  This file contains work-arounds for many known PCI hardware
  *  bugs.  Devices present only on certain architectures (host

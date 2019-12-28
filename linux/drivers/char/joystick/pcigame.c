@@ -1,5 +1,5 @@
 /*
- * $Id: pcigame.c,v 1.6 2000/05/25 12:05:24 vojtech Exp $
+ * $Id: pcigame.c,v 1.1.1.1 2001/02/22 14:58:23 serg Exp $
  *
  *  Copyright (c) 2000 Vojtech Pavlik
  *

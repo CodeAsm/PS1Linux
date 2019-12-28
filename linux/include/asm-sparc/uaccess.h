@@ -1,4 +1,4 @@
-/* $Id: uaccess.h,v 1.22 2000/08/29 07:01:58 davem Exp $
+/* $Id: uaccess.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * uaccess.h: User space memore access functions.
  *
  * Copyright (C) 1996 David S. Miller (davem@caip.rutgers.edu)

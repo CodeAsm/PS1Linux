@@ -157,7 +157,7 @@ static inline pgprot_t pgprot_noncached(pgprot_t _prot)
 	/* Use no-cache mode, serialized */
 	else if (MMU_IS_040 || MMU_IS_060)
 		prot = (prot & _CACHEMASK040) | _PAGE_NOCACHE_S;
-#elif defined(__mips__)
+#elif defined(__mips__) && !defined(NO_MM)
 	prot = (prot & ~_CACHE_MASK) | _CACHE_UNCACHED;
 #elif defined(__arm__) && defined(CONFIG_CPU_32)
 	/* Turn off caching for all I/O areas */

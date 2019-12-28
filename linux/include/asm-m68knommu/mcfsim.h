@@ -15,12 +15,14 @@
 #include <linux/config.h>
 
 /*
- *	Include 5204, 5206, 5307 or 5407 specific addresses.
+ *	Include 5204, 5206, 5272, 5307 or 5407 specific addresses.
  */
 #if defined(CONFIG_M5204)
 #include <asm/m5204sim.h>
 #elif defined(CONFIG_M5206) || defined(CONFIG_M5206e)
 #include <asm/m5206sim.h>
+#elif defined(CONFIG_M5272)
+#include <asm/m5272sim.h>
 #elif defined(CONFIG_M5307)
 #include <asm/m5307sim.h>
 #elif defined(CONFIG_M5407)

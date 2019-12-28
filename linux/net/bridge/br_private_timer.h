@@ -4,7 +4,7 @@
  *	Authors:
  *	Lennert Buytenhek		<buytenh@gnu.org>
  *
- *	$Id: br_private_timer.h,v 1.1 2000/02/18 16:47:13 davem Exp $
+ *	$Id: br_private_timer.h,v 1.1.1.1 2001/02/22 14:59:02 serg Exp $
  *
  *	This program is free software; you can redistribute it and/or
  *	modify it under the terms of the GNU General Public License

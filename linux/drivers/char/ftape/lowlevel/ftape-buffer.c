@@ -16,9 +16,9 @@
  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 
  *
- * $Source: /homes/cvs/ftape-stacked/ftape/lowlevel/ftape-buffer.c,v $
- * $Revision: 1.3 $
- * $Date: 1997/10/16 23:33:11 $
+ * $Source: /home/cvs/PSXLinux/drivers/char/ftape/lowlevel/ftape-buffer.c,v $
+ * $Revision: 1.1.1.1 $
+ * $Date: 2001/02/22 14:58:23 $
  *
  *  This file contains the allocator/dealloctor for ftape's dynamic dma
  *  buffer.

@@ -1,4 +1,4 @@
-/* $Id: saphir.c,v 1.8 2000/11/24 17:05:38 kai Exp $
+/* $Id: saphir.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * saphir.c low level stuff for HST Saphir 1
  *
@@ -19,7 +19,7 @@
 #include "isdnl1.h"
 
 extern const char *CardType[];
-static char *saphir_rev = "$Revision: 1.8 $";
+static char *saphir_rev = "$Revision: 1.1.1.1 $";
 
 #define byteout(addr,val) outb(val,addr)
 #define bytein(addr) inb(addr)

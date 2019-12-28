@@ -1,11 +1,14 @@
 /*
- * $Id: b1pci.c,v 1.29.6.1 2000/11/28 12:02:45 kai Exp $
+ * $Id: b1pci.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  * 
  * Module for AVM B1 PCI-card.
  * 
  * (c) Copyright 1999 by Carsten Paeth (calle@calle.in-berlin.de)
  * 
  * $Log: b1pci.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:24  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.29.6.1  2000/11/28 12:02:45  kai
  * MODULE_DEVICE_TABLE for 2.4
  *
@@ -119,7 +122,7 @@
 #include "capilli.h"
 #include "avmcard.h"
 
-static char *revision = "$Revision: 1.29.6.1 $";
+static char *revision = "$Revision: 1.1.1.1 $";
 
 /* ------------------------------------------------------------- */
 

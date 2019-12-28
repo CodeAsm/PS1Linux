@@ -1,4 +1,4 @@
-/* $Id: shmiq.c,v 1.19 2000/02/23 00:41:21 ralf Exp $
+/* $Id: shmiq.c,v 1.1.1.1 2001/02/22 14:58:42 serg Exp $
  *
  * shmiq.c: shared memory input queue driver
  * written 1997 Miguel de Icaza (miguel@nuclecu.unam.mx)

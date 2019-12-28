@@ -30,7 +30,10 @@
  */
 
 /*
- * $Log: cumana_NCR5380.h,v $
+ * $Log: sun3_scsi.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:41  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  */
 
 #ifndef SUN3_NCR5380_H

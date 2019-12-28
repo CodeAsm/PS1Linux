@@ -33,6 +33,9 @@
 
 /*
  * $Log: ecoscsi.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:12  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.2  1998/03/08 05:49:47  davem
  * Merge to 2.1.89
  *

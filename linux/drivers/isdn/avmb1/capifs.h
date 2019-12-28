@@ -1,9 +1,12 @@
 /*
- * $Id: capifs.h,v 1.2 2000/03/08 17:06:33 calle Exp $
+ * $Id: capifs.h,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  * 
  * (c) Copyright 2000 by Carsten Paeth (calle@calle.de)
  *
  * $Log: capifs.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:24  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.2  2000/03/08 17:06:33  calle
  * - changes for devfs and 2.3.49
  * - capifs now configurable (no need with devfs)

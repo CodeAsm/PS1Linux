@@ -17,6 +17,7 @@
 #include <linux/mm.h>
 #include <linux/tty.h>
 #include <linux/console.h>
+#include <asm/current.h>
 
 #include <asm/setup.h>
 #include <asm/system.h>
@@ -108,14 +109,9 @@ void BSP_reset (void)
 
 void config_BSP(char *command, int len)
 {
-#ifdef CONFIG_68328_SERIAL
-  m68328_console_init();
-#endif  
-
   printk("\n68328 support D. Jeff Dionne <jeff@uclinux.org>\n");
   printk("68328 support Kenneth Albanowski <kjahds@kjshds.com>\n");
   printk("68328/Pilot support Bernhard Kuhn <kuhn@lpr.e-technik.tu-muenchen.de>\n");
-  printk("uClinux 2.4 now!\n"); 
 
   mach_sched_init      = BSP_sched_init;
   mach_tick            = BSP_tick;
@@ -123,9 +119,9 @@ void config_BSP(char *command, int len)
   mach_gettod          = BSP_gettod;
   mach_hwclk           = NULL;
   mach_set_clock_mmss  = NULL;
-  mach_mksound         = NULL;
+//  mach_mksound         = NULL;
   mach_reset           = BSP_reset;
-  mach_debug_init      = NULL;
+//  mach_debug_init      = NULL;
 
   config_M68328_irq();
 }

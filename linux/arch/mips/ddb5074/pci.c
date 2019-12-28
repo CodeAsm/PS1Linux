@@ -5,7 +5,7 @@
  *                     Albert Dorofeev <albert@sonycom.com>
  *                     Sony Software Development Center Europe (SDCE), Brussels
  *
- *  $Id: pci.c,v 1.4 2000/02/18 00:02:17 ralf Exp $
+ *  $Id: pci.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  */
 
 #include <linux/init.h>

@@ -1,4 +1,4 @@
-/* $Id: string.h,v 1.35 2000/05/02 01:47:01 davem Exp $
+/* $Id: string.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * string.h: External definitions for optimized assembly string
  *           routines for the Linux Kernel.
  *

@@ -7,7 +7,7 @@
  * 
  * Copyright (C) 1996 David S. Miller (dm@engr.sgi.com)
  *
- * $Id: identify.c,v 1.2 1999/02/25 21:04:13 tsbogend Exp $
+ * $Id: identify.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  */
 #include <linux/init.h>
 #include <linux/kernel.h>

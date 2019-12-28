@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 2000/01/17 23:32:46 ralf Exp $
+# $Id: Makefile,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
 #
 # Makefile for the Linux/MIPS-specific parts of the memory manager.
 #

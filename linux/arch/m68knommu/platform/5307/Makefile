@@ -18,7 +18,7 @@ endif
 # set up you HW breakpoints to trigger a DBG interrupt:
 #
 # AFLAGS += -DTRAP_DBG_INTERRUPT
-# CFLAGS += -DTRAP_DBG_INTERRUPT
+# EXTRA_CFLAGS += -DTRAP_DBG_INTERRUPT
 #
 
 .S.o:

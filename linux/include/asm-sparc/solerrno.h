@@ -1,4 +1,4 @@
-/* $Id: solerrno.h,v 1.5 1996/04/25 06:13:32 davem Exp $
+/* $Id: solerrno.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * solerrno.h: Solaris error return codes for compatibility.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

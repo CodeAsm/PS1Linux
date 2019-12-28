@@ -1,4 +1,4 @@
-/* $Id: fault.c,v 1.13 2000/03/07 12:05:24 gniibe Exp $
+/* $Id: fault.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  *
  *  linux/arch/sh/mm/fault.c
  *  Copyright (C) 1999  Niibe Yutaka

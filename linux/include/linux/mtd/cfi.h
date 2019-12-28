@@ -1,7 +1,7 @@
 
 /* Common Flash Interface structures 
  * See http://support.intel.com/design/flash/technote/index.htm
- * $Id: cfi.h,v 1.6 2000/07/03 13:29:16 dwmw2 Exp $
+ * $Id: cfi.h,v 1.1.1.1 2001/02/22 14:59:01 serg Exp $
  */
 
 #ifndef __MTD_CFI_H__

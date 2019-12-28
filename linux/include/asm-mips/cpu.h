@@ -1,4 +1,4 @@
-/* $Id: cpu.h,v 1.1 1996/06/23 09:38:33 dm Exp $
+/* $Id: cpu.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  * cpu.h: Values of the PRId register used to match up
  *        various MIPS cpu types.
  *

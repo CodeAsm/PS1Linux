@@ -1,4 +1,4 @@
-/* $Id: memreg.h,v 1.8 1996/08/29 09:48:23 davem Exp $ */
+/* $Id: memreg.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $ */
 #ifndef _SPARC_MEMREG_H
 #define _SPARC_MEMREG_H
 /* memreg.h:  Definitions of the values found in the synchronous

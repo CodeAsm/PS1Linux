@@ -1,4 +1,4 @@
-/* $Id: pgtsun4.h,v 1.5 2000/06/05 06:08:46 anton Exp $
+/* $Id: pgtsun4.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * pgtsun4.h:  Sun4 specific pgtable.h defines and code.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

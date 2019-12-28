@@ -1,4 +1,4 @@
-/* $Id: linux_logo.h,v 1.1 1997/04/16 17:51:24 jj Exp $
+/* $Id: linux_logo.h,v 1.1.1.1 2001/02/22 14:58:50 serg Exp $
  * include/asm-m68k/linux_logo.h: This is a linux logo
  *                                 to be displayed on boot.
  *

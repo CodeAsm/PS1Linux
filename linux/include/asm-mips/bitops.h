@@ -1,4 +1,4 @@
-/* $Id: bitops.h,v 1.7 1999/08/19 22:56:33 ralf Exp $
+/* $Id: bitops.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive

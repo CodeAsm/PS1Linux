@@ -2,8 +2,8 @@
  *
  * Name:	skxmac2.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.53 $
- * Date:	$Date: 2000/07/27 12:22:11 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Contains functions to initialize the XMAC II
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skxmac2.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.53  2000/07/27 12:22:11  gklug
  *	fix: possible endless loop in XmHardRst.
  *	
@@ -234,7 +237,7 @@
 /* local variables ************************************************************/
 
 static const char SysKonnectFileId[] =
-	"@(#)$Id: skxmac2.c,v 1.53 2000/07/27 12:22:11 gklug Exp $ (C) SK ";
+	"@(#)$Id: skxmac2.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $ (C) SK ";
 
 /* BCOM PHY magic pattern list */
 typedef struct s_PhyHack {

@@ -1,4 +1,4 @@
-/* $Id: indy_sc.c,v 1.14 2000/03/25 22:35:07 ralf Exp $
+/* $Id: indy_sc.c,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  *
  * indy_sc.c: Indy cache managment functions.
  *

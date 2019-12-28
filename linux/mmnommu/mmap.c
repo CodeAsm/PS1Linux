@@ -54,7 +54,7 @@ static void show_process_blocks(void)
 	
 	printk("Process blocks %d:", current->pid);
 	
-	tmp = current->mm->tblock;
+	tmp = &current->mm->tblock;
 	while (tmp) {
 		printk(" %p: %p", tmp, tmp->rblock);
 		if (tmp->rblock)
@@ -268,7 +268,7 @@ int do_munmap(struct mm_struct * mm, unsigned long addr, size_t len)
 /* Release all mmaps. */
 void exit_mmap(struct mm_struct * mm)
 {
-	struct mm_tblock_struct * tmp = &mm->tblock;
+	struct mm_tblock_struct *tmp;
 	/*unsigned long flags;*/
 
 	if (!mm)
@@ -297,7 +297,7 @@ void exit_mmap(struct mm_struct * mm)
 	printk("Exit_mmap:\n");
 #endif
 
-	while((tmp = tmp->next)) {
+	while((tmp = mm->tblock.next)) {
 		if (tmp->rblock) {
 			if (!--tmp->rblock->refcount) {
 				if (tmp->rblock->kblock) {

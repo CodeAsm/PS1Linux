@@ -1,5 +1,5 @@
 /*
- *  $Id: timer.c,v 1.3 2000/05/06 00:52:39 kai Exp $
+ *  $Id: timer.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *  Copyright (C) 1996  SpellCaster Telecommunications Inc.
  *
  *  This program is free software; you can redistribute it and/or modify

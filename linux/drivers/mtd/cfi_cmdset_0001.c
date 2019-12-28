@@ -4,7 +4,7 @@
  *
  * (C) 2000 Red Hat. GPL'd
  *
- * $Id: cfi_cmdset_0001.c,v 1.21 2000/07/13 10:36:14 dwmw2 Exp $
+ * $Id: cfi_cmdset_0001.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
  */
 
 #include <linux/module.h>

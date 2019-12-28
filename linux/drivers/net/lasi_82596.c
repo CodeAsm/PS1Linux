@@ -68,7 +68,7 @@
 
  */
 
-static const char *version = "82596.c $Revision: 1.14 $\n";
+static const char *version = "82596.c $Revision: 1.1.1.1 $\n";
 
 #include <linux/module.h>
 

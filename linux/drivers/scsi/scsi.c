@@ -82,7 +82,7 @@ static void scsi_dump_status(int level);
 #endif
 
 /*
-   static const char RCSid[] = "$Header: /vger/u4/cvs/linux/drivers/scsi/scsi.c,v 1.38 1997/01/19 23:07:18 davem Exp $";
+   static const char RCSid[] = "$Header: /home/cvs/PSXLinux/drivers/scsi/scsi.c,v 1.1.1.1 2001/02/22 14:58:41 serg Exp $";
  */
 
 /*

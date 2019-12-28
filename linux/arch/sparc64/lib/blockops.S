@@ -1,4 +1,4 @@
-/* $Id: blockops.S,v 1.27 2000/07/14 01:12:49 davem Exp $
+/* $Id: blockops.S,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * blockops.S: UltraSparc block zero optimized routines.
  *
  * Copyright (C) 1996, 1998, 1999, 2000 David S. Miller (davem@redhat.com)

@@ -1,5 +1,5 @@
 /* 
- * $Id: isdn_divert.h,v 1.5 2000/11/13 22:51:47 kai Exp $
+ * $Id: isdn_divert.h,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  *
  * Header for the diversion supplementary ioctl interface.
  *

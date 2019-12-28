@@ -4,7 +4,7 @@
  *  Copyright (C) 2000 Geert Uytterhoeven <geert@sonycom.com>
  *                     Sony Software Development Center Europe (SDCE), Brussels
  *
- *  $Id: prom.c,v 1.1 2000/01/26 00:07:44 ralf Exp $
+ *  $Id: prom.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  */
 
 #include <linux/init.h>

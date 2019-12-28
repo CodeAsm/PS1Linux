@@ -1,4 +1,4 @@
-/* $Id: isdnloop.c,v 1.11 2000/11/13 22:51:50 kai Exp $
+/* $Id: isdnloop.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
 
  * ISDN low-level module implementing a dummy loop driver.
  *
@@ -24,7 +24,7 @@
 #include "isdnloop.h"
 
 static char
-*revision = "$Revision: 1.11 $";
+*revision = "$Revision: 1.1.1.1 $";
 
 static int isdnloop_addcard(char *);
 

@@ -1,11 +1,14 @@
 /*
- * $Id: kcapi.c,v 1.21.6.1 2000/12/10 23:39:19 kai Exp $
+ * $Id: kcapi.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  * 
  * Kernel CAPI 2.0 Module
  * 
  * (c) Copyright 1999 by Carsten Paeth (calle@calle.in-berlin.de)
  * 
  * $Log: kcapi.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:24  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.21.6.1  2000/12/10 23:39:19  kai
  * in 2.4 we don't have tq_scheduler anymore.
  * also add one supported card to hfc_pci.c
@@ -136,7 +139,7 @@
 #include <linux/b1lli.h>
 #endif
 
-static char *revision = "$Revision: 1.21.6.1 $";
+static char *revision = "$Revision: 1.1.1.1 $";
 
 /* ------------------------------------------------------------- */
 

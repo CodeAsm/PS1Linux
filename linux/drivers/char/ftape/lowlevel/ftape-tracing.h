@@ -20,9 +20,9 @@
  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 
  *
- * $Source: /homes/cvs/ftape-stacked/ftape/lowlevel/ftape-tracing.h,v $
- * $Revision: 1.2 $
- * $Date: 1997/10/05 19:18:28 $
+ * $Source: /home/cvs/PSXLinux/drivers/char/ftape/lowlevel/ftape-tracing.h,v $
+ * $Revision: 1.1.1.1 $
+ * $Date: 2001/02/22 14:58:23 $
  *
  *      This file contains definitions that eases the debugging of the
  *      QIC-40/80/3010/3020 floppy-tape driver "ftape" for Linux.

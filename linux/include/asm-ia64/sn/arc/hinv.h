@@ -9,7 +9,7 @@
  */
 
 
-/* $Id$
+/* $Id: hinv.h,v 1.1.1.1 2001/02/22 14:58:49 serg Exp $
  *
  * ARCS hardware/memory inventory/configuration and system ID definitions.
  */

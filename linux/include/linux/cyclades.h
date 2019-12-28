@@ -1,4 +1,4 @@
-/* $Revision: 3.0 $$Date: 1998/11/02 14:20:59 $
+/* $Revision: 1.1.1.1 $$Date: 2001/02/22 14:59:00 $
  * linux/include/linux/cyclades.h
  *
  * This file was initially written by
@@ -7,6 +7,9 @@
  *
  * This file contains the general definitions for the cyclades.c driver
  *$Log: cyclades.h,v $
+ *Revision 1.1.1.1  2001/02/22 14:59:00  serg
+ *Start PSXLinux project from uClinux-2.4.x
+ *
  *Revision 3.1  2000/04/19 18:52:52  ivan
  *converted address fields to unsigned long and added fields for physical
  *addresses on cyclades_card structure;

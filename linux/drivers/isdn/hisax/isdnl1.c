@@ -1,4 +1,4 @@
-/* $Id: isdnl1.c,v 2.41.6.1 2000/12/10 22:01:04 kai Exp $
+/* $Id: isdnl1.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * isdnl1.c     common low level stuff for Siemens Chipsetbased isdn cards
  *              based on the teles driver from Jan den Ouden
@@ -15,7 +15,7 @@
  *
  */
 
-const char *l1_revision = "$Revision: 2.41.6.1 $";
+const char *l1_revision = "$Revision: 1.1.1.1 $";
 
 #define __NO_VERSION__
 #include <linux/init.h>

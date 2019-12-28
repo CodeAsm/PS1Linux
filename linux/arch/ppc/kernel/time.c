@@ -1,5 +1,5 @@
 /*
- * $Id: time.c,v 1.57 1999/10/21 03:08:16 cort Exp $
+ * $Id: time.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  * Common time routines among all ppc machines.
  *
  * Written by Cort Dougan (cort@cs.nmt.edu) to merge

@@ -1,4 +1,4 @@
-/* $Id: hysdn_if.h,v 1.1 2000/02/10 19:47:50 werner Exp $
+/* $Id: hysdn_if.h,v 1.1.1.1 2001/02/22 14:59:00 serg Exp $
 
  * Linux driver for HYSDN cards, ioctl definitions shared by hynetmgr and driver.
  * written by Werner Cornelius (werner@titro.de) for Hypercope GmbH
@@ -20,6 +20,9 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
  * $Log: hysdn_if.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:59:00  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.1  2000/02/10 19:47:50  werner
  *
  * Initial release

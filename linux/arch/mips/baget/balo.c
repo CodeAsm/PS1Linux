@@ -1,4 +1,4 @@
-/* $Id$
+/* $Id: balo.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  *
  * balo.c: BAget LOader
  *

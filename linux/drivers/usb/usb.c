@@ -19,7 +19,7 @@
  * It should be considered a slave, with no callbacks. Callbacks
  * are evil.
  *
- * $Id: usb.c,v 1.53 2000/01/14 16:19:09 acher Exp $
+ * $Id: usb.c,v 1.1.1.1 2001/02/22 14:58:43 serg Exp $
  */
 
 #include <linux/config.h>

@@ -4,7 +4,7 @@
  * Copyright (C) 1992 Linus Torvalds
  * Copyright (C) 1994, 1995, 1996, 1997 Ralf Baechle
  *
- * $Id: irq.c,v 1.6 2000/02/04 07:40:23 ralf Exp $
+ * $Id: irq.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  */
 #include <linux/errno.h>
 #include <linux/init.h>

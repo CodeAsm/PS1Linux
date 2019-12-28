@@ -1,4 +1,4 @@
-/* $Id: esp.h,v 1.28 2000/03/30 01:33:17 davem Exp $
+/* $Id: esp.h,v 1.1.1.1 2001/02/22 14:58:40 serg Exp $
  * esp.h:  Defines and structures for the Sparc ESP (Enhanced SCSI
  *         Processor) driver under Linux.
  *

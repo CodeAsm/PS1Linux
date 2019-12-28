@@ -1,4 +1,4 @@
-/* $Id: ip22-timer.c,v 1.6 2000/02/04 07:40:24 ralf Exp $
+/* $Id: ip22-timer.c,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  *
  * indy_timer.c: Setting up the clock on the INDY 8254 controller.
  *

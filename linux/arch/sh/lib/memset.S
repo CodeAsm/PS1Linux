@@ -1,4 +1,4 @@
-/* $Id: memset.S,v 1.1 1999/09/18 16:57:09 gniibe Exp $
+/* $Id: memset.S,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  *
  * "memset" implementation of SuperH
  *

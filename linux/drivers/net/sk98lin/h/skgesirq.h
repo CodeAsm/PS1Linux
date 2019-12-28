@@ -2,8 +2,8 @@
  *
  * Name:	skgesirq.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.20 $
- * Date:	$Date: 1999/12/06 10:00:44 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	SK specific Gigabit Ethernet special IRQ functions
  *
  ******************************************************************************/
@@ -26,6 +26,9 @@
  *
  * History:
  *	$Log: skgesirq.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.20  1999/12/06 10:00:44  cgoos
  *	Added SET event for role.
  *	

@@ -1,4 +1,4 @@
-/* $Id: hfc_2bds0.c,v 1.15 2000/11/24 17:05:37 kai Exp $
+/* $Id: hfc_2bds0.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  *  specific routines for CCD's HFC 2BDS0
  *

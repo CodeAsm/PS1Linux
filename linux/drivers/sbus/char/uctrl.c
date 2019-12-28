@@ -1,4 +1,4 @@
-/* $Id: uctrl.c,v 1.9 2000/11/08 05:04:06 davem Exp $
+/* $Id: uctrl.c,v 1.1.1.1 2001/02/22 14:58:31 serg Exp $
  * uctrl.c: TS102 Microcontroller interface on Tadpole Sparcbook 3
  *
  * Copyright 1999 Derrick J Brashear (shadow@dementia.org)

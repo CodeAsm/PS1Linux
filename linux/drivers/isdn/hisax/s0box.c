@@ -1,4 +1,4 @@
-/* $Id: s0box.c,v 2.4 2000/11/24 17:05:38 kai Exp $
+/* $Id: s0box.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  * s0box.c      low level stuff for Creatix S0BOX
  *
@@ -15,7 +15,7 @@
 #include "isdnl1.h"
 
 extern const char *CardType[];
-const char *s0box_revision = "$Revision: 2.4 $";
+const char *s0box_revision = "$Revision: 1.1.1.1 $";
 
 static inline void
 writereg(unsigned int padr, signed int addr, u_char off, u_char val) {

@@ -1,5 +1,5 @@
 /*
- * $Id: m8xx_setup.c,v 1.4 1999/09/18 18:40:36 dmalek Exp $
+ * $Id: m8260_setup.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  *  linux/arch/ppc/kernel/setup.c
  *

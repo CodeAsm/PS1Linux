@@ -2,7 +2,7 @@
  *
  * Module Name: rslist - Acpi_rs_byte_stream_to_list
  *                       Acpi_list_to_byte_stream
- *              $Revision: 8 $
+ *              $Revision: 1.1.1.1 $
  *
  ******************************************************************************/
 

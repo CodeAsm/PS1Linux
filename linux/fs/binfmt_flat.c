@@ -347,13 +347,11 @@ static int load_flat_binary(struct linux_binprm * bprm, struct pt_regs * regs)
 	current->mm->mmap = NULL;
 #endif
 
-#ifdef DEBUG
-	printk("Load %s: TEXT=%x-%x DATA=%x-%x BSS=%x-%x ",
+	DBG_FLT("Load %s: TEXT=%x-%x DATA=%x-%x BSS=%x-%x\n",
 		bprm->argv[0],
 		(int) current->mm->start_code, (int) current->mm->end_code,
 		(int) current->mm->start_data, (int) current->mm->end_data,
 		(int) current->mm->end_data, (int) current->mm->brk);
-#endif
 
 	if (is_in_rom(error)) {
 		int r;
@@ -398,7 +396,8 @@ static int load_flat_binary(struct linux_binprm * bprm, struct pt_regs * regs)
 
 	current->mm->start_stack = (unsigned long) create_flat_tables(p, bprm);
 
-	DBG_FLT("start_thread\n", p);
+	DBG_FLT("start_thread(regs=0x%x, start_code=0x%x, start_stack=0x%x)\n",
+			regs, current->mm->start_code, current->mm->start_stack);
 	start_thread(regs, current->mm->start_code, current->mm->start_stack);
 
 	if (current->ptrace & PT_PTRACED)

@@ -79,11 +79,11 @@ static __inline__ int irq_cannonicalize(int irq)
  *                                                      01/11/97 - Jes
  */
 
-extern void (*enable_irq)(unsigned int);
-extern void (*disable_irq)(unsigned int);
+extern void (*mach_enable_irq)(unsigned int);
+extern void (*mach_disable_irq)(unsigned int);
 
-#define disable_irq_nosync	disable_irq
-#define enable_irq_nosync	enable_irq
+#define disable_irq_nosync	mach_disable_irq
+#define enable_irq_nosync	mach_enable_irq
 
 extern int sys_request_irq(unsigned int, 
 	void (*)(int, void *, struct pt_regs *), 

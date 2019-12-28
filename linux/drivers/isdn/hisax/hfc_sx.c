@@ -1,4 +1,4 @@
-/* $Id: hfc_sx.c,v 1.9 2000/11/24 17:05:37 kai Exp $
+/* $Id: hfc_sx.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
 
  * hfc_sx.c     low level driver for CCD´s hfc-s+/sp based cards
  *
@@ -32,7 +32,7 @@
 
 extern const char *CardType[];
 
-static const char *hfcsx_revision = "$Revision: 1.9 $";
+static const char *hfcsx_revision = "$Revision: 1.1.1.1 $";
 
 /***************************************/
 /* IRQ-table for CCDs demo board       */

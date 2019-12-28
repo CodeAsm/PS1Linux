@@ -1,5 +1,5 @@
 /*
- * $Id: capi.h,v 1.4 2000/06/12 09:20:20 kai Exp $
+ * $Id: capi.h,v 1.1.1.1 2001/02/22 14:59:00 serg Exp $
  * 
  * CAPI 2.0 Interface for Linux
  * 

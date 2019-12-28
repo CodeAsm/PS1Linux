@@ -53,7 +53,7 @@
 
 #if RCS
 static const char *mcdx_c_version
-		= "$Id: mcdx.c,v 1.21 1997/01/26 07:12:59 davem Exp $";
+		= "$Id: mcdx.c,v 1.1.1.1 2001/02/22 14:58:14 serg Exp $";
 #endif
 
 #include <linux/version.h>
@@ -1186,7 +1186,7 @@ int __init mcdx_init(void)
 	xwarn("Version 2.14(hs) \n");
 #endif
 
-	xwarn("$Id: mcdx.c,v 1.21 1997/01/26 07:12:59 davem Exp $\n");
+	xwarn("$Id: mcdx.c,v 1.1.1.1 2001/02/22 14:58:14 serg Exp $\n");
 
 	/* zero the pointer array */
 	for (drive = 0; drive < MCDX_NDRIVES; drive++)

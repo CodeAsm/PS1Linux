@@ -12,7 +12,10 @@
  * Author:
  * L. Haag
  *
- * $Log: r3964.h,v $
+ * $Log: n_r3964.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:59:00  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.1.1.1  1998/10/13 16:43:14  dwmw2
  * This'll screw the version control
  *

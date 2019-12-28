@@ -2,7 +2,7 @@
  *
  * Module Name: evevent - Fixed and General Purpose Acpi_event
  *                          handling and dispatch
- *              $Revision: 32 $
+ *              $Revision: 1.1.1.1 $
  *
  *****************************************************************************/
 

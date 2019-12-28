@@ -1,4 +1,4 @@
-/* $Id: process.c,v 1.33 2000/03/25 00:06:15 gniibe Exp $
+/* $Id: process.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  *
  *  linux/arch/sh/kernel/process.c
  *

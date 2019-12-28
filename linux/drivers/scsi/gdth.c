@@ -23,6 +23,9 @@
  * Tested with Linux 1.2.13, ..., 2.2.4                                 *
  *                                                                      *
  * $Log: gdth.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:40  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.23  1999/03/26 09:12:31  achim
  * Default value for hdr_channel set to 0
  *
@@ -120,7 +123,7 @@
  * Initial revision
  *
  ************************************************************************/
-#ident "$Id: gdth.c,v 1.23 1999/03/26 09:12:31 achim Exp $" 
+#ident "$Id: gdth.c,v 1.1.1.1 2001/02/22 14:58:40 serg Exp $" 
 
 /* All GDT Disk Array Controllers are fully supported by this driver.
  * This includes the PCI/EISA/ISA SCSI Disk Array Controllers and the

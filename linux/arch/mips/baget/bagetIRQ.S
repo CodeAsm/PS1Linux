@@ -1,4 +1,4 @@
-/* $Id: bagetIRQ.S,v 1.1 1999/01/17 03:49:37 ralf Exp $
+/* $Id: bagetIRQ.S,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  * bagetIRQ.S: Interrupt exception dispatch code for Baget/MIPS
  *
  * Copyright (C) 1998 Gleb Raiko & Vladimir Roganov

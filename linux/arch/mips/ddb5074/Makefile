@@ -8,7 +8,7 @@
 #
 # Note 2! The CFLAGS definitions are now in the main makefile...
 #
-# $Id$
+# $Id: Makefile,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
 #
 
 .S.s:

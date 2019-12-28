@@ -1,4 +1,4 @@
-/* $Id: vino.h,v 1.2 1999/02/09 23:03:53 ulfc Exp $
+/* $Id: vino.h,v 1.1.1.1 2001/02/22 14:58:23 serg Exp $
  * drivers/sgi/vino.h
  *
  * Copyright (C) 1999 Ulf Carlsson (ulfc@bun.falkenberg.se)

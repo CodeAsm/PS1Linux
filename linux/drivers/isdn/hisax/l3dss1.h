@@ -1,4 +1,4 @@
-/* $Id: l3dss1.h,v 1.10 2000/06/26 08:59:14 keil Exp $
+/* $Id: l3dss1.h,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  *
  *  DSS1 (Euro) D-channel protocol defines
  *

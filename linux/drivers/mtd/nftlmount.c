@@ -4,7 +4,7 @@
  * Author: Fabrice Bellard (fabrice.bellard@netgem.com) 
  * Copyright (C) 2000 Netgem S.A.
  *
- * $Id: nftlmount.c,v 1.11 2000/11/17 12:24:09 ollie Exp $
+ * $Id: nftlmount.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

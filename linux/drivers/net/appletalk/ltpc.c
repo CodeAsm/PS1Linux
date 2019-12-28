@@ -62,6 +62,9 @@
 /***
  *
  * $Log: ltpc.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:28  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.1.2.1  2000/03/01 05:35:07  jgarzik
  * at and tr cleanup
  *

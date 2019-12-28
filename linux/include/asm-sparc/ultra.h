@@ -1,4 +1,4 @@
-/* $Id: ultra.h,v 1.2 1995/11/25 02:33:10 davem Exp $
+/* $Id: ultra.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * ultra.h: Definitions and defines for the TI V9 UltraSparc.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

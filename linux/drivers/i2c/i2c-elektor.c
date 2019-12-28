@@ -22,7 +22,7 @@
 /* With some changes from Kyösti Mälkki <kmalkki@cc.hut.fi> and even
    Frodo Looijaard <frodol@dds.nl> */
 
-/* $Id: i2c-elektor.c,v 1.19 2000/07/25 23:52:17 frodo Exp $ */
+/* $Id: i2c-elektor.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $ */
 
 #include <linux/kernel.h>
 #include <linux/ioport.h>

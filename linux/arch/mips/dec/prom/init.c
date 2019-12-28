@@ -3,7 +3,7 @@
  *
  * Copyright (C) 1998 Harald Koerfgen
  *
- * $Id: init.c,v 1.3 1999/08/09 19:43:13 harald Exp $
+ * $Id: init.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  */
 #include <linux/init.h>
 #include <linux/config.h>

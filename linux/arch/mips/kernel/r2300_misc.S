@@ -1,4 +1,4 @@
-/* $Id: r2300_misc.S,v 1.8 1999/12/08 22:05:10 harald Exp $
+/* $Id: r2300_misc.S,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  * misc.S: Misc. exception handling code for R3000/R2000.
  *
  * Copyright (C) 1994, 1995, 1996 by Ralf Baechle and Andreas Busse

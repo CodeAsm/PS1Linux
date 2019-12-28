@@ -67,6 +67,9 @@
  *                     (8738 only)
  *                     Fix bug cause x11amp cannot play.
  *    $Log: cmpci.c,v $
+ *    Revision 1.1.1.1  2001/02/22 14:58:42  serg
+ *    Start PSXLinux project from uClinux-2.4.x
+ *
  *    Revision 2.41  1999/10/27 02:00:05  cltien
  *    Now the fragsize for modem is activated by parameter.
  *

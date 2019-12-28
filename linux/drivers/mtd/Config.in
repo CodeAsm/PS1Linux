@@ -1,5 +1,5 @@
 
-# $Id: No. :) $
+# $Id: Config.in,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
 
 mainmenu_option next_comment
 comment 'Memory Technology Devices (MTD)'

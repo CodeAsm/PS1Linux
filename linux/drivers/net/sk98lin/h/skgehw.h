@@ -2,8 +2,8 @@
  *
  * Name:	skgehw.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.35 $
- * Date:	$Date: 2000/05/19 10:17:13 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Defines and Macros for the Gigabit Ethernet Adapter Product
  *		Family
  *
@@ -27,6 +27,9 @@
  *
  * History:
  * $Log: skgehw.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.35  2000/05/19 10:17:13  cgoos
  * Added inactivity check in PHY_READ (in DEBUG mode only).
  *

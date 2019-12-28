@@ -1,4 +1,4 @@
-/* $Id: hysdn_init.c,v 1.6.6.1 2000/11/28 12:02:47 kai Exp $
+/* $Id: hysdn_init.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
 
  * Linux driver for HYSDN cards, init functions.
  * written by Werner Cornelius (werner@titro.de) for Hypercope GmbH
@@ -32,7 +32,7 @@
 
 #include "hysdn_defs.h"
 
-static char *hysdn_init_revision = "$Revision: 1.6.6.1 $";
+static char *hysdn_init_revision = "$Revision: 1.1.1.1 $";
 int cardmax;			/* number of found cards */
 hysdn_card *card_root = NULL;	/* pointer to first card */
 

@@ -1,7 +1,7 @@
 /*
  * linux/drivers/char/synclink.c
  *
- * $Id: synclink.c,v 3.2 2000/11/06 22:34:38 paul Exp $
+ * $Id: synclink.c,v 1.1.1.1 2001/02/22 14:58:23 serg Exp $
  *
  * Device driver for Microgate SyncLink ISA and PCI
  * high speed multiprotocol serial adapters.

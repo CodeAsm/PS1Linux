@@ -19,9 +19,9 @@
  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 
  *
- * $Source: /homes/cvs/ftape-stacked/ftape/lowlevel/ftape-calibr.h,v $
- * $Revision: 1.1 $
- * $Date: 1997/09/19 09:05:26 $
+ * $Source: /home/cvs/PSXLinux/drivers/char/ftape/lowlevel/ftape-calibr.h,v $
+ * $Revision: 1.1.1.1 $
+ * $Date: 2001/02/22 14:58:23 $
  *
  *      This file contains a gp calibration routine for
  *      hardware dependent timeout functions.

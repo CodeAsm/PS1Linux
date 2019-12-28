@@ -1,5 +1,5 @@
 /*
- * $Id: system.h,v 1.49 1999/09/11 18:37:54 cort Exp $
+ * $Id: system.h,v 1.1.1.1 2001/02/22 14:58:58 serg Exp $
  *
  * Copyright (C) 1999 Cort Dougan <cort@cs.nmt.edu>
  */

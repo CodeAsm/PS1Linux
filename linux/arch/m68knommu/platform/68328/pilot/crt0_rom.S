@@ -10,15 +10,25 @@
 
 #define ASSEMBLY
 
+#define IMMED #
+#define	DBG_PUTC(x)	moveb IMMED x, 0xfffff907
+
 #include <linux/config.h>
 
-	.global _stext
-	.global _start
-	.global main
-	.global __bss_start
-	.global _ramend
-	.global penguin_bits
-	
+.global main
+.global _stext
+.global __bss_start
+
+.global _start
+
+.global _rambase
+.global __ramvec
+.global _ramvec
+.global _ramstart
+.global _ramend
+
+.global penguin_bits
+
 #ifdef CONFIG_PILOT
 
 #define IMR 0xFFFFF304
@@ -31,7 +41,25 @@ penguin_bits:
 
 #endif
 
-	.text
+/*****************************************************************************/
+
+.data
+
+/*
+ *      Set up the usable of RAM stuff. Size of RAM is determined then
+ *      an initial stack set up at the end.
+ */
+.align 4
+_ramvec:
+.long   0
+_rambase:
+.long   0
+_ramstart:
+.long   0
+_ramend:
+.long   0
+
+.text
 	
 _start:
 _stext:
@@ -83,34 +111,26 @@ _stext:
 	movew   #0x2700, %sr
 	lea	%a4@(-4), %sp
 
-	moveq	#13, %d7		/* '\r' */
-	jsr putc
-
-	moveq	#10, %d7		/* '\n' */
-	jsr putc
-
-	moveq	#65, %d7		/* 'A' */
-	jsr putc
+	DBG_PUTC('\r')
+	DBG_PUTC('\n')
+	DBG_PUTC('A')
 
    	moveq   #0,%d0
-
 	movew	#16384, %d0  /* PLL settle wait loop */
 L0:
 	subw	#1, %d0
 	bne	L0
 
-	moveq	#66, %d7
-	jsr	putc
+	DBG_PUTC('B')
 
-	
 	/* Copy command line from beginning of RAM (+16) to end of bss */
-	movel	#_ramvec, %d7
+	movel	#__ramvec, %d7
 	addl	#16, %d7
 	moveal	%d7, %a0
 	moveal	#end, %a1
 	lea	%a1@(512), %a2
-	moveq	#67, %d7
-	jsr	putc
+
+	DBG_PUTC('C')
 
 	/* Copy %a0 to %a1 until %a1 == %a2 */
 L2:
@@ -123,8 +143,8 @@ L2:
 	moveal	#__data_rom_start, %a0
 	moveal	#__data_start, %a1
 	moveal	#__data_end, %a2
-	moveq	#68, %d7
-	jsr	putc
+
+	DBG_PUTC('D')
 
 	/* Copy %a0 to %a1 until %a1 == %a2 */
 LD1:
@@ -133,8 +153,7 @@ LD1:
 	cmpal	%a1, %a2
 	bhi	LD1
 
-	moveq	#69, %d7
-	jsr	putc
+	DBG_PUTC('E')
 
 	moveal	#__bss_start, %a0
 	moveal	#end, %a1
@@ -145,15 +164,14 @@ L1:
 	cmpal	%a0, %a1
 	bhi	L1
 
-	moveq	#70, %d7
-	jsr	putc
+	DBG_PUTC('F')
 
 	/* Copy command line from end of bss to command line */
 	moveal	#end, %a0
 	moveal	#command_line, %a1
 	lea	%a1@(512), %a2
-	moveq	#71, %d7
-	jsr	putc
+
+	DBG_PUTC('G')
 
 	/* Copy %a0 to %a1 until %a1 == %a2 */
 L3:
@@ -162,9 +180,15 @@ L3:
 	cmpal	%a1, %a2
 	bhi	L3
 
+	movel	#_sdata, %d0	
+	movel	%d0,	_rambase	
+	movel	#end,	%d0
+	movel	%d0,	_ramstart
+
 	movel	%a4,	%d0
 	subl	#4096,	%d0	/* Reserve 4K of stack */
-	movel	%d0,	memory_end
+	moveq	#79, %d7
+	movel	%d0,	_ramend
 
 	movel	%a3,	%d0
 	movel	%d0,	rom_length
@@ -174,30 +198,32 @@ L3:
 	pea	%sp@(4)
 	pea	0
 
-	moveq	#72, %d7
-	jsr	putc
+	DBG_PUTC('H')
 
 #ifdef CONFIG_PILOT
 	
 	movel	#penguin_bits,	0xFFFFFA00
-	moveb	#10,			0xFFFFFA05
-	movew	#160,			0xFFFFFA08
-	movew	#160,			0xFFFFFA0A
+	moveb	#10,		0xFFFFFA05
+	movew	#160,		0xFFFFFA08
+	movew	#160,		0xFFFFFA0A
 
 #endif /* CONFIG_PILOT */
+
+	DBG_PUTC('I')
+
+	lea     init_task_union,%a2
+	movel	%a2, _current_task
+	lea     0x2000(%a2),%sp
+
+	DBG_PUTC('J')
+	DBG_PUTC('\r')
+	DBG_PUTC('\n')
 
 	jsr	start_kernel
 _exit:
 
 	jmp	_exit
 
-
-putc:
-
-#ifdef CONFIG_68328_SERIAL
-	moveb	%d7,0xfffff907
-#endif
-	rts
 
 	.data
 env:

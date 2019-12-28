@@ -1,5 +1,5 @@
 /*
- * $Id: joydev.c,v 1.13 2000/08/14 21:05:26 vojtech Exp $
+ * $Id: joydev.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  *
  *  Copyright (c) 1999-2000 Vojtech Pavlik 
  *  Copyright (c) 1999 Colin Van Dyke 

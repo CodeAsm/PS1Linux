@@ -2,8 +2,8 @@
  *
  * Name:	skgeinit.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.57 $
- * Date:	$Date: 2000/08/03 14:55:28 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Contains functions to initialize the GE HW
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skgeinit.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.57  2000/08/03 14:55:28  rassmann
  *	Waiting for I2C to be ready before de-initializing adapter
  *	(prevents sensors from hanging up).
@@ -283,7 +286,7 @@
 /* local variables ************************************************************/
 
 static const char SysKonnectFileId[] =
-	"@(#)$Id: skgeinit.c,v 1.57 2000/08/03 14:55:28 rassmann Exp $ (C) SK ";
+	"@(#)$Id: skgeinit.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $ (C) SK ";
 
 struct s_QOffTab {
 	int	RxQOff;		/* Receive Queue Address Offset */

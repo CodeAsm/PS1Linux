@@ -8,7 +8,7 @@
  *	the older version didn't come out right using gcc 2.5.8, the newer one
  *	seems to fall out with gcc 2.6.2.
  *
- *	Version: $Id: igmp.c,v 1.41 2000/08/31 23:39:12 davem Exp $
+ *	Version: $Id: igmp.c,v 1.1.1.1 2001/02/22 14:59:02 serg Exp $
  *
  *	Authors:
  *		Alan Cox <Alan.Cox@linux.org>

@@ -1,4 +1,4 @@
-/* $Id: linux_logo.h,v 1.5 1998/07/30 16:30:58 jj Exp $
+/* $Id: linux_logo.h,v 1.1.1.1 2001/02/22 14:59:00 serg Exp $
  * include/linux/linux_logo.h: This is a linux logo
  *                             to be displayed on boot.
  *

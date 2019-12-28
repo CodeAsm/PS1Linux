@@ -1,4 +1,4 @@
-/* $Id: eicon_dsp.h,v 1.7 2000/05/07 08:51:04 armin Exp $
+/* $Id: eicon_dsp.h,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  *
  * ISDN lowlevel-module for Eicon active cards.
  *        DSP definitions

@@ -6,7 +6,7 @@
 	.text
 
 /*
- * $Id: head.S,v 1.33 1999/09/08 01:06:58 cort Exp $
+ * $Id: head_8260.S,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *	
  * Boot loader philosophy:
  *

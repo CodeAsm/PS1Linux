@@ -1,4 +1,4 @@
-/* $Id: sh_bios.c,v 1.3 2000/09/30 03:43:30 gniibe Exp $
+/* $Id: sh_bios.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  *
  *  linux/arch/sh/kernel/sh_bios.c
  *  C interface for trapping into the standard LinuxSH BIOS.

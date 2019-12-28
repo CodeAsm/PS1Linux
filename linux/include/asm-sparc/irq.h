@@ -1,4 +1,4 @@
-/* $Id: irq.h,v 1.32 2000/08/26 02:42:28 anton Exp $
+/* $Id: irq.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * irq.h: IRQ registers on the Sparc.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

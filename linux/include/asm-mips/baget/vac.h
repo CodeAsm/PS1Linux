@@ -1,4 +1,4 @@
-/* $Id$
+/* $Id: vac.h,v 1.1.1.1 2001/02/22 14:58:58 serg Exp $
  *
  * vac.h: Various VIC controller defines.  The VIC is a VME controller
  *        used in Baget/MIPS series.

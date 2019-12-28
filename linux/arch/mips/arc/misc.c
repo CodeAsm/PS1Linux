@@ -1,4 +1,4 @@
-/* $Id: misc.c,v 1.1 1998/10/18 13:32:09 tsbogend Exp $
+/* $Id: misc.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  *
  * misc.c: Miscellaneous ARCS PROM routines.
  *

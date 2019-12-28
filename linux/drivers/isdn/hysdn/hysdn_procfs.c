@@ -1,4 +1,4 @@
-/* $Id: hysdn_procfs.c,v 1.1 2000/02/10 19:45:18 werner Exp $
+/* $Id: hysdn_procfs.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
 
  * Linux driver for HYSDN cards, /proc/net filesystem log functions.
  * written by Werner Cornelius (werner@titro.de) for Hypercope GmbH
@@ -20,6 +20,9 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
  * $Log: hysdn_procfs.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:25  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.1  2000/02/10 19:45:18  werner
  *
  * Initial release
@@ -37,7 +40,7 @@
 
 #include "hysdn_defs.h"
 
-static char *hysdn_procfs_revision = "$Revision: 1.1 $";
+static char *hysdn_procfs_revision = "$Revision: 1.1.1.1 $";
 
 #define INFO_OUT_LEN 80		/* length of info line including lf */
 

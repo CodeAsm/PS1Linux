@@ -1,5 +1,5 @@
 /*
- * $Id: locks.c,v 1.25 1999/09/10 10:40:13 davem Exp $
+ * $Id: locks.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  * Locks for smp ppc 
  * 

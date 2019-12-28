@@ -2,8 +2,8 @@
  *
  * Name:	skgepnmi.h
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.44 $
- * Date:	$Date: 2000/09/07 07:35:27 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Defines for Private Network Management Interface
  *
  ****************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skgepnmi.h,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.44  2000/09/07 07:35:27  rwahl
  *	- removed NDIS counter specific data type.
  *	- fixed spelling for OID_SKGE_RLMT_PORT_PREFERRED.

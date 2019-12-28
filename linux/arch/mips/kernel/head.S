@@ -1,4 +1,4 @@
-/* $Id: head.S,v 1.18 2000/03/03 22:17:07 kevink Exp $
+/* $Id: head.S,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  *
  * arch/mips/kernel/head.S
  *

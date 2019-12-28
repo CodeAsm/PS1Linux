@@ -3,7 +3,7 @@
  *
  * Copyright (C) 1998 Gleb Raiko & Vladimir Roganov 
  *
- * $Id: init.c,v 1.3 1999/10/09 00:00:57 ralf Exp $
+ * $Id: init.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  */
 #include <linux/init.h>
 #include <asm/bootinfo.h>

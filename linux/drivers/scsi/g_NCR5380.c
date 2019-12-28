@@ -79,7 +79,10 @@
  */
  
 /*
- * $Log: generic_NCR5380.c,v $
+ * $Log: g_NCR5380.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:40  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  */
 
 /* settings for DTC3181E card with only Mustek scanner attached */

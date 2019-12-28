@@ -24,7 +24,7 @@
    Frodo Looijaard <frodol@dds.nl> ,and also from Martin Bailey
    <mbailey@littlefeet-inc.com> */
 
-/* $Id: i2c-algo-pcf.c,v 1.25 2000/11/10 13:43:32 frodo Exp $ */
+/* $Id: i2c-algo-pcf.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $ */
 
 #include <linux/kernel.h>
 #include <linux/module.h>

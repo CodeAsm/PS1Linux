@@ -1,4 +1,4 @@
-/* $Id$
+/* $Id: linux_logo.h,v 1.1.1.1 2001/02/22 14:58:58 serg Exp $
  *
  * include/asm-mips/linux_logo.h: This is a linux logo
  *                                to be displayed on boot.

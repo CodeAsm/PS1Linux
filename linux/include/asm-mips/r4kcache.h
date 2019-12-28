@@ -3,7 +3,7 @@
  *
  * Copyright (C) 1996 David S. Miller (dm@engr.sgi.com)
  *
- * $Id: r4kcache.h,v 1.7 1997/12/18 13:00:45 ralf Exp $
+ * $Id: r4kcache.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  *
  * FIXME: Handle split L2 caches.
  */

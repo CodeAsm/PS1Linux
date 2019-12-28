@@ -22,7 +22,7 @@
 #define _HOSTS_H
 
 /*
-    $Header: /vger/u4/cvs/linux/drivers/scsi/hosts.h,v 1.6 1997/01/19 23:07:13 davem Exp $
+    $Header: /home/cvs/PSXLinux/drivers/scsi/hosts.h,v 1.1.1.1 2001/02/22 14:58:40 serg Exp $
 */
 
 #include <linux/config.h>

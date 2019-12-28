@@ -20,9 +20,9 @@
  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 
  *
- * $Source: /homes/cvs/ftape-stacked/ftape/lowlevel/ftape-bsm.h,v $
- * $Revision: 1.2 $
- * $Date: 1997/10/05 19:18:07 $
+ * $Source: /home/cvs/PSXLinux/drivers/char/ftape/lowlevel/ftape-bsm.h,v $
+ * $Revision: 1.1.1.1 $
+ * $Date: 2001/02/22 14:58:23 $
  *
  *      This file contains definitions for the bad sector map handling
  *      routines for the QIC-117 floppy-tape driver for Linux.

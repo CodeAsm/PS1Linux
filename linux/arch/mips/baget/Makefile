@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.3 1999/08/13 17:07:26 harald Exp $
+# $Id: Makefile,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
 #
 # Makefile for the Baget specific kernel interface routines
 # under Linux.

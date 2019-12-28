@@ -46,6 +46,7 @@ choice 'CPU' \
 	 MCF5204	CONFIG_M5204 \
 	 MCF5206	CONFIG_M5206 \
          MCF5206e	CONFIG_M5206e \
+	 MCF5272	CONFIG_M5272 \
          MCF5307	CONFIG_M5307 \
 	 MCF5407	CONFIG_M5407" M68EZ328
 
@@ -107,6 +108,11 @@ if [ "$CONFIG_M5206e" = "y" ]; then
 	bool 'Lineo (formerly Moreton Bay) NETtel 1500 support' CONFIG_NETtel
 	bool 'Telos Omnia ToolVox support' CONFIG_TELOS
         bool 'Netburner CFV2-40  support' CONFIG_CFV240
+fi
+
+if [ "$CONFIG_M5272" = "y" ]; then
+	define_bool CONFIG_COLDFIRE y
+	bool 'Motorola M5272C3 eval board support' CONFIG_MOTOROLA
 fi
 
 if [ "$CONFIG_M5307" = "y" ]; then

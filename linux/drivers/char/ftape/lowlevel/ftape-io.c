@@ -18,9 +18,9 @@
  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 
  *
- * $Source: /homes/cvs/ftape-stacked/ftape/lowlevel/ftape-io.c,v $
- * $Revision: 1.4 $
- * $Date: 1997/11/11 14:02:36 $
+ * $Source: /home/cvs/PSXLinux/drivers/char/ftape/lowlevel/ftape-io.c,v $
+ * $Revision: 1.1.1.1 $
+ * $Date: 2001/02/22 14:58:23 $
  *
  *      This file contains the general control functions for the
  *      QIC-40/80/3010/3020 floppy-tape driver "ftape" for Linux.

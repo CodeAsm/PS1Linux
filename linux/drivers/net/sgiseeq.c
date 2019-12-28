@@ -1,4 +1,4 @@
-/* $Id: sgiseeq.c,v 1.17 2000/03/27 23:02:57 ralf Exp $
+/* $Id: sgiseeq.c,v 1.1.1.1 2001/02/22 14:58:28 serg Exp $
  *
  * sgiseeq.c: Seeq8003 ethernet driver for SGI machines.
  *

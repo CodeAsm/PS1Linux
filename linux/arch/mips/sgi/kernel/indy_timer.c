@@ -1,4 +1,4 @@
-/* $Id: indy_timer.c,v 1.17 2000/01/21 22:34:03 ralf Exp $
+/* $Id: indy_timer.c,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  *
  * indy_timer.c: Setting up the clock on the INDY 8254 controller.
  *

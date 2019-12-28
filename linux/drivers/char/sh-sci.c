@@ -1,4 +1,4 @@
-/* $Id: sh-sci.c,v 1.40 2000/04/15 06:57:29 gniibe Exp $
+/* $Id: sh-sci.c,v 1.1.1.1 2001/02/22 14:58:22 serg Exp $
  *
  *  linux/drivers/char/sh-sci.c
  *

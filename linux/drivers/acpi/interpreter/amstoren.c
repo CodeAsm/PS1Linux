@@ -3,7 +3,7 @@
  *
  * Module Name: amstoren - AML Interpreter object store support,
  *                         Store to Node (namespace object)
- *              $Revision: 24 $
+ *              $Revision: 1.1.1.1 $
  *
  *****************************************************************************/
 

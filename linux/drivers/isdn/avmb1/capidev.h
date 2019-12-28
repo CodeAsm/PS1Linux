@@ -1,11 +1,14 @@
 /*
- * $Id: capidev.h,v 1.6 2000/11/25 17:00:59 kai Exp $
+ * $Id: capidev.h,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  *
  * CAPI 2.0 Interface for Linux
  *
  * (c) Copyright 1996 by Carsten Paeth (calle@calle.in-berlin.de)
  *
  * $Log: capidev.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:24  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.6  2000/11/25 17:00:59  kai
  * compatibility cleanup - final part for the time being
  *

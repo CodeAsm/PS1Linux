@@ -1,4 +1,4 @@
-/* $Id: eeprom.h,v 1.3 1995/11/25 02:31:38 davem Exp $
+/* $Id: eeprom.h,v 1.1.1.1 2001/02/22 14:58:59 serg Exp $
  * eeprom.h:  Definitions for the Sun eeprom.
  *
  * Copyright (C) 1995 David S. Miller (davem@caip.rutgers.edu)

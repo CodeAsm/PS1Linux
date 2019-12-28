@@ -1,5 +1,5 @@
 /*
- * $Id: wacom.c,v 1.14 2000/11/23 09:34:32 vojtech Exp $
+ * $Id: wacom.c,v 1.1.1.1 2001/02/22 14:58:44 serg Exp $
  *
  *  Copyright (c) 2000 Vojtech Pavlik		<vojtech@suse.cz>
  *  Copyright (c) 2000 Andreas Bach Aaen	<abach@stofanet.dk>

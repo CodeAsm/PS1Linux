@@ -1,4 +1,4 @@
-/* $Id: ds1286.c,v 1.6 1999/10/09 00:01:31 ralf Exp $
+/* $Id: ds1286.c,v 1.1.1.1 2001/02/22 14:58:42 serg Exp $
  *
  *	Real Time Clock interface for Linux	
  *

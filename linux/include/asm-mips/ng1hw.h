@@ -1,4 +1,4 @@
-/* $Id: ng1hw.h,v 1.4 1999/08/04 06:01:51 ulfc Exp $
+/* $Id: ng1hw.h,v 1.1.1.1 2001/02/22 14:58:57 serg Exp $
  * 
  * ng1hw.h: Tweaks the newport.h structures and definations to be compatible
  * 	    with IRIX.  Quite ugly, but it works.

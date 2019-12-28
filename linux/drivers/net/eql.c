@@ -17,7 +17,7 @@
  */
 
 static const char *version = 
-	"Equalizer1996: $Revision: 1.2.1 $ $Date: 1996/09/22 13:52:00 $ Simon Janes (simon@ncm.com)\n";
+	"Equalizer1996: $Revision: 1.1.1.1 $ $Date: 2001/02/22 14:58:27 $ Simon Janes (simon@ncm.com)\n";
 
 /*
  * Sources:
@@ -31,6 +31,9 @@ static const char *version =
 
 /*
  * $Log: eql.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:27  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.2  1996/04/11 17:51:52  guru
  * Added one-line eql_remove_slave patch.
  *

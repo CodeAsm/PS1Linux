@@ -1,11 +1,14 @@
 /*
- * $Id: capi.c,v 1.45 2000/12/02 19:47:29 kai Exp $
+ * $Id: capi.c,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  *
  * CAPI 2.0 Interface for Linux
  *
  * Copyright 1996 by Carsten Paeth (calle@calle.in-berlin.de)
  *
  * $Log: capi.c,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:24  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.45  2000/12/02 19:47:29  kai
  * Change the Makefiles to new style.
  * There may be problems there that I missed, so this shouldn't go into
@@ -247,7 +250,7 @@
 #endif
 #include <linux/slab.h>
 
-static char *revision = "$Revision: 1.45 $";
+static char *revision = "$Revision: 1.1.1.1 $";
 
 MODULE_AUTHOR("Carsten Paeth (calle@calle.in-berlin.de)");
 

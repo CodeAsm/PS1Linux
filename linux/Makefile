@@ -5,7 +5,7 @@ EXTRAVERSION = .0pre0
 
 KERNELRELEASE=$(VERSION).$(PATCHLEVEL).$(SUBLEVEL)$(EXTRAVERSION)
 
-ARCH := m68knommu
+ARCH := mipsnommu
 
 CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 	  else if [ -x /bin/bash ]; then echo /bin/bash; \
@@ -15,10 +15,10 @@ TOPDIR	:= $(shell if [ "$$PWD" != "" ]; then echo $$PWD; else pwd; fi)
 HPATH   	= $(TOPDIR)/include
 FINDHPATH	= $(HPATH)/asm $(HPATH)/linux $(HPATH)/scsi $(HPATH)/net
 
-HOSTCC  	= unset GCC_EXEC_PREFIX; gcc
+HOSTCC  	= gcc
 HOSTCFLAGS	= -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer
 
-CROSS_COMPILE 	= m68k-elf-
+CROSS_COMPILE 	= mipsel-linux-
 
 #
 # Include the make variables (CC, etc...)
@@ -142,6 +142,8 @@ ifndef CONFIG_UCLINUX
 	CORE_FILES += mm/mm.o
 	SUBDIRS    += mm
 else
+	CFLAGS	   += -DNO_MM -DNO_FPU
+	AFLAGS	   += -DNO_MM -DNO_FPU
 	CORE_FILES += mmnommu/mmnommu.o
 	SUBDIRS    += mmnommu
 endif

@@ -1,4 +1,4 @@
-/* $Id: streamable.c,v 1.10 2000/02/05 06:47:30 ralf Exp $
+/* $Id: streamable.c,v 1.1.1.1 2001/02/22 14:58:42 serg Exp $
  *
  * streamable.c: streamable devices. /dev/gfx
  * (C) 1997 Miguel de Icaza (miguel@nuclecu.unam.mx)

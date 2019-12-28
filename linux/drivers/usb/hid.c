@@ -1,5 +1,5 @@
 /*
- * $Id: hid.c,v 1.16 2000/09/18 21:38:55 vojtech Exp $
+ * $Id: hid.c,v 1.1.1.1 2001/02/22 14:58:43 serg Exp $
  *
  *  Copyright (c) 1999 Andreas Gal
  *  Copyright (c) 2000 Vojtech Pavlik

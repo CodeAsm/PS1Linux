@@ -1,4 +1,4 @@
-/* $Id: r10kcache.h,v 1.1 2000/01/16 01:27:14 ralf Exp $
+/* $Id: r10kcache.h,v 1.1.1.1 2001/02/22 14:58:58 serg Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive

@@ -2,8 +2,8 @@
  *
  * Name:	skgesirq.c
  * Project:	GEnesis, PCI Gigabit Ethernet Adapter
- * Version:	$Revision: 1.55 $
- * Date:	$Date: 2000/06/19 08:36:25 $
+ * Version:	$Revision: 1.1.1.1 $
+ * Date:	$Date: 2001/02/22 14:58:29 $
  * Purpose:	Special IRQ module
  *
  ******************************************************************************/
@@ -27,6 +27,9 @@
  * History:
  *
  *	$Log: skgesirq.c,v $
+ *	Revision 1.1.1.1  2001/02/22 14:58:29  serg
+ *	Start PSXLinux project from uClinux-2.4.x
+ *	
  *	Revision 1.55  2000/06/19 08:36:25  cgoos
  *	Changed comment.
  *	
@@ -241,7 +244,7 @@
 
 */
 static const char SysKonnectFileId[] =
-	"$Id: skgesirq.c,v 1.55 2000/06/19 08:36:25 cgoos Exp $" ;
+	"$Id: skgesirq.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $" ;
 
 #include "h/skdrv1st.h"		/* Driver Specific Definitions */
 #include "h/skgepnmi.h"		/* PNMI Definitions */

@@ -1,4 +1,4 @@
-/* $Id: dvma.h,v 1.4 1999/03/27 20:23:41 tsbogend Exp $
+/* $Id: dvma.h,v 1.1.1.1 2001/02/22 14:58:50 serg Exp $
  * include/asm-m68k/dma.h
  *
  * Copyright 1995 (C) David S. Miller (davem@caip.rutgers.edu)

@@ -8,7 +8,7 @@
 # Note 2! The CFLAGS definitions are now inherited from the
 # parent makes..
 #
-# $Id: Makefile,v 1.22 2000/07/14 08:10:52 dwmw2 Exp $
+# $Id: Makefile,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
 
 # Object file lists.
 

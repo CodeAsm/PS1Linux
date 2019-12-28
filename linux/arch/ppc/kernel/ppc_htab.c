@@ -1,5 +1,5 @@
 /*
- * $Id: ppc_htab.c,v 1.29 1999/09/10 05:05:50 paulus Exp $
+ * $Id: ppc_htab.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  * PowerPC hash table management proc entry.  Will show information
  * about the current hash table and will allow changes to it.

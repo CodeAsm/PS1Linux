@@ -1,4 +1,4 @@
-/* $Id: advansys.c,v 1.69 1999/11/29 18:37:53 bobf Exp bobf $ */
+/* $Id: advansys.c,v 1.1.1.1 2001/02/22 14:58:32 serg Exp $ */
 #define ASC_VERSION "3.2M"    /* AdvanSys Driver Version */
 
 /*

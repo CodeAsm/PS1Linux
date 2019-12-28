@@ -1,6 +1,6 @@
 #define AZT_VERSION "2.60"
 
-/*      $Id: aztcd.c,v 2.60 1997/11/29 09:51:19 root Exp root $
+/*      $Id: aztcd.c,v 1.1.1.1 2001/02/22 14:58:14 serg Exp $
 	linux/drivers/block/aztcd.c - Aztech CD268 CDROM driver
 
 	Copyright (C) 1994-98 Werner Zimmermann(Werner.Zimmermann@fht-esslingen.de)

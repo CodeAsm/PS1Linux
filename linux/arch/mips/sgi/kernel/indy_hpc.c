@@ -1,4 +1,4 @@
-/* $Id: indy_hpc.c,v 1.9 1999/12/04 03:59:00 ralf Exp $
+/* $Id: indy_hpc.c,v 1.1.1.1 2001/02/22 14:58:09 serg Exp $
  *
  * indy_hpc.c: Routines for generic manipulation of the HPC controllers.
  *

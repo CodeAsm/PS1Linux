@@ -1,7 +1,7 @@
 /*
  * misc.c
  *
- * $Id: misc.c,v 1.2 1999/09/14 05:55:29 dmalek Exp $
+ * $Id: misc.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  * 
  * Adapted for PowerPC by Gary Thomas
  *

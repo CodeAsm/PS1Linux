@@ -4,7 +4,7 @@
  *                       Acpi_rs_address16_stream
  *                       Acpi_rs_address32_resource
  *                       Acpi_rs_address32_stream
- *              $Revision: 12 $
+ *              $Revision: 1.1.1.1 $
  *
  ******************************************************************************/
 

@@ -1,5 +1,5 @@
 /*
- * $Id: sidewinder.c,v 1.16 2000/07/14 09:02:41 vojtech Exp $
+ * $Id: sidewinder.c,v 1.1.1.1 2001/02/22 14:58:23 serg Exp $
  *
  *  Copyright (c) 1998-2000 Vojtech Pavlik
  *

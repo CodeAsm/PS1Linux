@@ -1,4 +1,4 @@
-/* $Id: unistd.h,v 1.20 2000/02/18 00:24:48 ralf Exp $
+/* $Id: unistd.h,v 1.1.1.1 2001/02/22 14:58:58 serg Exp $
  *
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive

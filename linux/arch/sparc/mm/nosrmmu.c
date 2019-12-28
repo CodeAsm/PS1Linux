@@ -1,4 +1,4 @@
-/* $Id: nosrmmu.c,v 1.5 1999/11/19 04:11:54 davem Exp $
+/* $Id: nosrmmu.c,v 1.1.1.1 2001/02/22 14:58:11 serg Exp $
  * nosrmmu.c: This file is a bunch of dummies for sun4 compiles, 
  *         so that it does not need srmmu and avoid ifdefs.
  *

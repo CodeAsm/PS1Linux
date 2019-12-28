@@ -1,4 +1,4 @@
-/* $Id: bkm_ax.h,v 1.5.6.1 2000/11/28 12:02:46 kai Exp $
+/* $Id: bkm_ax.h,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
  * bkm_ax.h   low level decls for T-Berkom cards A4T and Scitel Quadro (4*S0, passive)
  *
  * Author     Roland Klabunde (R.Klabunde@Berkom.de)

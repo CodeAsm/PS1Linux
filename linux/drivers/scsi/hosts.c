@@ -41,7 +41,7 @@
 #include "hosts.h"
 
 /*
-static const char RCSid[] = "$Header: /vger/u4/cvs/linux/drivers/scsi/hosts.c,v 1.20 1996/12/12 19:18:32 davem Exp $";
+static const char RCSid[] = "$Header: /home/cvs/PSXLinux/drivers/scsi/hosts.c,v 1.1.1.1 2001/02/22 14:58:40 serg Exp $";
 */
 
 /*

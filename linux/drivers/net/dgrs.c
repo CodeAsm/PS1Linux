@@ -73,7 +73,7 @@
  *
  */
 
-static char *version = "$Id: dgrs.c,v 1.13 2000/06/06 04:07:00 rick Exp $";
+static char *version = "$Id: dgrs.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $";
 
 #include <linux/version.h>
 #include <linux/module.h>

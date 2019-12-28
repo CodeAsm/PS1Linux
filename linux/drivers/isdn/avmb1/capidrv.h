@@ -1,11 +1,14 @@
 /*
- * $Id: capidrv.h,v 1.2 1998/03/29 16:06:06 calle Exp $
+ * $Id: capidrv.h,v 1.1.1.1 2001/02/22 14:58:24 serg Exp $
  *
  * ISDN4Linux Driver, using capi20 interface (kernelcapi)
  *
  * Copyright 1997 by Carsten Paeth (calle@calle.in-berlin.de)
  *
  * $Log: capidrv.h,v $
+ * Revision 1.1.1.1  2001/02/22 14:58:24  serg
+ * Start PSXLinux project from uClinux-2.4.x
+ *
  * Revision 1.2  1998/03/29 16:06:06  calle
  * changes from 2.0 tree merged.
  *

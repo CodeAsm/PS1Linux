@@ -17,9 +17,9 @@
  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 
  *
- * $Source: /homes/cvs/ftape-stacked/ftape/lowlevel/ftape-rw.c,v $
- * $Revision: 1.7 $
- * $Date: 1997/10/28 14:26:49 $
+ * $Source: /home/cvs/PSXLinux/drivers/char/ftape/lowlevel/ftape-rw.c,v $
+ * $Revision: 1.1.1.1 $
+ * $Date: 2001/02/22 14:58:23 $
  *
  *      This file contains some common code for the segment read and
  *      segment write routines for the QIC-117 floppy-tape driver for

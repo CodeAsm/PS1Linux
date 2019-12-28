@@ -1,5 +1,5 @@
 /*
- * $Id: isdn_lzscomp.h,v 1.1 1998/07/08 16:52:33 hipp Exp $
+ * $Id: isdn_lzscomp.h,v 1.1.1.1 2001/02/22 14:59:00 serg Exp $
  *
  * Header for isdn_lzscomp.c
  * Concentrated here to not mess up half a dozen kernel headers with code

@@ -1,5 +1,5 @@
 /*
- * $Id: time.h,v 1.12 1999/08/27 04:21:23 cort Exp $
+ * $Id: time.h,v 1.1.1.1 2001/02/22 14:58:58 serg Exp $
  * Common time prototypes and such for all ppc machines.
  *
  * Written by Cort Dougan (cort@cs.nmt.edu) to merge

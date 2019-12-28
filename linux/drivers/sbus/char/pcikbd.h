@@ -1,4 +1,4 @@
-/* $Id: pcikbd.h,v 1.2 1997/12/25 21:13:14 geert Exp $
+/* $Id: pcikbd.h,v 1.1.1.1 2001/02/22 14:58:31 serg Exp $
  * pcikbd.h: PCI/PC 8042 keyboard/mouse driver stuff.  Mostly snarfed
  *           from the existing driver by Martin Mares.
  *

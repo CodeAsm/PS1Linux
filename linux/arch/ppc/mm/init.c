@@ -1,5 +1,5 @@
 /*
- *  $Id: init.c,v 1.195 1999/10/15 16:39:39 cort Exp $
+ *  $Id: init.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  *  PowerPC version 
  *    Copyright (C) 1995-1996 Gary Thomas (gdt@linuxppc.org)

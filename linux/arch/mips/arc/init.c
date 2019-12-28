@@ -1,4 +1,4 @@
-/* $Id: init.c,v 1.5 2000/03/07 15:45:27 ralf Exp $
+/* $Id: init.c,v 1.1.1.1 2001/02/22 14:58:08 serg Exp $
  * This file is subject to the terms and conditions of the GNU General Public+ 
  * License.  See the file "COPYING" in the main directory of this archive
  * for more details.

@@ -1,4 +1,4 @@
-/* $Id: pa11.c,v 1.1 1999/03/17 01:05:41 pjlahaie Exp $
+/* $Id: pa11.c,v 1.1.1.1 2001/02/22 14:58:10 serg Exp $
  *
  * pa11.c: PA 1.1 specific mmu/cache code.
  *

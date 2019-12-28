@@ -30,7 +30,7 @@
 /* an olivetti notebook which doesn't have FIR, a toshiba libretto, and */
 /* an hp printer, this works fine at 4MBPS with my HP printer */
 
-static char *rcsid = "$Id: toshoboe.c,v 1.91 1999/06/29 14:21:06 root Exp $";
+static char *rcsid = "$Id: toshoboe.c,v 1.1.1.1 2001/02/22 14:58:29 serg Exp $";
 
 /* Define this to have only one frame in the XMIT or RECV queue */
 /* Toshiba's drivers do this, but it disables back to back tansfers */

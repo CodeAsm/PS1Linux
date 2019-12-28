@@ -16,7 +16,7 @@
  * (C) Copyright 1999 Randy Dunlap
  * (C) Copyright 1999 Gregory P. Smith
  *
- * $Id: usb-uhci.c,v 1.251 2000/11/30 09:47:54 acher Exp $
+ * $Id: usb-uhci.c,v 1.1.1.1 2001/02/22 14:58:43 serg Exp $
  */
 
 #include <linux/config.h>
@@ -52,7 +52,7 @@
 /* This enables an extra UHCI slab for memory debugging */
 #define DEBUG_SLAB
 
-#define VERSTR "$Revision: 1.251 $ time " __TIME__ " " __DATE__
+#define VERSTR "$Revision: 1.1.1.1 $ time " __TIME__ " " __DATE__
 
 #include <linux/usb.h>
 #include "usb-uhci.h"

@@ -1,4 +1,4 @@
-// $Id: nj_s.c,v 2.7.6.1 2000/11/29 16:00:14 kai Exp $
+// $Id: nj_s.c,v 1.1.1.1 2001/02/22 14:58:25 serg Exp $
 //
 // This file is (c) under GNU PUBLIC LICENSE
 //
@@ -14,7 +14,7 @@
 #include <linux/ppp_defs.h>
 #include "netjet.h"
 
-const char *NETjet_S_revision = "$Revision: 2.7.6.1 $";
+const char *NETjet_S_revision = "$Revision: 1.1.1.1 $";
 
 static u_char dummyrr(struct IsdnCardState *cs, int chan, u_char off)
 {

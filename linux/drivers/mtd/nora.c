@@ -1,5 +1,5 @@
 /*
- * $Id: nora.c,v 1.17 2000/12/03 19:32:21 dwmw2 Exp $
+ * $Id: nora.c,v 1.1.1.1 2001/02/22 14:58:26 serg Exp $
  *
  * This is so simple I love it.
  */

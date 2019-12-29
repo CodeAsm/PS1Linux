@@ -8,6 +8,6 @@ make dep
 make menuconfig
 make
 cd ..
-./tools/elf2psx/elf2psx -p PSXLinux/linux bin/kernel.exe
+tools/elf2psx/elf2psx -p linux/linux bin/kernel.exe
 exec wine ./tools/no\$psx/NO\$PSX.EXE bin/kernel.exe
 

@@ -17,7 +17,6 @@ function delete {
 rm bin/kernel.exe
 cd linux
 make mrproper
-rm 
 exit
 }
 

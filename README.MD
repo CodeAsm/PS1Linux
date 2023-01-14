@@ -47,6 +47,10 @@ Youll find actual drivers for the video inside linux/drivers/video/psxcon.c
 
 Inside Config_Addon, ``CONFIG_USB_SL811H=y`` is defined. the driver is here: linux/drivers/usb/sl811h.c (and .h). Might be cool to get this or some similair usb host ic working on the Playstation. not yet sure how this is connected to the PIO (they also have PIO hardware drivers)
 
+## Config
+
+CONFIG_VT_CONSOLE_HIRES not setting this makes the terminal actually a bit more readable inside No$PSX.
+
 # Copyright and licenses
 Linux kernel Linus Torvalds, GNU General Public License version 2.x, retrieved from the Runix site sofar,
 might change in the future.

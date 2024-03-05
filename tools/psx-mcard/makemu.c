@@ -26,9 +26,9 @@ int main() {
     // Prepare the header
     bu_first_block_t header = {
         0x1234,       // id
-        0x00020000,   // size
+        131072,       // size
         0x00010000,   // serial
-        0x01000000    // number
+        3//0x01000000    // number
     };
 
 

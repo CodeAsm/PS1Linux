@@ -2,6 +2,8 @@
 #rm -rf PSXLinux
 #tar -xvf PSXLinux-kernel-2.4.x-beta1.tar.gz
 
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+cd $SCRIPT_DIR
 function build {
 cd linux
 make mrproper

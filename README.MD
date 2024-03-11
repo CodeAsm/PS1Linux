@@ -2,6 +2,9 @@
 
 Ongoing project to bring Linux back to the original Sony PlayStation, also called the PS1 or PSX, based on the original work by the wonderful Russian Runix team.
 
+Currently it boots on real hardware and emulators but no storage device format tool is known or created
+![PS1Linux booting](PS1Linux.webp)
+
 ## Plans
 
 Reverse engineer or atleast figure out how they intended to store a filesystem on the memory units.
